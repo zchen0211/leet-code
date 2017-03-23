@@ -1,3 +1,6 @@
+# Notice: for i in range(n):
+# even if i has been changed in the loop
+# will be modified back in for loop
 class Solution(object):
   def findMaxConsecutiveOnes(self, nums):
     if len(nums) == 0:
