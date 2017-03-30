@@ -17,9 +17,12 @@ algorithm:
 400
 
 tree:
+230: in-order traversal must record visited! otherwise, a while loop to push all left inside while
+then, only push right in the outer loop
 437
 
 hash_table:
+220: idea of bucket-sort
 447
 
 string:
@@ -30,3 +33,6 @@ stack:
 
 trie:
 208
+
+logic:
+223
