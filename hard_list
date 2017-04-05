@@ -26,7 +26,7 @@ then, only push right in the outer loop
 437
 
 hash_table:
-220: idea of bucket-sort
+220, 274: idea of bucket-sort
 447
 
 string:
