@@ -28,6 +28,7 @@ algorithm:
 tree:
 230: in-order traversal must record visited! otherwise, a while loop to push all left inside while
 then, only push right in the outer loop
+310: think carefully about the optimim solution
 437
 
 hash_table:
