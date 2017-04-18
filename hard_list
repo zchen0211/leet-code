@@ -19,6 +19,7 @@ bit operation:
 dp:
 260
 264
+309: insight of two dp record keeping
 
 algorithm:
 240: search order
