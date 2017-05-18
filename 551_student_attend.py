@@ -22,3 +22,24 @@ class Solution(object):
     :type s: str
     :rtype: bool
     """
+    n = len(s)
+    if n == 0: return True
+    rec_A = 0
+    rec_L = 0
+    for i in range(n):
+      if s[i] == 'A':
+        rec_L = 0
+        rec_A += 1
+        if rec_A >= 2: return False
+      elif s[i] == 'L':
+        rec_L += 1
+        if rec_L >= 3: return False
+      else:  # Present
+        rec_L = 0
+    return True
+
+
+if __name__ == '__main__':
+  a = Solution()
+  print a.checkRecord('PPALLP')
+  print a.checkRecord('PPALLL')
