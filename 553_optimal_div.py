@@ -1,9 +1,6 @@
 '''
-Total Accepted: 1685
-Total Submissions: 3158
-Difficulty: Medium
-Contributors:
-fallcreek
+553. Optimal Division (Medium)
+
 Given a list of positive integers, the adjacent integers will perform the float division. For example, [2,3,4] -> 2 / 3 / 4.
 
 However, you can add any number of parenthesis at any position to change the priority of operations. You should find out how to add parenthesis to get the maximum result, and return the corresponding expression in string format. Your expression should NOT contain redundant parenthesis.
@@ -34,3 +31,18 @@ class Solution(object):
     :type nums: List[int]
     :rtype: str
     """
+    n = len(nums)
+    if n == 0: return ''
+    if n == 1: return str(nums[0])
+    if n == 2: return str(nums[0])+'/'+str(nums[1])
+    result = str(nums[0]) + '/('
+    for item in nums[1:]:
+      result += str(item) + '/'
+    result = result[:-1]
+    result += ')'
+    return result
+
+
+if __name__ == '__main__':
+  a = Solution()
+  print a.optimalDivision([1000,100,10,2])

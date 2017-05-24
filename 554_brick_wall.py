@@ -1,4 +1,6 @@
 '''
+554. Brick Wall (Medium)
+
 There is a brick wall in front of you. The wall is rectangular and has several rows of bricks. The bricks have the same height but different width. You want to draw a vertical line from the top to the bottom and cross the least bricks.
 
 The brick wall is represented by a list of rows. Each row is a list of integers representing the width of each brick in this row from left to right.
@@ -29,3 +31,23 @@ class Solution(object):
     :type wall: List[List[int]]
     :rtype: int
     """
+    rec_map = {} # record of 
+    n = len(wall)
+    for i in range(n):
+      m = len(wall[i])
+      rec = 0
+      for j in range(m-1):
+        rec += wall[i][j]
+        if rec in rec_map: rec_map[rec] += 1
+        else: rec_map[rec] = 1
+    return n-max(rec_map.values())
+
+
+if __name__ == '__main__':
+  a = Solution()
+  print a.leastBricks([[1,2,2,1],
+ [3,1,2],
+ [1,3,2],
+ [2,4],
+ [3,1,2],
+ [1,3,1,1]])
