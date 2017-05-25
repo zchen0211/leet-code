@@ -13,6 +13,9 @@ Stack in python: implemented by list
 double pointer / double direction:
 238
 
+priority queue:
+378 (generally with a heap)
+
 bit operation:
 371
 
@@ -52,5 +55,6 @@ logic:
 223
 
 system:
+380: random set with O(1) insert, delete and get_random
 535
 284: iterator
