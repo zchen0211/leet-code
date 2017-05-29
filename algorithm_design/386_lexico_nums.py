@@ -44,7 +44,35 @@ class Solution(object):
       n += 1
     return n 
 
+  def lexicalOrder2(self, n):
+    result = [1]
+    cnt = 0
+    while(cnt < n-1):
+      tmp = result[-1]
+      # compute next number of tmp
+      if tmp == n:
+        tmp = tmp/10 + 1
+        while(tmp%10==0): tmp/=10
+        result.append(tmp)
+      elif tmp*10<=n:
+        result.append(tmp*10)
+      elif tmp%10 !=9:
+        result.append(tmp+1)
+      else:
+        # decide how many 9s in front
+        divider = 10
+        while((tmp+1) % divider==0):
+          divider *=10
+        divider /= 10
+        # print tmp, divider
+        tmp = (tmp+1)/divider
+        # print tmp
+        result.append(tmp)
+      cnt += 1
+    return result
+
 if __name__ == '__main__':
   a = Solution()
   # print a.helper(1, 3)
-  print a.lexicalOrder(100)
+  print a.lexicalOrder(192)
+  print a.lexicalOrder2(192)
