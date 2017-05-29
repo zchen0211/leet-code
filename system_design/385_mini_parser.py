@@ -72,52 +72,71 @@ Return a NestedInteger object containing a nested list with 2 elements:
 #        :rtype List[NestedInteger]
 #        """
 
-class Solution(object):
-  def deserialize(self, s):
-    """
-    :type s: str
-    :rtype: NestedInteger
-    """
-    d_set = set(['-','0','1','2','3','4','5','6','7','8','9'])
-    n = len(s)
-    stack = []
-    i = 0
-    if s[0] in d_set:
-      result = int(s)
-    else:
-      while(i<n):
-        if s[i] == '[':
-          i += 1 
-          tmp = []
-          # put all numbers in tmp until next '[' or ']'
-          j = i + 1
-          while(s[j]!='[' and s[j]!=']'):
-            if s[j] in d_set: j += 1
-            else: # ','
-               tmp.append(int(s[i:j]))
-  
-  def str_2_list(self, s): # divide and conquer
-    assert s[0] == '['
-    assert s[-1] == ']'
-    result = []
-    start_nest_id = None
-    d_set = set(['-','0','1','2','3','4','5','6','7','8','9'])
-    # start part until '['
-    i = 1
-    n = len(s)
-    while(i<n and s[i]!='[' and s[i]!=']'):
-      if s[i] in d_set:
-        j = i+1
-        while(s[j] in d_set):
-          j = j+1
-        result.append(int(s[i:j]))
-      i = j+1
-    if s[i]<n and s[i]=='[':
-      # append a middle result
-      pass
-    return result
 
+class Solution(object):
+    def deserialize(self, s):
+        """
+        :type s: str
+        :rtype: NestedInteger
+        """
+        if len(s) == 0:
+            return NestedInteger()
+        s_split = s.split(',')
+        result = self.helper(s_split)
+        result_nest = self.nest_helper(result)
+        return result_nest
+        
+                    
+    def nest_helper(self, nest_arr):
+        if isinstance(nest_arr, int):
+            return NestedInteger(nest_arr)
+        else:
+            result_nest = NestedInteger()
+            for item in nest_arr:
+                if isinstance(item, int):
+                    tmp_nest = NestedInteger(item)
+                    result_nest.add(tmp_nest)
+                else: # is list
+                    tmp_nest = self.nest_helper(item)
+                    result_nest.add(tmp_nest)
+            return result_nest
+                    
+    def helper(self, s):
+        # s: a list of str split by ','
+        # return nested list of int
+        n = len(s)
+        # corner case
+        if n == 1 and s[0][0]!='[' and s[0][-1]!=']':
+            return int(s[0])
+        # remove most outer []
+        s[0] = s[0][1:]
+        s[-1] = s[-1][:-1]
+    
+        result = []
+        i = 0
+        while(i<n):
+            # if a number direct append
+            if '[' not in s[i] and ']' not in s[i]:
+                if len(s[i])>0:
+                    result.append(int(s[i]))
+                i += 1
+            # else, find the group, append result
+            else:
+                left = s[i].count('[')
+                right = s[i].count(']')
+                j = i
+                while(left!=right):
+                    j += 1
+                    left += s[j].count('[')
+                    right += s[j].count(']')
+                tmp_result = self.helper(s[i:j+1])
+                result.append(tmp_result)
+                i = j+1
+        return result
 
 if __name__ == '__main__':
   a = Solution()
-  print a.str_2_list('[1,2,33]')
+  # input_ = '[1,2,3]'
+  input_ = '123'# '[[1],2 ,3]'
+  input_div_ = input_.split(',')
+  print a.helper(input_div_)
