@@ -89,6 +89,24 @@ class Solution(object):
     y13 = pt1.y - pt3.y
     return -x12*y13+x13*y12
 
+  def solution2(self, points):
+    def sign(p, q, r):
+        return cmp((p.x - r.x)*(q.y - r.y), (p.y - r.y)*(q.x - r.x))
+    
+    def drive(hull, r):
+        hull.append(r)
+        while len(hull) >= 3 and sign(*hull[-3:]) < 0:
+            hull.pop(-2)
+        return hull
+    
+    points.sort(key = lambda p: (p.x, p.y))
+    lower = reduce(drive, points, [])
+    upper = reduce(drive, points[::-1], [])
+    return list(set(lower + upper))
+
+def print_pts(points):
+  for item in points:
+    print item.x, item.y
 
 if __name__ == '__main__':
   # pts_list = [[1,1],[2,2],[2,0],[2,4],[3,3],[4,2]]
@@ -101,3 +119,9 @@ if __name__ == '__main__':
     points.append(Point(i, j))
   a = Solution()
   result = a.outerTrees(points)
+  print 'result1'
+  print_pts(result)
+  result2 = a.solution2(points)
+  print 'result2'
+  print_pts(result2)
+
