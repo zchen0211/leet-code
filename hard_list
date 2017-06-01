@@ -60,4 +60,5 @@ system:
 284: iterator
 
 geometry:
+391: perfect square (think from corner points)
 587: convex hull algorithm
