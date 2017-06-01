@@ -55,9 +55,12 @@ logic:
 223
 
 system:
-380: random set with O(1) insert, delete and get_random
 535
 284: iterator
+
+sampling:
+380: random set with O(1) insert, delete and get_random
+398 reservoir sampling
 
 geometry:
 391: perfect square (think from corner points)
