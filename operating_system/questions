@@ -1,0 +1,19 @@
+What happens if Non Recursive mutex is locked more than once?
+
+Difference between mutex and semaphore
+# In computer programming, a mutex is a program object that allows multiple program threads to share the same resource, such as file access, but not simultaneously. When a program is started, a mutex is created with a unique name
+
+# In computer science, a semaphore is a variable or abstract data type used to control access to a common resource by multiple processes in a concurrent system such as a multiprogramming operating system. ... The variable is then used as a condition to control access to some system resource.
+
+What is spin lock in operating system ?
+
+In Linux Operaing System, Can two files have same inode number Explain with reason?
+
+Cache replacement policies
+
+Process or Thread?
+If you want to create a software which consists of a video and its audio and subtittle file running in the background, what would you chose to create; process or thread?
+
+What are the steps involved when switching from one thread to another thread in multi threading program?
+
+
