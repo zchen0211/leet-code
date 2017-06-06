@@ -1,10 +1,6 @@
 '''
-273. Integer to English Words
+273. Integer to English Words (Hard)
 
-Total Accepted: 35305
-Total Submissions: 162625
-Difficulty: Hard
-Contributor: LeetCode
 Convert a non-negative integer to its english words representation. Given input is guaranteed to be less than 231 - 1.
 
 For example,
