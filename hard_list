@@ -31,6 +31,8 @@ algorithm:
 240: search order
 287
 400
+442
+456: 132 pattern
 
 tree:
 230: in-order traversal must record visited! otherwise, a while loop to push all left inside while
