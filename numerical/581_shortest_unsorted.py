@@ -22,39 +22,9 @@ class Solution(object):
     : type nums: List[int]
     : rtype: int
     '''
-    if len(nums) <= 1: return 0
-    
-    i = 0
-    st = -1
-    while(i<len(nums)):
-      if i==0 or nums[i]>=nums[i-1]:
-        i += 1
-      else:
-        if st == -1: st = i-1
-        # move st s.t. nums[st]>nums[i], nums[st-1]<nums[i]
-        while(st>0 and nums[st-1]>nums[i]):
-          st -= 1
-        i += 1
-      if st == 0: break
-    if st == -1: return 0
-    print 'start: ', st
-    
-    end = -1
-    j = len(nums) - 1 
-    while(j>=0):
-      if j==len(nums)-1 or nums[j]<=nums[j+1]:
-        j -= 1
-      else:
-        if end==-1: end = j+1
-        while(end<len(nums)-1 and nums[end+1]<nums[j]):
-          end += 1
-        j -= 1
-        print j, end
-      if end == len(nums)-1: break
-    print 'end: ', end
-    return end-st+1
+    # AC: Best solution
+    # pay attention to the searching order for min_ and max_!
 
-  def findUnsorted2(self, nums):
     # to find end: if a num[j] < max[0..j-1], end update as j
     # to find begin: if a num[i]
     n = len(nums)

@@ -56,14 +56,14 @@ class Solution(object):
     return False
 
   def find132pattern(self, nums):
-    nums = nums[::-1]
     n = len(nums)
-    # find 231 pattern
+    if n <= 2: return False
+    # find 132 pattern
     n2 = []
     n3 = min(nums) - 1
-
-    i = 0
-    while(i<n):
+    print nums
+    i = n-1
+    while(i>=0):
       if nums[i] < n3:
         return True
       else:
@@ -73,7 +73,7 @@ class Solution(object):
           n2.pop()
         n2.append(nums[i])
       print 'step: ', i, 'n2', n2, 'n3', n3, 'current', nums[i]
-      i += 1
+      i -= 1
     return False
 
 

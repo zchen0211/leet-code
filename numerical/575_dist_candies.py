@@ -20,6 +20,7 @@ Note:
 The length of the given array is in range [2, 10,000], and will be even.
 The number in given array is in range [-100,000, 100,000].
 '''
+import collections
 
 class Solution(object):
   def distCandies(self, candies):
@@ -27,6 +28,7 @@ class Solution(object):
     :type candies: List[int]
     :rtype: int
     """
+    # AC, my original solution
     n = len(candies)
     if n==0: return 0
     record = {}
@@ -40,3 +42,11 @@ class Solution(object):
       return n/2
     else:
       return len(record.keys())
+
+  def solution2(self, candies):
+    # AC, shorter but slower
+    n = len(candies)
+    if n == 0: return 0
+    record = dict(collections.Counter(candies))
+    kind = len(record.keys())
+    return min(kind, n/2)

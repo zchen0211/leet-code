@@ -19,6 +19,7 @@ class Solution(object):
     :type num: int
     :rtype: str
     """
+    # AC, original solution
     if num > 0:
       result = ''
       while(num>0):
@@ -44,9 +45,24 @@ class Solution(object):
       result = '-'+result
       return result
 
+  def solution2(self, num):
+    # AC, better solution
+    if num == 0: return '0'
+    neg_flag = num < 0
+    num = abs(num)
+    result = ''
+    while(num>0):
+      result += str(num % 7)
+      num /= 7
+    result = result[::-1]
+    if neg_flag: result = '-'+result
+    return result
 
 if __name__ == '__main__':
   a = Solution()
   print a.convertToBase7(100)
+  print a.solution2(100)
   print a.convertToBase7(0)
+  print a.solution2(0)
   print a.convertToBase7(-100)
+  print a.solution2(-100)
