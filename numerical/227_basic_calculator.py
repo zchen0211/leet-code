@@ -13,7 +13,42 @@ Note: Do not use the eval built-in library function.
 '''
 
 class Solution(object):
+  def solution2(self, s):
+    # AC
+    # strip ' '
+    s = s.replace(' ', '')
+    
+    # parse everything in stack
+    if s[0] != '-': s='+'+s
+    stack = []
+    n = len(s)
+    i = 0
+    while(i<n):
+      op = s[i]
+      start = i+1
+      end = i+1
+      while(end<n and s[end] not in ['+','-','*','/']):
+        end += 1
+      stack.append((op, int(s[start:end])))
+      i = end
+    print 'stack', stack
+    
+    # compute
+    new_stack = []
+    for item in stack:
+      op, n = item
+      if op in set(['+','-']): new_stack.append(item)
+      elif op == '*': new_stack[-1] = (new_stack[-1][0], new_stack[-1][1]*n)
+      else: new_stack[-1] = (new_stack[-1][0], new_stack[-1][1]/n)
+    print new_stack
+    base = 0
+    for item in new_stack:
+      if item[0] == '+': base += item[1]
+      else: base -= item[1]
+    return base
+
   def calculate(self, s):
+    # AC
     s_split = []
     n = len(s)
     i = 0
@@ -73,4 +108,5 @@ if __name__ == '__main__':
   print a.calculate(' 1  ')
   print a.calculate(' -2 ')
   print a.calculate('-2 - 3 * 4')'''
-  print a.calculate('14 - 3 /2')  
+  # print a.calculate('14 - 3 /2')  
+  print a.solution2('14 - 3 /2')  

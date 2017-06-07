@@ -17,3 +17,18 @@ class Solution(object):
       nums.remove(0)
     nums += [0] * cnt
     return
+
+  def moveZeroes(self, nums):
+    # AC, faster
+    """
+    :type nums: List[int]
+    :rtype: void Do not return anything, modify nums in-place instead.
+    """
+        i_ = 0
+        for item in nums:
+            if item != 0:
+                nums[i_] = item
+                i_ += 1
+        for i in range(i_, len(nums)):
+            nums[i] = 0
+        return
