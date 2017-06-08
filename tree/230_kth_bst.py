@@ -4,7 +4,7 @@
 Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.
 
 Note: 
-You may assume k is always valid, 1 ≤ k ≤ BST's total elements.
+You may assume k is always valid, 1 <= k <= BST's total elements.
 
 Follow up:
 What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine?
@@ -24,6 +24,7 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
+        # AC: original solution
         record = []
         stack = [root]
         visit = set([root])
@@ -40,6 +41,21 @@ class Solution(object):
             print len(stack), record
         return record[k-1]
 
+    def solution2(self, root, k):
+      # AC: shorter, same time
+      # in-order iteratively without a "visit set"
+      stack = [root]
+      while stack[-1].left is not None:
+        stack.append(stack[-1].left)
+
+      while(k>0):
+        tmp = stack.pop()
+        k -= 1
+        if k == 0: return tmp.val
+        if tmp.right:
+          stack.append(tmp.right)
+          while(stack[-1].left is not None):
+            stack.append(stack[-1].left)
 
 if __name__ == '__main__':
   a = Solution()
@@ -47,3 +63,4 @@ if __name__ == '__main__':
   node2 = TreeNode(1)
   node1.left = node2
   print a.kthSmallest(node1, 2)
+  print a.solution2(node1, 2)

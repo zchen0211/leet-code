@@ -30,6 +30,7 @@ class Solution(object):
     :type root: TreeNode
     :rtype: TreeNode
     """
+    # AC, original solution
     stack = []
     if root is None: return None
     visited = set()
@@ -51,6 +52,23 @@ class Solution(object):
       for item in stack: print item.val,
       print offset
 
+  def solution2(self, root):
+    # AC, better solution, faster
+    offset = [0]
+    if root is not None:
+      self.helper(root, offset)
+
+  def helper(self, root, offset):
+    print 'before', root.val, offset
+    if root.right is not None:
+      self.helper(root.right, offset)
+    root.val += offset[0]
+    offset[0] = root.val
+    
+    print 'after', root.val, offset
+    if root.left is not None:
+      self.helper(root.left, offset)
+
 
 if __name__ == '__main__':
   n1 = TreeNode(2)
@@ -60,7 +78,8 @@ if __name__ == '__main__':
   # n1.left = n2
 
   a = Solution()
-  print a.convertBST(n1)
+  # print a.convertBST(n1)
+  print a.solution2(n1)
   print n1.val
   print n2.val
   print n3.val
