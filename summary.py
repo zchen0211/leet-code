@@ -32,3 +32,23 @@ s_strip = s.replace(' ', '') # stripping all spaces
 # maxint, minint
 print sys.maxint
 print -sys.maxint
+
+# Trie
+class TrieNode():
+  def __init__(self):
+    self.child = {} # char to other TrieNode
+    self.is_end = False
+
+class Trie(object):
+  def __init__(self):
+    self.root = TrieNode()
+
+  def insert(self, word):
+    node = self.root
+    for c in word:
+      if c not in node.child:
+        node.child[c] = TrieNode()
+      node = node.child[c]
+    node.is_end = True
+
+# Sement-Tree (store ops of an interval, really good problem 307, 308)
