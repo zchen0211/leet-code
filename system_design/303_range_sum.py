@@ -15,6 +15,7 @@ There are many calls to sumRange function.
 '''
 
 class NumArray(object):
+  # AC b/c weak test design
   def __init__(self, nums):
     """
     :type nums: List[int]
@@ -29,3 +30,22 @@ class NumArray(object):
     """
     x = self.nums[i:j+1]
     return sum(x)
+
+
+class NumArray(object):
+  # AC. better solution if sumRange always called
+  def __init__(self, nums):
+    """
+    :type nums: List[int]
+    """
+    self.cumul = [0]
+    for i in range(len(nums)):
+      self.cumul.append(self.cumul[-1]+nums[i])
+        
+  def sumRange(self, i, j):
+    """
+    :type i: int
+    :type j: int
+    :rtype: int
+    """
+    return self.cumul[j+1] - self.cumul[i]
