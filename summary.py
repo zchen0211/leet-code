@@ -18,7 +18,9 @@ queue.clear()
 queue.count(1) # how many times 1 appears
 queue.pop() # pop from rightmost
 queue.popleft() # pop from left
+
 # Priority Queue
+# Implemented by Heap
 
 # heap
 

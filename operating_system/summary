@@ -1,0 +1,36 @@
+# Introduction
+Definition: An operating system is the layer of software that manages a computer’s resources for its users and their applications.
+
+-Users
+-User-mode: Apps, System Library?
+-Kernel-mode: File System, TCP/IP networking, CPU scheduling, Virtual Memory
+Hardware specific software, drivers
+-Hardware: CPU, GPU, Network
+
+- Resource Allocation
+- Fault islation
+- Communication
+
+Virtualization, virtual machine, guest operating system
+Reliability, Availability (MTTF, MTTR)
+Security, Privacy: Enforcement
+Portable
+AMI: API
+Hardware Abstraction Layer (HAL)
+Efficiency, Overload, Fairness
+Response time, Throughput
+Proprietary v.s. open system
+Batch OS, DMA, multi-tasking
+Time-sharing
+
+Desktop, laptop, netbook: Win 7, MacOS, Linux
+Smartphone OS: iOS, Android, Windows Phone, 
+Embedded systems
+Virtual machines: VMWare
+Server OS, 
+
+# Process
+pid = fork();
+
+# Producer/ Consumer
+# Lock
