@@ -1,4 +1,4 @@
-# Introduction
+# Chap.1 Introduction
 Definition: An operating system is the layer of software that manages a computer’s resources for its users and their applications.
 
 -Users
@@ -29,7 +29,7 @@ Embedded systems
 Virtual machines: VMWare
 Server OS, 
 
-# Kernels and Processes
+# Chap.2 Kernels and Processes
 Source code -> executable image -> Process(machine instructions, data, heap, stack)
 PCB (process control block)
 Dual-mode: user-mode, kernel-mode (1-bit processor status register)
@@ -65,7 +65,114 @@ Kernel stub: 1. locate system call arguments; 2. validate parameters; 3. copy be
 # Upcalls: virtualized interrupts and exceptions
 Linux: signals; Windows: asynchronous events;
 Preemptive user-level thread package; Asynchronous I/O notification; Interprocess communication; User-level exception handling; User-level resource allocation policy;
+# Architectural support for fast mode switches: SPARC
+# Registers:
+CS: code segment;
+DS: data segment;
+SS: stack segment;
+ES: extra segment;
+EAX: accumulator
+EBX: base address
+ECX: counter
+EDX: to save reminder after division
+ESI/EDI: source/destination index
+EBP: base pointer, pointing to the bottom
+ESP: stack (or heap?) pointer, pointing to the top
+EIP:
+EFLAGS:
+# Case Study: booting an OS
+1. Boot ROM: in x86, BIOS (Basic I/O System)
+2. bootloader (a bit for check), cryptographic signature, should be protected from virus
+3. load the OS from the file system;
+4. Kernel starts first process: login
+# Case Study: Virtual Machines
+host OS v.s. guest OS
 
+# Chap 3. The Programming Interface
+Process Management, I/O, Thread Management, Memory management, 
+File system and storage, networking and distributed system
+Graphics and window management, Authentication and security
+- Flexibility
+- Safety
+- Reliability: Improved reliability is another reason to keep the operating system kernel minimal
+- Performance: transferring control into the kernel is more ex- pensive than a procedure call to a library,
+# 3.1 Process Management
+Shell: a job control system
+parent/child process
+- Windows process management: CreateProcess, 
+- Unix process management: fork(), exec(program_name, Arguments[])
+ fork() creates a complete copy of parent, then call exec()
+# 5 steps of fork():
+1. Create and initialize the process control block (PCB) in the kernel;
+2. Create a new address space;
+3. Initialize the address space with a copy of the entire contents of the address space of the parent;
+4. Inherit the execution context of the parent (e.g., any open files)
+5. Inform the scheduler that the new process is ready to run;
+A strange aspect of UNIX fork is that the system call returns twice: once to the parent and once to the child. To the parent, UNIX returns the process ID of the child; to the child, it returns 0 indicating success
+# 3 steps of exec()
+1. Load the program prog into the current address space
+2. Copy arguments args into memory in the address space
+3. Initialize the hardware context to start execution at “start”
+Note that exec does not create a new process!
+As we discussed in the previous chapter, when a UNIX process finishes, it calls the system call exit(). PCB reclaimed when both parent and child have finished.
+# wait() system call
+pauses the parent until the child finishes, crashes, or is terminated
+“UNIX wait” to refer to UNIX’s wait() system call
+# 3.2 Input/Output
+Basic Ideas:
+1. Uniformity. All device I/O, file operations, and interprocess communi- cation use the same set of system calls: open, close, read and write.
+2. Open before use: open() returns a handle;
+3. Kernel-buffered reads: Stream data, such as from the network or key- board, is stored in a kernel buffer and returned to the application on request.
+4. Kernel-buffered writes:
+5. Explicit close: close()
+For interprocess communication, we need two more system calls:
+1. Pipes: (TCP is similar)
+2. Replace file descriptor
+3. Wait for multiple reads
+### A list of system calls
+# Create a child process as a clone of the current process; // fork returns to both the parent and child
+fork ()
+
+# Run the application ‘‘prog’’ in the current process
+exec(prog , args)
+
+# Tell the kernel the current process is complete,
+# and its data structures should be garbage collected 
+exit ()
+
+# Pause until the child process has exited
+wait(process_ID)
+
+# Send an interrupt of ‘‘type’’ to a process
+signal(process_ID , type)
+
+# Open a file or hardware device , specified by ‘‘name ’’;
+# returns a file descriptor that can be used by other calls
+fd = open(name)
+
+# Create a one-directional pipe between two processes;
+# returns two file descriptors , one for reading , one for writing 
+pipe(fd[2])
+
+# Replace the to_fd file descriptor with a copy of from_fd; // used for replacing stdin/stdout
+dup2(from_fd , to_fd)
+
+# Read up to ‘‘size’’ bytes into buffer, from the device, file or channel.
+# ‘‘read’’ returns the number of bytes actually read; for streaming
+# devices this will often be less than ‘‘size’’.
+# For example, a read from the keyboard device will return all of its queued bytes. 
+int read(fd, buffer, size)
+
+# Analogous to ‘‘read’’, write up to ‘‘size’’ bytes into kernel output // buffer for a device, file or channel.
+# ‘‘write’’ normally returns immediately, but may stall if there is
+# no space in the kernel buffer.
+int write(fd, buffer, size)
+
+# Return when any of the file descriptors in the array have data available to be read. // Returns the file descriptor with the data.
+fd = select(fd[], number)
+
+# Tell the kernel the process is done with this device, file, or channel.
+close(fd)
 
 # Process
 pid = fork();
