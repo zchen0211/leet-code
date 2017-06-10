@@ -29,6 +29,44 @@ Embedded systems
 Virtual machines: VMWare
 Server OS, 
 
+# Kernels and Processes
+Source code -> executable image -> Process(machine instructions, data, heap, stack)
+PCB (process control block)
+Dual-mode: user-mode, kernel-mode (1-bit processor status register)
+- previleged instructions
+- Memory protection: base and bounds (unable to do 4 things: expandable heap and stack, memory sharing, non-relativememory address, memory fragmentation (MS-DOS: no memory protection)
+- Virtual address:
+- Timer interrupts: os regain control from app, hardware timer (expires every 10 ms)
+# Preemptive scheduling
+# Three reasons why the kernel takes control from a user process: 
+1. exceptions: divided by zero, write on read-only memory...
+2. interrupts: external events occurred, I/O (mouse, Ethernet, WiFi, harddisk, keyboard)
+polling: kernel could loop to check each I/O device 
+3. system calls: user transition to OS, request kernel do some ops on the user's behalf (use trap instruction)
+# Kernel to user mode
+new process, resume from exceptions/interrupts/system calls, switch to a different process, user-level upcall
+Interrupt vector (a special register points to an area of kernel memory)
+Interrupt stack
+- If the process is running on the processor in user-mode, its kernel stack is empty, ready to be used for an interrupt.
+- If the process is running on the processor in kernel-mode, e.g., due to an interrupt, exception or system call trap, its kernel stack is in use, containing the saved registers from the suspended user-level computation, as well as the current state of the kernel handler.
+- If the process is available to run but is waiting for its turn on the processor, its kernel stack contains the registers and state to be restored when the process is resumed.
+- If the process is waiting for an I/O event to complete, its kernel stack contains the suspended computation to be resumed when the I/O finishes.
+Interrupt masking
+- Multiple interrupts arrive asynchronously, defer and mask
+# Context Switch
+1. Save three key values (stack pointer, execution flags, instruction pointer)
+2. Switch onto the kernel exception stack;
+3. Push three key values onto the new stack
+4. Optionally save error code;
+5. Invoke the interrupt handler;
+# System Call
+Pair of stubs: 
+Kernel stub: 1. locate system call arguments; 2. validate parameters; 3. copy before check; 4. copy back any results;
+# Upcalls: virtualized interrupts and exceptions
+Linux: signals; Windows: asynchronous events;
+Preemptive user-level thread package; Asynchronous I/O notification; Interprocess communication; User-level exception handling; User-level resource allocation policy;
+
+
 # Process
 pid = fork();
 
