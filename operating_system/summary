@@ -132,6 +132,8 @@ For interprocess communication, we need two more system calls:
 ### A list of system calls
 # Create a child process as a clone of the current process; // fork returns to both the parent and child
 fork ()
+# 3.3 Case Study: Implementing a Shell
+stdin, stdout
 
 # Run the application ‘‘prog’’ in the current process
 exec(prog , args)
