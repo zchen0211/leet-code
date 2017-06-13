@@ -132,8 +132,6 @@ For interprocess communication, we need two more system calls:
 ### A list of system calls
 # Create a child process as a clone of the current process; // fork returns to both the parent and child
 fork ()
-# 3.3 Case Study: Implementing a Shell
-stdin, stdout
 
 # Run the application ‘‘prog’’ in the current process
 exec(prog , args)
@@ -176,8 +174,71 @@ fd = select(fd[], number)
 # Tell the kernel the process is done with this device, file, or channel.
 close(fd)
 
-# Process
-pid = fork();
-
+# 3.3 Case Study: Implementing a Shell
+stdin, stdout
+- A program can be a file of commands.
+- A program can send its output to a file.
+- A program can read its output from a file.
+- The output of one program can be the input to another program
 # Producer/ Consumer
+
+# 3.4 Case Study: Interprocess communication
+Three widely used forms:
+- Producer-consumer: Producer only writes, consumer only reads (Google's Mapreduce)
+- Client-server: two-way, client sends requests, server replies back when complete
+- File system: can be separated in time
+
+# 3.5.1 Monolithic Kernels
+Def: most of the operating system functionality runs inside the operating system kernel.
+Hardware Abstraction Layer (HAL)
+dynamically loadable device driver
+# 3.5.2 Microkernel
+Def: to run as much of the operating system as possible in one or more user-level servers.
+Window manager
++ easier to modularize and debug user-level services
+- little benefit to end users; slow down overall performance by inserting extra steps between the application and the services it needs.
+In practice: hybrid model
+
+# 3.6 Conclusion and Future Directions
+Unix Interface (powerful and compact)
+A key aspect of the UNIX interface are that creating a process (with fork) is separate from starting to run a program in that process (with exec);
+another key feature is the use of kernel buffers to decouple reading and writing data through the kernel.
+
+# Chap.4 Concurrency and Threads
+Threads: A core abstraction for concurrency.
+# 4.1 Threads: Abstraction and interface
+Multi-threaded programs
+- Program structure: Expressing logically concurrent tasks.
+- Performance: Exploiting multiple processors.
+- Performance: Coping with high-latency I/O devices. 
+# Definition
+A single execution sequence that represents a separately schedu- lable task.
+Running, suspending, and resuming threads.
+each thread runs on a dedicated virtual processor with unpredictable and variable speed
+Cooperative multithreading v.s. Preemptive
+# 4.2 Simple API and example
+void sthread create(thread, func, arg)
+void sthread yield()
+int sthread join(thread)
+void sthread exit(ret)
+# 4.3 Thread internals
+Thread control block (TCB) and per-thread state
+- The state of the computation being performed by the thread
+stack, Copy of processor registers
+- Metadata about the thread that is used to manage the thread
+Life Cycle:
+Init -> Ready -> Running -> Waiting
+# 4.4 Implementation details
+# Create:
+Allocating per-thread state ->
+Initializing per-thread state.
+# Delete:
+remove it from the ready list so that it will never run again;
+free the per-thread state we allocated for it.
+# Thread context switch
+
+
 # Lock
+
+
+
