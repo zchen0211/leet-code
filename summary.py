@@ -9,6 +9,8 @@ s.upper()
 s.count('aaa') # count non-overlapping
 s.split()
 s.replace()
+' '.join(s_list) # will remove extra spaces!!! :)
+
 
 # Array sorting
 arr.sort(key= lambda x: x[0])

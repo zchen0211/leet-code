@@ -68,8 +68,40 @@ class Solution(object):
         result += subs*times
     return result
 
+  def solution2(self, s):
+    # AC, faster, better solution
+    result, _ = self.helper(s, 0)
+    return result
+
+  def helper(self, s, i):
+    n = len(s)
+    result = ''
+    while i<n and s[i]!=']':
+      if not self.is_digit(s[i]):
+        result += s[i]
+        i += 1
+      else:
+        # get the number first
+        cnt = 0
+        while(self.is_digit(s[i])):
+          cnt = cnt*10 + ord(s[i])-ord('0')
+          i += 1
+        i += 1 # [
+        tmp, i = self.helper(s, i)
+        i += 1 # ]
+        result += cnt * tmp
+    return result, i
+
+  def is_digit(self, c):
+    if c in set(['0','1','2','3','4','5','6','7','8','9']):
+      return True
+    else:
+      return False
+
 if __name__ == '__main__':
   a = Solution()
   # print a.decodeString("3[a]2[bc]")
   # print a.decodeString("3[a2[c]]")
   print a.decodeString("2[abc]3[cd]ef")
+  print a.solution2("2[abc]3[cd]ef")
+  # print a.solution2('2[a]')

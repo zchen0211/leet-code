@@ -1,4 +1,6 @@
 '''
+434. Number of Segments in a String (Easy)
+
 Count the number of segments in a string, where a segment is defined to be a contiguous sequence of non-space characters.
 
 Please note that the string does not contain any non-printable characters.
@@ -25,7 +27,17 @@ class Solution(object):
       i += 1
     return cnt
 
+  def solution2(self, s):
+    s = ' '.join(s.split())
+    print len(s)
+    if len(s) == 0: return 0
+    s_split = s.split(' ')
+    print s_split
+    return len(s_split)
 
 if __name__ == '__main__':
   a = Solution()
   print a.countSeg("Hello, my name is John")
+  print a.solution2("Hello,     my name is John")
+  print a.solution2("    ")
+  print a.solution2(", , , ,        a, eaefa")
