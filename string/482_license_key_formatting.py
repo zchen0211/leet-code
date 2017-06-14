@@ -1,4 +1,6 @@
 '''
+482. License Key Formatting (Medium)
+
 Now you are given a string S, which represents a software license key which we would like to format. The string S is composed of alphanumerical characters and dashes. The dashes split the alphanumerical characters within the string into groups. (i.e. if there are M dashes, the string is split into M+1 groups). The dashes in the given string are possibly misplaced.
 
 We want each group of characters to be of length K (except for possibly the first group, which could be shorter, but still must contain at least one character). To satisfy this requirement, we will reinsert dashes. Additionally, all the lower case letters in the string must be converted to upper case.
@@ -49,9 +51,22 @@ class Solution(object):
     if output[-1] == '-':
       output = output[:-1]
     return output.upper()
-
+  
+  def solution2(self, S, K):
+    S = S.replace('-', '')
+    n = len(S)
+    output = S[:n%K]
+    i = n%K
+    while i<n:
+      end = i+K
+      output += '-' + S[i:i+K]
+      i += K
+    if len(output)>0 and output[0] == '-': output=output[1:]
+    return output.upper()
 
 if __name__ == '__main__':
   a = Solution()
   print a.licenseKeyFormatting("2-4A0r7-4k", K = 5)
+  print a.solution2("2-4A0r7-4k", K = 5)
   print a.licenseKeyFormatting("---", K = 3)
+  print a.solution2("---", K = 3)

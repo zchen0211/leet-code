@@ -1,9 +1,20 @@
 import collections
 import sys
 
+# String
+s = 'abccccxxx'
+s.find('x') # first occurence
+s.lower()
+s.upper()
+s.count('aaa') # count non-overlapping
+s.split()
+s.replace()
+
 # Array sorting
 arr.sort(key= lambda x: x[0])
 arr.sort(key= lambda x: (x[0],x[1]))
+arr.sort(key= len)
+reversed(arr)
 
 # stack
 # implemented as a list

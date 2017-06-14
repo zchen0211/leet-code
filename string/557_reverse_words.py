@@ -1,4 +1,6 @@
 '''
+557. Reverse Words in a String III (Easy)
+
 Given a string, you need to reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
 
 Example 1:
@@ -18,6 +20,12 @@ class Solution(object):
       new_s += ' '
     new_s = new_s[:-1]
     return new_s
+
+  def solution2(self, s):
+    s_list = s.split(' ')
+    s_list = [item[::-1] for item in s_list]
+        
+    return ' '.join(s_list)
 
 
 if __name__ == '__main__':
