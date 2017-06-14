@@ -236,9 +236,65 @@ Initializing per-thread state.
 remove it from the ready list so that it will never run again;
 free the per-thread state we allocated for it.
 # Thread context switch
+PCB v.s. TCB: similar, all store registers when not running, address
+process switch v.s. thread switch: Hardware-triggered (interrupts and exceptions.); Software-triggered (library calls v. system calls);
+# Reasons for multi-threads
+1. Program structure.
+2. Exploiting multiple processors.
+3. Coping with high latency I/O devices.
+Similar mechanism like timer interrupt to suspend long-running thread
+# Hybrid implementations. 
+Although today few threads packages operate completely at user level, many split their work between the user-level library and the operating system kernel to reduce overheads by avoiding mode switches into the kernel for some of their operations.
+# 4.5 Asynchronous I/O and event-driven programming
+The basic idea is to allow a process to make a system call to issue and I/O request but not wait for the result.
+read() v.s. aio_read()
+Definition: event-driven programming pattern
+# Comparison
+1. Performance: Coping with high-latency I/O devices. Either approach— event-driven or threads—can be used to overlap I/O and processing.
+Today, less clear-cut.
+2. Performance: Exploiting multiple processors. The event-driven approach does not help a program exploit multiple processors.
+3. Program structure: Expressing logically concurrent tasks.
+# 4.6 Conclusion and future directions
+Besides threads and event-driven programming, other approaches also parallel:
+- Data parallel programs. Data parallel programming or SIMD (single instruction multiple data)
+e.g., matrix manuplication, SQL, multimedia streams, GPU
+- Distributed and parallel processing.
 
+# Chap.5 Synchronizing Access to Shared Objects
+Definition: independent threads
+Definition: Cooperating threads: per-thread state (stack and registers), shared state (shared data on heap)
+# 3 reasons of break down:
+1. Program execution depends on the interleavings of threads’ access to shared state.
+2. Program execution can be nondeterministic.
+3. Compilers and architectures reorder instructions.
+# Structured synchronization.
+# 5.1 Challenges
+- Race condition: when the behavior of a program depends on the interleaving of operations of di↵erent threads
+- Atomic operations (ops can't be interleaved or split): a load or store of a 32-bit
+- Too much milk problem
+Safety, liveness
+stable property
+- Lock: ensures both, same codes on each 
+# 5.2 Shared objects and synchronization
+Synchronization variable
+State variables
+Atomic read-modify-write instructions
+# 5.3 Lock: Mutual Exclusion
+Lock::acquire(), Lock::release()
+Formal properties
+1. Mutual Exclusion: At most one thread holds the lock.
+2. Progress.
+3. Bounded waiting: If thread T attempts to acquire a lock, then there exists a bound on the number times other threads successfully acquire the lock before T does.
 
-# Lock
-
+Critical sections: A sequence of code that operates on shared state
+# 5.4 Condition Variables: Waiting for a Change
+CV::wait(Lock *lock)
+CV::signal()
+CV::broadcast()
+Condition variables integrate with locks.
+1. A condition variable is memoryless; the condition variable, itself, has no internal state other than a queue of waiting threads.
+2. Wait() atomically releases the lock.
+3. When a waiting thread is reenabled via signal() or broadcast(), it may not run immediately.
+# 5.4.3 Example: Blocking bounded queue
 
 
