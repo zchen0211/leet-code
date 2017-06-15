@@ -21,10 +21,10 @@ solution.getRandom();
 import random
 
 # Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
+class ListNode(object):
+  def __init__(self, x):
+    self.val = x
+    self.next = None
 
 class Solution(object):
 
@@ -49,6 +49,45 @@ class Solution(object):
         return self.data[t]
 
 
+class solution2(object):
+  # AC2: reservoir sampling
+  # slower, but better space complexity
+  def __init__(self, head):
+    self.head = head
+
+  def getRandom(self):
+    cnt = 1
+    tmp = self.head
+    ret = tmp.val
+    tmp = tmp.next
+    while tmp is not None:
+      cnt += 1
+      v = random.randint(0, cnt-1)
+      if v % cnt == 0: ret = tmp.val
+      tmp = tmp.next
+      # print v, cnt, ret
+    return ret
+
+
+if __name__ == '__main__':
+  head = ListNode(0)
+  n1 = ListNode(1)
+  n2 = ListNode(2)
+  n3 = ListNode(3)
+
+  head.next = n1
+  n1.next = n2
+  n2.next = n3
+
+  a = solution2(head)
+  result = []
+  for i in range(100):
+    result.append(a.getRandom())
+  print result
+  print result.count(0)
+  print result.count(1)
+  print result.count(2)
+  print result.count(3)
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(head)
 # param_1 = obj.getRandom()

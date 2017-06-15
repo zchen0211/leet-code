@@ -296,5 +296,69 @@ Condition variables integrate with locks.
 2. Wait() atomically releases the lock.
 3. When a waiting thread is reenabled via signal() or broadcast(), it may not run immediately.
 # 5.4.3 Example: Blocking bounded queue
+Case study: Linux 2.6 kernel mutex lock
+struct mutex {
+/* 1: unlocked, 0: locked, negative: locked, possible waiters */
+atomic_t count; 
+pinlock_t ait_lock;
+struct list_head wait_list; };
 
+Acquiring the lock: thread called void mutex_lock(), defined in kernel/mutex.c
 
+# 5.6 Designing and implementing shared objects
+• Decompose the problem into objects
+• For each object
+ – Define a clean interface
+ – Identify the right internal state and invariants to support that interface
+ – Implement methods with appropriate algorithms to manipulate that state.
+• Add a lock
+• Add code to acquire and release the lock 
+• Identify and add condition variables
+• Add loops to wait using the condition variable(s)
+• Add signal()and broadcast()calls
+
+Five Rules:
+1. Always synchronize with locks and condition variables.
+2. Always acquire the lock at the beginning of a method and release it right before the return.
+3. Always hold the lock when operating on a condition variable.
+4. Always wait in a while() loop.
+5. (Almost) never sleep().
+
+# Chap.6 Advanced Synchronization
+# 6.1 Multi-object synchronization
+Two-Phase Locking: expanding phase, contracting phase
+Staged architectures
+The key property of a staged architecture is that the state of each stage is private to that stage.
+modularity benefits
+improved cache locality
+The special case when there is exactly one thread per stage is called event processing
+Overload: The throughput of the system will be limited by that of the slowest stage.
+# 6.2 Deadlock
+Deadlock is a cycle of waiting among a set of threads where each thread is waiting for some other thread in the cycle to take some action.
+mutually recursive locking
+nested waiting
+
+Deadlock v. starvation: both liveness concerns
+In starvation, some thread fails to make progress for an indefinite period of time.
+
+# Necessary Conditions for deadlock
+1. Bounded resources.
+2. No preemption.
+3. Wait while holding.
+4. Circular waiting.
+
+Safe state:
+Unsafe state:
+Deadlocked state:
+
+# Breaking deadlocks:
+generally requires forcibly taking resources away from some or all of the deadlocked threads
+Transactions:
+1. choose one or more victem threads, stop them, undo actions, let others proceed;
+2. restart after other threads proceed.
+One key di↵erence between transactions and critical sections is that trans- actions can abort and roll back their actions.
+
+# Detecting deadlock
+# 6.3 Alternative approaches to synchronization
+
+# Chap.7 Scheduling 

@@ -45,6 +45,29 @@ class Solution(object):
         random.shuffle(self.data)
         return self.data
 
+class solution2(object):
+  def __init__(self, nums):
+    self.data = nums
+
+  def reset(self):
+    return self.data
+
+  def shuffle(self):
+    shuffled = self.data[:] # get a deep copy
+    n = len(self.data)
+    i = n-1
+    while i>0:
+      # for i in range(n):
+      id_ = random.randint(0,i)
+      shuffled[i], shuffled[id_] = shuffled[id_], shuffled[i]
+      i -= 1
+    return shuffled
+
+if __name__ == '__main__':
+  a = solution2(range(3))
+  for i in range(20):
+    print a.shuffle()
+
 # Your Solution object will be instantiated and called as such:
 # obj = Solution(nums)
 # param_1 = obj.reset()
