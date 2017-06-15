@@ -11,7 +11,6 @@ s.split()
 s.replace()
 ' '.join(s_list) # will remove extra spaces!!! :)
 
-
 # Array sorting
 arr.sort(key= lambda x: x[0])
 arr.sort(key= lambda x: (x[0],x[1]))
@@ -22,6 +21,7 @@ reversed(arr)
 # implemented as a list
 stack = [1]
 stack.pop() # rightmost
+# stack with minimum/maximum/... query, keep a record
 
 # Queue
 queue = collections.deque()
@@ -32,9 +32,27 @@ queue.count(1) # how many times 1 appears
 queue.pop() # pop from rightmost
 queue.popleft() # pop from left
 
+# Stack with Queues: O(n) time push to reverse the list as stack
+q = collections.deque()
+q.append(val) # append new
+for i in range(cnt-1):
+  v = q.popleft()
+  q.append(v)
+# then it is in good order now
+
+# Queues with Stacks
+in_stack = [] # always push
+out_stack = [] # always pop
+# move if required
+
 # Priority Queue
 # Implemented by Heap
-
+import Queue
+q = Queue.PriorityQueue()
+q.put(10)
+q.put(1)
+q.put(5)
+print q.get() # will be 1 (smallest first)
 # heap
 
 # iterator
