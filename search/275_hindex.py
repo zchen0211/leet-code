@@ -3,8 +3,8 @@
 
 Follow up for H-Index: What if the citations array is sorted in ascending order? Could you optimize your algorithm?
 
-Show Hint 
 '''
+
 class Solution(object):
   def hIndex(self, citations):
     n = len(citations)

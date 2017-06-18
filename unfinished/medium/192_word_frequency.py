@@ -1,5 +1,5 @@
 '''
-192. Word Frequency
+192. Word Frequency (Medium)
 
 Write a bash script to calculate the frequency of each word in a text file words.txt.
 

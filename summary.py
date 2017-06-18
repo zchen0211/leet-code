@@ -66,6 +66,14 @@ s_strip = s.replace(' ', '') # stripping all spaces
 print sys.maxint
 print -sys.maxint
 
+# Tree related
+
+# BST:
+# search: O(log(N)) just go left/right if larger/smaller
+# insert: always at leaf
+# delete:
+
+
 # Trie
 class TrieNode():
   def __init__(self):
