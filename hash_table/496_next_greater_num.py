@@ -1,4 +1,6 @@
 '''
+496 Next Greater Element I (Easy)
+
 The Next Greater Number of a number x in nums1 is the first greater number to its right in nums2. If it does not exist, output -1 for this number.
 
 Example 1:
