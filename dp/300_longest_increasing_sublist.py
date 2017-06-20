@@ -14,10 +14,14 @@ Follow up: Could you improve it to O(n log n) time complexity?
 
 class Solution(object):
   def lengthOfLIS(self, nums):
+    """
+    :type nums: List[int]
+    :rtype: int
+    """
+    # AC, old version
     n = len(nums)
     if n <= 1:
       return n
-    # [0], [1], [k] records best k-length list
     # minimum last number 
     result = [nums[0]]
     for i in range(1, n):
@@ -37,7 +41,35 @@ class Solution(object):
       print i, result
     return len(result)
 
+  def solve2(self, nums):
+    """
+    :type nums: List[int]
+    :rtype: int
+    """
+    # AC, new version, much faster
+    n = len(nums)
+    if n <= 1: return n
+    best_seq = [nums[0]]
+    curr_seq = [nums[0]]
+    i = 1
+    while i<n:
+      if nums[i] > best_seq[-1]: best_seq.append(nums[i])
+
+      if nums[i] > curr_seq[-1]: curr_seq.append(nums[i])
+      else:
+        while len(curr_seq)>0 and curr_seq[-1]>=nums[i]:
+          curr_seq.pop()
+        curr_seq.append(nums[i])
+      if (len(curr_seq)>len(best_seq)) or (len(curr_seq)==len(best_seq) and curr_seq[-1]<best_seq[-1]):
+        best_seq = [item for item in curr_seq]
+      i += 1
+      print best_seq, curr_seq
+    return len(best_seq)
+
 
 if __name__ == '__main__':
   a = Solution()
+  print 'old'
   print a.lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18])
+  print 'new'
+  print a.solve2([10, 9, 2, 5, 3, 7, 101, 18])

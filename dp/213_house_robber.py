@@ -34,4 +34,19 @@ class Solution(object):
       else: # i==n-1
         b1, b2, b3, b4 = 0, max(b1,b2), b4+nums[i], max(b3,b4)
     return max(b1,b2,b3,b4)
-        
+
+  def solve2(self, nums):
+    # AC, best understanding, slightly slower
+    n = len(nums)
+    if n==0: return 0
+    if n==1: return nums[0]
+    return max(self.helper(nums[:-1]), self.helper(nums[1:]))
+
+  def helper(self, nums):
+    n = len(nums)
+    best_w = nums[0]
+    best_wo = 0
+    for i in range(1, n):
+      best_w, best_wo = best_wo + nums[i], max(best_w, best_wo)
+    return max(best_w, best_wo)
+           

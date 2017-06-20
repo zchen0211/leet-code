@@ -37,6 +37,7 @@ class Solution(object):
     :type n: int
     :rtype: int
     """
+    # AC, memoized DP
     look_up_map = {1:0, 2:1, 3:2, 4:2}
     r = self.helper(n, look_up_map)
     print look_up_map
@@ -57,6 +58,18 @@ class Solution(object):
     result = min(r1, r2) + 1 + offset
     look_up_map[ori_n] = result
     return result
+
+  def solve(self, n):
+    # AC: much faster
+    # pay attention to the special case n==3
+    if n == 1: return 0
+    cnt = 0
+    while n>1:
+      if n % 2 == 0: n /= 2
+      elif n % 4 == 3 and n!=3: n += 1
+      else: n -= 1
+      cnt += 1
+    return cnt
 
 if __name__ == '__main__':
   a = Solution()

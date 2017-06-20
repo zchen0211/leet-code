@@ -16,6 +16,10 @@ transactions = [buy, sell, cooldown, buy, sell]
 
 class Solution(object):
   def maxProfit(self, prices):
+    """
+    :type prices: List[int]
+    :rtype: int
+    """
     n = len(prices)
     if n <= 1: return 0
 

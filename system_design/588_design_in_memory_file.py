@@ -24,41 +24,77 @@ You can assume all file or directory paths are absolute paths which begin with /
 You can assume that all operations will be passed valid parameters and users will not attempt to retrieve file content or list a directory or file that does not exist.
 You can assume that all directory names and file names only contain lower-case letters, and same names won't exist in the same directory.
 '''
+class TrieNode(object):
+  def __init__(self, s):
+    self.name = s
+    self.subfiles = {} # String to other tree nodes
+    self.is_file = False
+    self.content = None
 
 class FileSystem(object):
+  def __init__(self):
+    self.root = TrieNode('')
+         
+  def ls(self, path):
+    """
+    :type path: str
+    :rtype: List[str]
+    """
+    node = self.root
+    # find the node
+    if path != '/':
+      path_list = path_list.split('/')
+      path_list = path_list[1:]
+      for item in path_list:
+        node = node.subfiles[item]
+    return node.subfiles.keys()
 
-    def __init__(self):
+  def mkdir(self, path):
+    """
+    :type path: str
+    :rtype: void
+    """
+    path_list = path.split('/')
+    path_list = path_list[1:]
+    node = self.root
+    for item in path_list:
+      if item in node.subfiles:
+        node = node.subfiles[item]
+      else:
+        new_node = TrieNode(item)
+        node.subfiles[item] = new_node
+        node = new_node
         
+  def addContentToFile(self, filePath, content):
+    """
+    :type filePath: str
+    :type content: str
+    :rtype: void
+    """
+    path_list = filePath.split('/')
+    path_list = path_list[1:]
+    node = self.root
+    for item in path_list:
+      if item in node.subfiles:
+        node = node.subfiles[item]
+      else:
+        new_node = TrieNode(item)
+        node.subfiles[item] = new_node
+        node = new_node
+    node.content = content
+    node.is_file = True
 
-    def ls(self, path):
-        """
-        :type path: str
-        :rtype: List[str]
-        """
-        
-
-    def mkdir(self, path):
-        """
-        :type path: str
-        :rtype: void
-        """
-        
-
-    def addContentToFile(self, filePath, content):
-        """
-        :type filePath: str
-        :type content: str
-        :rtype: void
-        """
-        
-
-    def readContentFromFile(self, filePath):
-        """
-        :type filePath: str
-        :rtype: str
-        """
-        
-
+  def readContentFromFile(self, filePath):
+    """
+    :type filePath: str
+    :rtype: str
+    """
+    node = self.root
+    path_list = filePath.split('/')
+    path_list = path_list[1:]
+    for item in path_list:
+      node = node.subfiles[item]
+    return node.content
 
 # Your FileSystem object will be instantiated and called as such:
 # obj = FileSystem()
@@ -66,3 +102,11 @@ class FileSystem(object):
 # obj.mkdir(path)
 # obj.addContentToFile(filePath,content)
 # param_4 = obj.readContentFromFile(filePath)
+
+if __name__ == '__main__':
+  f = FileSystem()
+  print 'ls: ', f.ls('/')
+  f.mkdir('/a/b/c')
+  f.addContentToFile("/a/b/c/d","hello")
+  print 'ls: ', f.ls('/')
+  print f.readContentFromFile('/a/b/c/d')
