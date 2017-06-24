@@ -11,7 +11,7 @@ Given a list of transactions between a group of people, return the minimum numbe
 
 Note:
 
-A transaction will be given as a tuple (x, y, z). Note that x ≠ y and z > 0.
+A transaction will be given as a tuple (x, y, z). Note that x != y and z > 0.
 Person's IDs may not be linear, e.g. we could have the persons 0, 1, 2 or we could also have the persons 0, 2, 6.
  
 
@@ -47,4 +47,31 @@ Person #2 gave person #0 $5.
 Therefore, person #1 only need to give person #0 $4, and all debt is settled.
 """
 
+class Solution(object):
+  def optimal_balance(self, transactions):
+    '''
+    transactions: List[List[int]]
+    rtype: int
+    '''
+    stat = {}
+    for item in transactions:
+      i, j, n = item
+      if i in stat: stat[i] += n
+      else: stat[i] = n
+      if j in stat: stat[j] -= n
+      else: stat[j] = -n
 
+    # bipartite graph
+    pos = []
+    neg = []
+    for v in stat.values():
+      if v > 0: pos.append(v)
+      elif v < 0: neg.append(-v)
+    print pos
+    print neg
+
+
+if __name__ == '__main__':
+  a = Solution()
+  print a.optimal_balance([[0,1,10], [2,0,5]])
+  print a.optimal_balance([[0,1,10], [1,0,1], [1,2,5], [2,0,5]])
