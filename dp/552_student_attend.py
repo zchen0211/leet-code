@@ -24,3 +24,21 @@ class Solution(object):
     :type n: int
     :rtype: int
     """
+    wA = [1, 0, 0, 0] # end with A, P, L, LL
+    woA = [1, 1, 0] # end with P, L, LL
+    for i in range(1, n):
+      wA[0], wA[1], wA[2], wA[3] = sum(woA), sum(wA), sum(wA[0:2]), wA[2]
+      woA[0], woA[1], woA[2] = sum(woA), woA[0], woA[1]
+      for i in range(4):
+        wA[i] = wA[i] % (10**9+7)
+      for i in range(3):
+        woA[i] = woA[i] % (10**9+7)
+    result = (sum(wA) + sum(woA)) % (10**9+7)
+    return result
+
+
+if __name__ == '__main__':
+  a = Solution()
+  print a.checkRecord(1)
+  print a.checkRecord(2)
+  print a.checkRecord(3)
