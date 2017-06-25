@@ -1,6 +1,12 @@
 import collections
 import sys
 
+# Bit Manipulation
+a = 0b110 # 0b prefix to use binary
+b = 0x123 # 0x start to use 16-base
+a ^ b # to compute add without carry
+(a & b) << 1 # to compute carry
+
 # String
 s = 'abccccxxx'
 s.find('x') # first occurence

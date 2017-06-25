@@ -14,15 +14,18 @@ Your algorithm should run in linear runtime complexity. Could you implement it u
 
 class Solution(object):
   def singleNumber(self, nums):
+    """
+    :type nums: List[int]
+    :rtype: List[int]
+    """
     xor = 0
     # nums
     for item in nums:
       xor = xor ^ item
-    print xor
     # find the 1st bit
     bit = 1
     while(bit & xor == 0):
-      bit = bit<<1
+      bit = bit << 1
     res = [0,0]
     for item in nums:
       if item & bit == 0:

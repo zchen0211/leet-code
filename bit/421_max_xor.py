@@ -16,6 +16,12 @@ Output: 28
 Explanation: The maximum result is 5 ^ 25 = 28.
 '''
 
+# take-aways:
+# 1. iteration by bit, starting from most significant
+# 2. mask: 111..1100..00, all 1 until i-th digit
+# 3. tmp: current max_ with new '1' added ath i-th digit to see if achievable
+# 4. if tmp achievable, update max_, check tmp^prefix in tmp_set (***)
+
 class Solution(object):
   def findMaximumXOR(self, nums):
     """
@@ -35,7 +41,7 @@ class Solution(object):
         if tmp^prefix in tmp_set:
           max_ = tmp
           break
-      print 'digit', i, 'mask', mask, 'tmp', tmp, 'tmp_set', tmp_set, 'max', max_
+      print 'digit', i, 'mask', bin(mask), 'tmp', bin(tmp), 'tmp_set', tmp_set, 'max', bin(max_)
     return max_
 
   def solution2(self, nums):

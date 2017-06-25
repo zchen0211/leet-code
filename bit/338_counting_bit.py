@@ -22,10 +22,10 @@ class Solution(object):
     if num == 0: return [0]
     result = [0, 1]
     while(len(result) < (num+1)):
+      # notice the usage of x2 to reduce time
       new_result = [item+1 for item in result]
       result += new_result
 
-    # if len(result) == num+1: return result
 
     # tail = [item+1 for item in result[0:(num+1)-len(result)]
     # result = result+tail

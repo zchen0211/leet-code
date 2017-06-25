@@ -8,6 +8,11 @@ For example, given the range [5, 7], you should return 4.
 
 class Solution(object):
   def rangeBitwiseAnd(self, m, n):
+    """
+    :type m: int
+    :type n: int
+    :rtype: int
+    """
     result = 0
     i = 0 # ith
     while(n>0):

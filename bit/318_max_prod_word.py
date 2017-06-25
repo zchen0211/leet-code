@@ -19,8 +19,14 @@ Return 0
 No such pair of words.
 '''
 
+# Key take-away: use a bit representation to save tackle time
+
 class Solution(object):
   def maxProduct(self, words):
+    """
+    :type words: List[str]
+    :rtype: int
+    """
     num = len(words)
     if num <= 1: return 0
     record = []

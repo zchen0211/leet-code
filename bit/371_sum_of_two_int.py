@@ -7,8 +7,16 @@ Example:
 Given a = 1 and b = 2, return 3.
 '''
 
+# take-away:
+# 1. a & b carry
+# 2. a ^ b add
 class Solution(object):
   def Helper(self, a, b):
+    """
+    :type a: int
+    :type b: int
+    :rtype: int
+    """
     MAX = 0x7FFFFFFF
     MIN = 0x80000000
     Mask = 0xFFFFFFFF
