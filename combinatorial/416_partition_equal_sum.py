@@ -22,6 +22,8 @@ Output: false
 Explanation: The array cannot be partitioned into equal sum subsets.
 """
 
+# Knapsack problem
+
 class Solution(object):
   def canPartition(self, nums):
     """

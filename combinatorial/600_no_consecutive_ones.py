@@ -15,7 +15,7 @@ Here are the non-negative integers <= 5 with their corresponding binary represen
 4 : 100
 5 : 101
 Among them, only integer 3 disobeys the rule (two consecutive ones) and the other 5 satisfy the rule. 
-Note: 1 <= n <= 109
+Note: 1 <= n <= 10**9
 """
 
 class Solution(object):
@@ -28,6 +28,7 @@ class Solution(object):
     if num == 1: return 2
     if num == 2: return 3
     cnt = self.helper(num) # how many digit
+    # rec[i]: how many number with <= i-digits satisfy no consecutive 1
     rec = [2, 1]
 
     for i in range(3, cnt+1):
