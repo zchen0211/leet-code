@@ -22,6 +22,7 @@ You may assume all numbers in the input are non-negative integers.
 The length of Profits array and Capital array will not exceed 50,000.
 The answer is guaranteed to fit in a 32-bit signed integer.
 """
+import Queue
 
 class Solution(object):
   def findMaximizedCapital(self, k, W, Profits, Capital):
@@ -32,3 +33,47 @@ class Solution(object):
     :type Capital: List[int]
     :rtype: int
     """
+    # Correct logic, but will TLE
+    n = len(Profits)
+    arrange = [(Profits[i],Capital[i]) for i in range(n)]
+    arrange.sort(reverse=True)
+    print arrange
+    for i in range(k):
+      for j in range(len(arrange)):
+        p, c = arrange[j]
+        print p,c
+        if c<= W:
+          print 'pick', p, c
+          W += p
+          break
+      if j < len(arrange):
+        del arrange[j]
+    return W
+
+  def solution2(self, k, W, Profits, Capital):
+    q_cap = Queue.PriorityQueue() # capital min-heap
+    q_pro = Queue.PriorityQueue() # profits max-heap
+    n = len(Profits)
+    for i in range(n):
+      c, p = Capital[i], Profits[i]
+      q_cap.put((c,p))
+
+    while k>0:
+      # pick one add into W
+      while q_cap.qsize() > 0:
+        c, p = q_cap.get()
+        if c <= W: q_pro.put((-p,c))
+        else:
+          q_cap.put((c,p)) # put back
+          break
+      if q_pro.qsize() > 0:
+        p, c = q_pro.get()
+        W -= p
+      else: break
+      k -= 1
+    return W
+
+if __name__ == '__main__':
+  a = Solution()
+  # print a.findMaximizedCapital(1, 2, [1,2,3], [1,1,2])
+  print a.solution2(1, 0, [1,2,3], [1,1,2])
