@@ -32,3 +32,36 @@ class Solution(object):
     :type key: str
     :rtype: int
     """
+    c_pos = self.helper(ring)
+    last_pos = [0]
+    last_cnt = [0]
+    n = len(ring)
+    for c in key:
+      new_pos = c_pos[c]
+      new_cnt = []
+      for tmp_new in new_pos: # new position
+        min_ = n+last_cnt[0]
+        for i in range(len(last_pos)):
+          tmp_last = last_pos[i]
+          step1 = (tmp_new-tmp_last) % n
+          step2 = n - step1
+          min_ = min(min_, last_cnt[i]+min(step1, step2))
+        new_cnt.append(min_)
+      print 'char: ', c, new_pos, new_cnt
+      last_pos, last_cnt = new_pos, new_cnt
+    return min(new_cnt) + len(key)
+
+  def helper(self, ring):
+    # give a ring return position as a dictionary
+    c_pos = {}
+    for i in range(ord('a'), ord('z')+1):
+      c_pos[chr(i)] = []
+    for i in range(len(ring)):
+      c_pos[ring[i]].append(i)
+    return c_pos
+
+
+if __name__ == '__main__':
+  a = Solution()
+  print a.findRotateSteps('godding', 'gdooi')
+  # print a.helper('godding')
