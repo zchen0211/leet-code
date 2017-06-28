@@ -23,4 +23,15 @@ class Solution(object):
     :type k: int
     :rtype: int
     """
-        
+    # statistics of matrix
+    m = len(matrix)
+    if m == 0: return 0
+    n = len(matrix[0])
+    if n == 0: return 0
+    
+    stat = []
+    for i in range(m):
+      stat.append([0]*n)
+
+    for i in range(n):
+      if i== 0 and j==0: stat[i][j] == matrix[ 

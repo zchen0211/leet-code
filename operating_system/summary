@@ -8,7 +8,7 @@ Hardware specific software, drivers
 -Hardware: CPU, GPU, Network
 
 - Resource Allocation
-- Fault islation
+- Fault isolation
 - Communication
 
 Virtualization, virtual machine, guest operating system
@@ -34,14 +34,15 @@ Source code -> executable image -> Process(machine instructions, data, heap, sta
 PCB (process control block)
 Dual-mode: user-mode, kernel-mode (1-bit processor status register)
 - previleged instructions
-- Memory protection: base and bounds (unable to do 4 things: expandable heap and stack, memory sharing, non-relativememory address, memory fragmentation (MS-DOS: no memory protection)
+- Memory protection: base and bounds (unable to do 4 things: expandable heap and stack, memory sharing, non-relative memory address, memory fragmentation)
+ (MS-DOS: no memory protection)
 - Virtual address:
 - Timer interrupts: os regain control from app, hardware timer (expires every 10 ms)
 # Preemptive scheduling
 # Three reasons why the kernel takes control from a user process: 
 1. exceptions: divided by zero, write on read-only memory...
 2. interrupts: external events occurred, I/O (mouse, Ethernet, WiFi, harddisk, keyboard)
-polling: kernel could loop to check each I/O device 
+# polling: kernel could loop to check each I/O device 
 3. system calls: user transition to OS, request kernel do some ops on the user's behalf (use trap instruction)
 # Kernel to user mode
 new process, resume from exceptions/interrupts/system calls, switch to a different process, user-level upcall
@@ -56,7 +57,7 @@ Interrupt masking
 # Context Switch
 1. Save three key values (stack pointer, execution flags, instruction pointer)
 2. Switch onto the kernel exception stack;
-3. Push three key values onto the new stack
+3. Push three key values onto the new stack;
 4. Optionally save error code;
 5. Invoke the interrupt handler;
 # System Call
@@ -82,8 +83,8 @@ EIP:
 EFLAGS:
 # Case Study: booting an OS
 1. Boot ROM: in x86, BIOS (Basic I/O System)
-2. bootloader (a bit for check), cryptographic signature, should be protected from virus
-3. load the OS from the file system;
+2. Bootloader (a bit for check), cryptographic signature, should be protected from virus
+3. Load the OS from the file system;
 4. Kernel starts first process: login
 # Case Study: Virtual Machines
 host OS v.s. guest OS
@@ -120,9 +121,9 @@ pauses the parent until the child finishes, crashes, or is terminated
 “UNIX wait” to refer to UNIX’s wait() system call
 # 3.2 Input/Output
 Basic Ideas:
-1. Uniformity. All device I/O, file operations, and interprocess communi- cation use the same set of system calls: open, close, read and write.
+1. Uniformity. All device I/O, file operations, and interprocess communication use the same set of system calls: open, close, read and write.
 2. Open before use: open() returns a handle;
-3. Kernel-buffered reads: Stream data, such as from the network or key- board, is stored in a kernel buffer and returned to the application on request.
+3. Kernel-buffered reads: Stream data, such as from the network or keyboard, is stored in a kernel buffer and returned to the application on request.
 4. Kernel-buffered writes:
 5. Explicit close: close()
 For interprocess communication, we need two more system calls:
@@ -212,7 +213,7 @@ Multi-threaded programs
 - Performance: Exploiting multiple processors.
 - Performance: Coping with high-latency I/O devices. 
 # Definition
-A single execution sequence that represents a separately schedu- lable task.
+A single execution sequence that represents a separately schedulable task.
 Running, suspending, and resuming threads.
 each thread runs on a dedicated virtual processor with unpredictable and variable speed
 Cooperative multithreading v.s. Preemptive
@@ -360,5 +361,19 @@ One key di↵erence between transactions and critical sections is that trans- ac
 
 # Detecting deadlock
 # 6.3 Alternative approaches to synchronization
+RCU (Read-Copy-Update)
+lock-free and wait-free data structures
+# RCU optimizes the read path to have extremely low synchroniza- tion costs, even if there are many concurrent readers.
+1. Relax R/W semantics, grade period (update occurs until old version has been freed)
+2. Restricted update rules
+# Lock-free data structures.
+When such updates are detected, the operation waits a finite amount of time for them to finish. If the conflicting operations do not finish, the operation either aborts the conflicting ones (rolling the object’s state back to what it was before that conflicting operations began) or it assists them (finishing the updates needed to complete that operation).
+# 6.4 Conclusion
+Resist the temptation to do complicated fine grained locking (let alone RCU)
 
 # Chap.7 Scheduling 
+# 7.1 Uniprocessor scheduling
+workload
+# compute bound
+# I/O bound
+
