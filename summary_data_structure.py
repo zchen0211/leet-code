@@ -59,7 +59,35 @@ q.put(10)
 q.put(1)
 q.put(5)
 print q.get() # will be 1 (smallest first)
-# heap
+
+# (Binary) Heap
+# Binomial Heap (To make Union efficient)
+# Recursive, B_k has 2**k nodes, height k
+# C(k, i) nodes at depth i
+# Root has degree k (larger than any other nodes)
+# Members: parent, key, degree, child, sibling
+# Fibonacci Heaps
+
+# For binary, binomial, Fibonacci heaps
+# Make-heap O(1) / O(1) / O(1)
+# Insert, O(log n) / O(log n) / O(1)
+# Minimum, O(1) / O(log n) / O(1)
+# Extract-min, delete and return min O(log n) / O(log n) / O(log n)
+# Union(H1, H2) O(n) / O(log n) / O(1)
+# decrease key(H, x, k) O(log n) / O(log n) / O(1)
+# delete O(log n) / O(log n) / O(log n)
+# All Heaps are not designed for Search
+
+# Data Structures for Disjoint sets 
+# (S1, S2, ...), each one with a representative
+# Make-set
+# Union(x, y)
+# Find-Set(x)
+# Linked-list, representative: first node
+# Weighted Union: Always append shor to longer lists when union
+# Disjoint-set forest:
+# Heuristic 1: Union by rank (root with smaller rank points to root with larger rank)
+# Heuristic 2: path compression
 
 # iterator
 
@@ -79,6 +107,29 @@ print -sys.maxint
 # insert: always at leaf
 # delete:
 
+# Red-Black Tree
+# Members: key(x), color(x), left(x), right(x), parent(x)
+# 1. Every node is either red or black.
+# 2. Every leaf (NIL) is black.
+# 3. If a node is red, then both its children are black.
+# 4. Every simple path from a node to a descendant leaf contains the same number of black nodes.
+# Lemma 14.1 A red-black tree with n internal nodes has height at most 2*lg(n + 1).
+##  Left/right rotate
+#    y         x
+#  x   z <-> a   y
+# a b           b z
+##  Insert: insert a red node, then adjust until all properties are met
+# case 1: property 3 violated (recolor)
+# case 2: rotate left
+# case 3: rotate right
+# other structures: AVL tree, may require O(log n) rotations
+# 2-3 Tree (Hopcroft)
+# B-Tree
+# i-th order statistics
+# augment RB-tree with size(x)
+
+# B-trees
+# better at mimizing disk I/O operations
 
 # Trie
 class TrieNode():

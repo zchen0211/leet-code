@@ -3,7 +3,7 @@
 
 Given integers n and k, find the lexicographically k-th smallest integer in the range from 1 to n.
 
-Note: 1 ≤ k ≤ n ≤ 109.
+Note: 1 <= k <= n <= 10**9.
 
 Example:
 
@@ -24,4 +24,37 @@ class Solution(object):
     :type k: int
     :rtype: int
     """
+    for i in range(1, 10):
+      tmp = self.cnt_start(n, i)
+      if k > tmp:
+        k -= tmp
+      else: break
+    print 'start with', i
 
+  def helper(self, n, i, k):
+
+  def cnt_start(self, n, i):
+    # first digit is not i
+    tmp = n
+    while tmp>=10: tmp /= 10
+    if tmp != i:
+      # count
+      base = 1
+      cnt = 0
+      while i*base < n:
+        cnt += base
+        base *= 10
+      return cnt
+    else:
+      base = 1
+      cnt = 0
+      while n/base != i:
+        cnt += base
+        base *= 10
+      return cnt+ n%base+1
+
+
+if __name__ == '__main__':
+  a = Solution()
+  print a.findKthNumber(13,6)
+  # print a.cnt_start(103,2)
