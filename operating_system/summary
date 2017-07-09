@@ -288,7 +288,9 @@ Formal properties
 3. Bounded waiting: If thread T attempts to acquire a lock, then there exists a bound on the number times other threads successfully acquire the lock before T does.
 
 Critical sections: A sequence of code that operates on shared state
+
 # 5.4 Condition Variables: Waiting for a Change
+poll
 CV::wait(Lock *lock)
 CV::signal()
 CV::broadcast()
@@ -296,15 +298,30 @@ Condition variables integrate with locks.
 1. A condition variable is memoryless; the condition variable, itself, has no internal state other than a queue of waiting threads.
 2. Wait() atomically releases the lock.
 3. When a waiting thread is reenabled via signal() or broadcast(), it may not run immediately.
+
 # 5.4.3 Example: Blocking bounded queue
 Case study: Linux 2.6 kernel mutex lock
 struct mutex {
 /* 1: unlocked, 0: locked, negative: locked, possible waiters */
 atomic_t count; 
 pinlock_t ait_lock;
-struct list_head wait_list; };
+struct list_head wait_list; }; */
 
 Acquiring the lock: thread called void mutex_lock(), defined in kernel/mutex.c
+
+# Semaphore:
+- A semaphore has a non-negative value
+- When a semaphore is created, value can be set to any non-negative integer
+- Semaphore::P() waits until value is positive. When value is positive, it atomically decrements value by 1.
+- Semaphore::V() increments the value by 1, and if any threads are waiting in P(), one such thread is atomically enabled with its call to P() succeeding in decre- menting the value and returning.
+Semaphore considered # harmful
+# Once exception
+There is one situation in which semaphores are often superior to condition variables and locks: synchronizing communication between an I/O device and threads running on the processor.
+
+# 5.5 Implementing synchronization objects
+# 5.5.1 Implementing uniprocessor locks by disabling interrupts
+Multiprocessor spinlocks
+Spinlocks are frequently used in multiprocessor kernels for shared objects whose methods all run fast.
 
 # 5.6 Designing and implementing shared objects
 • Decompose the problem into objects
@@ -376,4 +393,332 @@ Resist the temptation to do complicated fine grained locking (let alone RCU)
 workload
 # compute bound
 # I/O bound
+# work-conserving: A scheduler is work-conserving if it never leaves the processor idle if there is work to do.
+# 7.1.1 FIFO
+average response time
+Memcache
+# 7.1.2 Shortest Job First (SJF)
+art optimal
+starvation
+# 7.1.3 Round Robin
+time quantum
+Max-min fairness: Max- min fairness iteratively maximizes the minimum allocation given to a particular process
+# 7.1.5 Case Study: Multi-level Feedback
+- Responsiveness. Run short tasks quickly, as in SJF.
+- Low Overhead. Minimize the number of preemptions, as in FIFO, and
+minimize the time spent making scheduling decisions.
+- Starvation-Freedom. All tasks should make progress, as in Round Robin.
+- Background Tasks. Defer system maintenance tasks, such as disk de- fragmentation, so they do not interfere with user work.
+- Fairness. Assign (non-background) processes approximately their max- min fair share of the processor.
+# Multi-level Feedback Queue (MFQ)
+An extension of Round Robin.
+Instead of only a single queue, MFQ has multiple Round Robin queues, each with a different priority level and time quantum. Tasks at a higher priority level preempt lower priority tasks, while tasks at the same level are scheduled in Round Robin fashion. Further, higher priority levels have shorter time quanta than lower levels.
+
+# Summary
+• FIFO minimizes overhead.
+• If tasks are variable in size, then FIFO can have very poor average response time.
+• FIFO is optimal in terms of average response time if tasks are equal size.
+• Consideringonlytheprocessor,SJFisoptimalintermsofaverageresponse
+time.
+• SJF is worst in terms of variance in response time.
+• Round Robin approximates SJF if tasks have di↵erent sizes.
+• Round Robin is the worst policy possible if tasks are of equal size.
+• Tasks that intermix processor and I/O benefit from SJF and can do poorly under Round Robin.
+• Max-min fairness can improve response time for I/O-bound tasks.
+• By manipulating the assignment of tasks to priority queues, an MFQ
+scheduler can achieve responsiveness, low overhead, and fairness
+
+# 7.2 Multiprocessor scheduling
+# 7.2.1 Scheduling Sequential Applications on Multiprocessors
+Consider a server handling a very large number of web requests.
+MFQ lock
+# 7.2.2 Scheduling Parallel Applications
+Oblivious Scheduling
+- Bulk synchronous delay: Google MapReduce is a widely used bulk synchronous application.
+- Producer-consumer delay.
+- Critical path delay
+- Preemption of lock holder
+- I/O
+# Co-scheduling
+One possible approach to some of these issues is to schedule all of the tasks of a program together. This is called co-scheduling.
+# Scheduler activations
+# 7.3 Energy-aware scheduling
+# 7.4 Real-time scheduling
+Advanced scheduling with virtual time
+BorrowedVirtualTime(BVT)
+BVT runs process with lowest effective virtual time
+# Case Study: SMART
+Key idea: Separate importance from urgency
+- Figure out which processes are important enough to run
+- Run whichever of these is most urgent
+# Importance=⟨priority,BVFT⟩ value tuple
+- priority–parameter set by user or administrator (higher is better)
+ Takes absolute priority over BVFT
+- BVFT–Biased Virtual Finishing Time (lower is better)
+ virtual time consumed + virtual length of next CPU burst
+
+# Chap 8 Address Translation
+- Protection. Keep each process isolated
+- Sharing. Allow memory to be shared between processes (code segments, but also shared regions of memory, copy on write).
+- Virtualization. Provide OS services transparently to applications: the illusion of infinite memory
+
+# 8.1 Address translation concept
+# 8.2 Segmentation and Paging
+# 8.2.1 Segmentation
+# 8.2.2 Paging
+• Divide memory up into small pages
+• Map virtual pages to physical pages
+• Allow OS to gain control on certain operations
+Trade-offs
+• Eliminates external fragmentation
+• Simplifies allocation, free, and backing storage (swap)
+• Average internal fragmentation of .5 pages per "segment"
+
+# 8.2.3 Multi-level paging
+# 8.2.4 Multilevel segmentation and paging
+# 8.3 Efficient address translation
+# 8.3.1 Translation lookaside buffers
+Software managed TLBs
+On eachmemory reference
+- Check TLB, if entry present get physic aladdress fast
+- If not, walk page tables, insert in TLB for next time (Must evict some entry)
+• TLB operates at CPU pipeline speed -> small,fast
+• More Complex on a multi processor (TLB shootdown)
+
+# 8.3.2 Virtually addressed caches
+# 8.3.3 Consistency management
+I/O, core map, TLB and page shootdown tagged TLBs and virtual caches
+# 8.4 Software address translation 8.4.1 Software fault isolation
+e.g., native client
+# 8.4.2 Dynamic translation
+Java and android virtual machines
+# 8.5 Conclusions and future directions
+
+# Chap 9 Caching and Virtual Memory
+• When is caching useful? (e.g., if cost of regenerating the data is more than the cost of storing it until it is next reused)
+• How do we know if cache is valid?
+• How do we choose what to keep in the cache?
+# 9.1 Cache concept: when it works and when it doesn’t
+# 9.2 Hardware cache management
+
+# 9.3 Memory mapped files and virtual memory
+Advantages:
+• Can re-locate program while running
+• Most of a process’s memory may be idle (80/20 rule).
+Challenge:
+VM=extra layer, could be slow
+# Idea 1: load-time linking
+• Idea: link when process executed, not at compile time
+
+# Idea 2: base + bound register
+Two special privileged registers: base and bound
+- Physical address = virtual address + base
+- Check 0 <= virtual address < bound, else trap to kernel
+
+• Advantages
+- Cheap in terms of hardware: only two registers
+- Cheap in terms of cycles: do add and compare in parallel
+- Examples: Cray-1 used this scheme
+• Disadvantages
+- Growing a process is expensive or impossible
+- No way to share code or data (E.g.,two copies of bochs, both running pintos)
+• One solution: Multiple segments
+
+• Advantages
+- Multiple segments per process
+- Allows sharing!(how?)
+- Don't need entire process in memory
+ Disadvantages
+- Requires translation hardware, which could limit performance
+- Segments not completely transparent to program (e.g., default segment faster or uses shorter instruction)
+- n byte segment needs n contiguous bytes of physical memory
+- Makes fragmentation a real problem.
+
+# MMU
+• Programs load/store to virtual addresses
+• Actual memory uses physical addresses
+• VM Hardware is Memory Management Unit(MMU)
+Usually part of CPU
+
+# Very different MMU: MIPS
+• Hardware checks TLB on application load/store
+  - References to addresses not in TLB trap to kernel
+• Each TLB entry has the following fields:
+  Virtual page, Pid, Page frame, NC, D, V, Global
+• Kernel itself unpaged
+  - All of physical memory contiguously mapped in high VM
+   (hardwired in CPU, not just by convention as with Pintos)
+  - Kernel uses these pseudo-physical addresses
+• User TLB fault hander very efficient
+  - Two hardware registers reserved for it
+  - utlb miss handler can itself fault—allow paged page tables
+• OS is free to choose page table format!
+
+# 9.3.1 Memory allocation policies
+FIFO, LRU, LFU, optimal, self-paging
+
+# 9.3.2 Implementing memory allocation
+- Proven: impossible to construct an "always good" allocator
+• Problem:freecreatesholes(“fragmentation”)
+  Result? Lots of free space but cannot satisfy request!
+
+• Two factors required for fragmentation
+ 1. Different lifetimes— if adjacent objects die at different times, then fragmentation:
+ 2. Different sizes: If all requests the same size, then no fragmentation (that's why no external fragmentation with paging)
+
+# Theoretical result:
+- For any possible allocation algorithm, there exist streams of allocation and deallocation requests that defeat the allocator and force it into severe fragmentation.
+
+# Best Fit:
+minimize fragmentation by allocating space from block that leaves smallest fragment
+# First Fit:
+- Data structure: free list, sorted LIFO, FIFO, or by address
+
+# Known patterns of real programs
+Most real programs exhibit 1 or 2 (or all 3) of the following patterns of alloc/dealloc:
+- Ramps: accumulate data monotonically over time
+- Peaks: allocate many objects, use briefly, then free all
+- Plateaus: allocate many objects, use for a long time
+
+# Linking
+How is a program executed?
+• On Unix systems, read by "loader"
+- Reads all code/data segments into buffer cache;
+Maps code (read only) and initialized data (r/w) into addr space
+- Or ... fakes process state to look like paged out
+
+Lots of optimizations happen in practice:
+ - Zero-initialized data does not need to be read in.
+ - Demand load: wait until code used before get from disk
+ - Copies of same program running? Share code
+ - Multiple programs use same routines: share code
+
+# Who builds what?
+• Heap:allocated and laidout at runtime by malloc
+ - Namespace constructed dynamically, managed by programmer
+   (names stored in pointers, and organized using data structures)
+ - Compiler, linker not involved other than saying where it can start
+• Stack: allocated at runtime (func, .calls), layout by compiler
+ - Names are relative off stack (or frame) pointer
+ - Managed by compiler (alloc on procedure entry, free on exit)
+ - Linker not involved because namespace entirely local:
+ Compiler has enough information to build it.
+• Global data/code: allocated by compiler, layout by linker
+ - Compiler emits them and names with symbolic references
+ - Linker lays them out and translates references
+• Mmapped regions: Managed by programmer or linker
+ - Some programs directly call mmap; dynamic linker uses it,too
+
+# What is a library?
+• A static library is just a collection of .o files
+• When linking a .a (archive) file, linker only pulls in needed files
+# Name mangling
+• C++ can have many functions with the same name
+• Compiler therefore mangles symbols
+ - Makes a unique name for each function
+ - Also used for methods/namespaces(obj::fn), template
+   instantiations, & special functions such as operator new
+# Initialization and destruction
+• Initializers run before main
+Throwing exceptions destroys automatic variables
+# Dynamic (runtime) linking
+
+# Static shared libraries
+• Observation: everyone links in standard libraries (libc.a.),
+ these libs consume space in every executable.
+# Dynamic shared libraries
+
+# Linking Summary
+• Compiler/Assembler: 1 object file for each source file
+• Linker: combines all object files into 1 executable file
+• OS loader reads object files into memory
+# Code = data, data = code
+
+# Chap. 11 File Systems: Introduction and Overview
+• Reliability.
+• Large capacity and low cost.
+• High performance.
+• Named data.
+• Controlled sharing.
+Nonvolatile storage and file systems
+nonvolatile storage; nonvolatile storage; stable storage
+# 11.1 The file system abstraction
+File. A file is a named collection of data in a file system.
+File metadata: information about the file that is understood and managed by the operating system
+File data
+Directory: path, root directory, absolute path, relative path, current working directory, home directory
+#!/bin/sh
+#!/usr/bin/perl
+Hard link: The mapping between a name and the underlying file
+Volume: a collection of physical storage resources that form a logical storage device
+Mount
+# 11.2 API
+Creating and deleting files.
+Open and close
+File access
+# 11.3 Software layers
+# 11.3.1 API and performance
+Prefetching. Operating systems use prefetching to improve I/O performance.
+# 11.3.2 Device drivers: Common abstractions
+block device: allows data to be read or written in fixed-sized blocks (e.g., 512, 2048, or 4096 bytes)
+DMA: direct memory access
+# Interrupts. polling
+# 11.3.4 Putting it all together: A simple disk request
+When a process issues a system call like read() to read data from disk into the process's memory, the operating system moves the calling thread to a wait queue. Then, the operating system uses memory mapped I/O both to tell the disk to read the requested data and to set up DMA so that the disk can place that data in the kernel’s memory. The disk then reads the data and DMAs it into main memory; once that is done, the disk triggers an interrupt. The operating system's interrupt handler then copies the data from the kernel's buffer into the process's address space. Finally, the operating system moves the thread the ready list. When the thread next runs, it will returns from the system call with the data now present in the specified buffer.
+
+# Chap. 12 Storage Devices
+# 12.1 Magnetic disk
+platters; surfaces; spindle; head; head crash; arm assembly; arm;
+sectors (fixed size, typically 512 bytes); track: a circle of sectors on a surface;
+track skewing; sector sparing; slip sparing; buffer memory; track buffer; write acceleration; tag command queuing; native command queuing
+Serial ATA (SATA)
+# 12.1.1 Disk access and performance
+LBAs: logical block addresses
+disk access time = seek time + rotation time + transfer time (track + sector + read/write to/from buffer)
+# 12.1.2 Disk scheduling
+FIFO, or FCFS (First Come First Served)
++ Easy to implement
++ Good fairness
+- Cannot exploit request locality
+- Increases average latency, decreasing throughput
+SPTF/SSTF. (shortest positioning time first/shortest seek time first)
++ Exploits locality of disk requests
++ Higher throughput
+- Starvation
+- Don't always know what request will be fastest
+Elevator-based algorithm: SCAN, and CSCAN.
+ Sweep across disk, servicing all requests passed
+ CSCAN: Only sweep in one direction
+   Very commonly used algorithm in Unix
++ Takes advantage of locality 
++ Bounded waiting
+- Cylinders in the middle get better service
+- Might miss locality SPTF could exploit
+# 12.2 Flash storage
+solid state storage: 
++ no moving parts, flash storage can have much better random IO performance than disk and it can use less power and be less vulnerable to physical damage;
+- more expensive
+NOR, NAND (dense)
+Flash storage access and performance, 3 operations:
+1. Erase erasure block;
+2. Write page;
+3. Read page;
+Durability; wear out; read disturb error;
+
+# Chap. 13 Files and Directories
+Trends
+• Disk bandwidth and cost/bit improving exponentially
+• Seek time and rotational delay improving very slowly
+
+- Structure tracking a file's sectors is called an index node or inode
+# 13.1 Accessing files: API and caching
+# 13.2 Files: Placing and finding data
+# 13.2.1 FAT: Linked list
+# 13.2.2 FFS: Fixed tree
+# 13.2.3 NTFS: Flexible tree with extents
+# 13.2.4 Write anywhere file systems
+# 13.3 Directories: Naming data
+# 13.4 Putting it all together: File access in FFS
+# 13.5 Alternatives to file systems
+
 
