@@ -18,11 +18,50 @@ The input list is already sorted in ascending order by the left x position Li.
 The output list must be sorted by the x position.
 There must be no consecutive horizontal lines of equal height in the output skyline. For instance, [...[2 3], [4 5], [7 5], [11 5], [12 7]...] is not acceptable; the three lines of height 5 should be merged into one in the final output as such: [...[2 3], [4 5], [12 7], ...]
 '''
+# import Queue
+import collections
 
 class Solution(object):
-    def getSkyline(self, buildings):
-        """
-        :type buildings: List[List[int]]
-        :rtype: List[List[int]]
-        """
+  def getSkyline(self, buildings):
+    """
+    :type buildings: List[List[int]]
+    :rtype: List[List[int]]
+    """
+    # sort it first
+    buildings.sort(key=tuple)
+    n = len(buildings)
+
+    if n == 0: return []
+
+    # q = Queue.PriorityQueue()
+    q = collections.deque()
+
+    # stores (x2, y)
+    critical = []
+    result = []
+ 
+    for i in range(n):
+      x1, x2, y = buildings[i]
+
+      # left intersection
+      while len(q)>0:
+        x2_, y_ = q[0]
+        if x2_ < x1: # safe to pop out current
+          q.popleft()
+        else:
+          if x2_ not in critical:
+            critical[x2_] = y_
+        elif 
+        result.append([x1, y_])
         
+
+      if len(q) == 0: # case 1: nothing
+        result.append([x1, y])
+        q.append([x2,y])
+      elif q[-1][1] > y: # case 2: new building lower
+        if x2 > q[-1][0]:
+          result.append([q[-1][0], y])
+          q.append([x2,y])
+      else: # case 3: new building taller
+      # update right
+

@@ -721,4 +721,9 @@ Trends
 # 13.4 Putting it all together: File access in FFS
 # 13.5 Alternatives to file systems
 
-
+# Chap. 14 Network
+7 Layers: Physical, Data link, Network, Transport, Session, Presentation, Application
+4 Layer: Network Access (Ethernet), IP, TCP (host-to-host), Applications
+• UDP and TCP most popular protocols on IP
+• UDP – unreliable datagram protocol
+• TCP – transmission control protocol
