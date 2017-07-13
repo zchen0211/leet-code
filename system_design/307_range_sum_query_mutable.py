@@ -117,10 +117,56 @@ class NumArray2(object):
          return self.helper_sum(i,j, node.right)
 
 
+class NumArray3(object):
+  def __init__(self, nums):
+    """
+    :type nums: List[int]
+    """
+    n = len(nums)
+    self.nums = [item for item in nums]
+    self.tree = [0] * (n+1)
+    for i in range(n):
+      self.helper(i, nums[i])    
+
+  def update(self, i, val):
+    """
+    :type i: int
+    :type val: int
+    :rtype: void
+    """
+    v = val - self.nums[i]
+    print 'diff', v
+    self.helper(i, v)
+    self.nums[i] += v
+
+  def helper(self, i, v):
+    n = len(self.nums)
+    i += 1
+    while i<=n:
+      self.tree[i] += v
+      i += i & (-i)
+
+  def sumRange(self, i, j):
+    """
+    :type i: int
+    :type j: int
+    :rtype: int
+    """
+    sum_i = 0 # 0..i-1
+    while i>0:
+      sum_i += self.tree[i]
+      i -= i & (-i)
+    sum_j = 0
+    j += 1
+    while j>0:
+      sum_j += self.tree[j]
+      j -= j & (-j)
+    return sum_j -sum_i
+
 if __name__ == '__main__':
   # Building the structure
   nums = range(1,10)
-  a = NumArray2(nums)
+  a = NumArray3(nums)
   # Try query sum
   'Query'
   for i in range(9):
@@ -128,8 +174,10 @@ if __name__ == '__main__':
       print i, j, a.sumRange(i, j), sum(nums[i:j+1])
       assert a.sumRange(i,j)==sum(nums[i:j+1])
   # update a val
+  print a.tree
   nums[0] = 0
   a.update(0, 0)
+  print a.tree
   # Try query sum
   'Query'
   for i in range(9):
@@ -137,6 +185,9 @@ if __name__ == '__main__':
       print i, j, a.sumRange(i, j), sum(nums[i:j+1])
       assert a.sumRange(i,j)==sum(nums[i:j+1])
   pass
+  # nums = [2,1,1,3,2,3,4,5,6,7,8,9]
+  # a = NumArray3(nums)
+  # print a.tree
 # Your NumArray object will be instantiated and called as such:
 # obj = NumArray(nums)
 # obj.update(i,val)
