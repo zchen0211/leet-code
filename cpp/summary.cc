@@ -6,10 +6,29 @@
 
 auto a= 3;
 
-std::function
+// std::function, create a function
+template< class R, class... Args >
+class function<R(Args...)>;
+// example in Paddle:
+// typedef std::function<BaseClass*(CreateArgs...)> ClassCreator;
+// ClassCreator creator; return creator(args...);
+// Return an instance of the given class
+
 std::call_once
 
 std::iota
+
+// std::enable_if
+template< bool B, class T = void >
+struct enable_if;
+
+// type check
+//std::is_fundamental
+std::cout << std::is_fundamental<int>::value << '\n'; // print true
+std::cout << std::is_fundamental<int&>::value << '\n'; // print false
+// Similarly, we also have:
+// std::is_trivially_constructible<T,Args&&...>::value
+// std::is_copy_assignable<T>::value
 
 std::tie
 std::swap(a, b);
@@ -44,11 +63,22 @@ std::bernoulli_distribution random_bool;
 std::shuffle();
 std::uniform_real_distribution<float> distribution(-1.0f, 1.0f);
 
-std::vector<int>;
+std::vector<int> a;
+// append an element to a container
+std::vector::push_back();
+std::vector::emplace_back();
 std::pair;
 std::make_pair;
 std::unordered_set<string> a;
-std::unordered_map<string, int> a;
+// std::unordered_map<string, int> a;
+template<
+    class Key,
+    class T,
+    class Hash = std::hash<Key>,
+    class KeyEqual = std::equal_to<Key>,
+    class Allocator = std::allocator< std::pair<const Key, T> >
+> class unordered_map;
+// defined in #inlucde <unordered_map>
 std::map
 std::array
 std::deque<int> a;
@@ -71,3 +101,13 @@ std::unique_ptr<int> v1 = std::make_unique<int>(3);
 auto sp = std::make_shared<int>(12);
 std::shared_ptr<int> spp = std::make_shared<int>(10);
 
+/* OS: threads */
+// std::lock_guard
+template< class Mutex >
+class lock_guard;
+// std::lock_guard<std::mutex> lock(g_i_mutex);
+// used inside a function is to lock_guard to make it thread-safe
+
+// std::mutex
+class mutex;
+// The mutex class is a synchronization primitive that can be used to protect shared data from being simultaneously accessed by multiple threads.
