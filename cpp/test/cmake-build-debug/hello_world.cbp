@@ -112,6 +112,9 @@
 		<Unit filename="/Users/zhuoyuanchen/research/leet-code/cpp/test/nesting_template.h">
 			<Option target="hello"/>
 		</Unit>
+		<Unit filename="/Users/zhuoyuanchen/research/leet-code/cpp/test/os_test.h">
+			<Option target="hello"/>
+		</Unit>
 		<Unit filename="/Users/zhuoyuanchen/research/leet-code/cpp/test/review1.cpp">
 			<Option target="hello"/>
 		</Unit>

@@ -2,6 +2,7 @@
 // to carefully study and review how to write c++
 
 #include <iostream>
+#include <unordered_map>
 
 #include "review1.h"
 #include "review2.h"
@@ -13,6 +14,11 @@
 #include "functor.h"
 #include "cast.h"
 #include "io_test.h"
+#include "os_test.h"
+
+#define glue(a, b) a##b
+#define REGISTER_FUNC(__type_name, __func_name) \
+  func_map[__type_name] = __func_name;
 
 using namespace std;
 
@@ -20,9 +26,22 @@ int test() {
     cout << "global namespace print" << endl;
     return 1;
 }
+void hello() {
+    cout << "Hello World!" << endl;
+}
 
+//unordered_map<std::string, std::function<void()>> func_map;
+unordered_map<std::string, void(*)()> func_map;
 
 int main() {
+    // a test of ## macro
+    glue(c, out) << "Hello World!" << endl;
+    REGISTER_FUNC("PangTu", hello);
+    func_map["PangTu"]();
+
+    /* mutex and lock_guard test */
+    lock_test();
+
     /*
     // test of namespace
     namespace_test();
@@ -54,7 +73,7 @@ int main() {
     test_cast();*/
 
     //io_test1();
-    io_test2();
+    //io_test2();
 
     return 0;
 }

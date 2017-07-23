@@ -15,6 +15,7 @@ CMakeFiles/hello.dir/main.cpp.o: ../functor.h
 CMakeFiles/hello.dir/main.cpp.o: ../io_test.h
 CMakeFiles/hello.dir/main.cpp.o: ../main.cpp
 CMakeFiles/hello.dir/main.cpp.o: ../nesting_template.h
+CMakeFiles/hello.dir/main.cpp.o: ../os_test.h
 CMakeFiles/hello.dir/main.cpp.o: ../review1.h
 CMakeFiles/hello.dir/main.cpp.o: ../review2.h
 CMakeFiles/hello.dir/main.cpp.o: ../review3.h
