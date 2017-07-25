@@ -46,6 +46,12 @@ iostream
 cstring
 -
 
+/Users/zhuoyuanchen/research/leet-code/cpp/test/maco_test.h
+stdarg.h
+-
+stdio.h
+-
+
 /Users/zhuoyuanchen/research/leet-code/cpp/test/main.cpp
 iostream
 -
@@ -73,6 +79,8 @@ io_test.h
 /Users/zhuoyuanchen/research/leet-code/cpp/test/io_test.h
 os_test.h
 /Users/zhuoyuanchen/research/leet-code/cpp/test/os_test.h
+maco_test.h
+/Users/zhuoyuanchen/research/leet-code/cpp/test/maco_test.h
 
 /Users/zhuoyuanchen/research/leet-code/cpp/test/nesting_template.h
 iostream

@@ -15,10 +15,7 @@
 #include "cast.h"
 #include "io_test.h"
 #include "os_test.h"
-
-#define glue(a, b) a##b
-#define REGISTER_FUNC(__type_name, __func_name) \
-  func_map[__type_name] = __func_name;
+#include "maco_test.h"
 
 using namespace std;
 
@@ -26,18 +23,25 @@ int test() {
     cout << "global namespace print" << endl;
     return 1;
 }
-void hello() {
-    cout << "Hello World!" << endl;
+void hello(int cnt) {
+    cout << "Hello World!" << cnt << endl;
 }
 
 //unordered_map<std::string, std::function<void()>> func_map;
-unordered_map<std::string, void(*)()> func_map;
+//unordered_map<std::string, void(*)()> func_map;
 
 int main() {
     // a test of ## macro
     glue(c, out) << "Hello World!" << endl;
     REGISTER_FUNC("PangTu", hello);
-    func_map["PangTu"]();
+    func_map["PangTu"](__COUNTER__); // global variable from maco_test.h
+    func_map["PangTu"](__COUNTER__); // global variable from maco_test.h
+    WARN_IF(3);
+    cout << str(foo) << endl; // "foo"
+    cout << xstr(foo) << endl; // "4"
+    eprintf("abc\n");
+    auto m = FindMax(7,702,422,631,834,892,104,772);
+    cout << m << endl;
 
     /* mutex and lock_guard test */
     lock_test();

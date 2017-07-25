@@ -106,6 +106,9 @@
 		<Unit filename="/Users/zhuoyuanchen/research/leet-code/cpp/test/io_test.h">
 			<Option target="hello"/>
 		</Unit>
+		<Unit filename="/Users/zhuoyuanchen/research/leet-code/cpp/test/maco_test.h">
+			<Option target="hello"/>
+		</Unit>
 		<Unit filename="/Users/zhuoyuanchen/research/leet-code/cpp/test/main.cpp">
 			<Option target="hello"/>
 		</Unit>

@@ -13,6 +13,7 @@ CMakeFiles/hello.dir/main.cpp.o: ../dma.h
 CMakeFiles/hello.dir/main.cpp.o: ../friends.h
 CMakeFiles/hello.dir/main.cpp.o: ../functor.h
 CMakeFiles/hello.dir/main.cpp.o: ../io_test.h
+CMakeFiles/hello.dir/main.cpp.o: ../maco_test.h
 CMakeFiles/hello.dir/main.cpp.o: ../main.cpp
 CMakeFiles/hello.dir/main.cpp.o: ../nesting_template.h
 CMakeFiles/hello.dir/main.cpp.o: ../os_test.h
