@@ -30,6 +30,14 @@ showlist(1, "x", int); // expands to puts("1, \"x\", int")
  */
 #define eprintf(...) fprintf(stderr, __VA_ARGS__)
 
+// another try of __VA_ARGS__
+#define REGISTER_TEST(integer, ...) \
+  register_test(integer, #__VA_ARGS__)
+
+void register_test(int integer, char* _va_args_) {
+    std::cout << "Register Test: " << integer << " " << _va_args_ << endl;
+}
+
 // This is also correct
 //unordered_map<std::string, std::function<void()>> func_map;
 static unordered_map<std::string, void(*)(int)> func_map;

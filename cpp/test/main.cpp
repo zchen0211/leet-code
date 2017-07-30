@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <unordered_map>
+#include <typeinfo>
+#include <cxxabi.h>
 
 #include "review1.h"
 #include "review2.h"
@@ -31,6 +33,23 @@ void hello(int cnt) {
 //unordered_map<std::string, void(*)()> func_map;
 
 int main() {
+    cout << std::is_fundamental<std::string>::value << endl;
+    // rtti: a test of typeid()
+    // int i = 10;
+    int status = 0;
+    string final_type;
+    auto demangled = ::abi::__cxa_demangle(typeid(string).name(), nullptr, nullptr, &status);
+    if (demangled) {
+        final_type = string(demangled);
+    } else
+        final_type = typeid(string).name();
+    // return name;
+
+    cout << "final type: " << final_type << endl;
+    cout << typeid(float).name() << endl;
+    cout << typeid(double).name() << endl;
+    cout << typeid(char).name() << endl;
+
     // a test of ## macro
     glue(c, out) << "Hello World!" << endl;
     REGISTER_FUNC("PangTu", hello);
@@ -42,11 +61,11 @@ int main() {
     eprintf("abc\n");
     auto m = FindMax(7,702,422,631,834,892,104,772);
     cout << m << endl;
+    REGISTER_TEST(10, integer);
 
     /* mutex and lock_guard test */
     lock_test();
 
-    /*
     // test of namespace
     namespace_test();
     // global namespace
@@ -56,6 +75,7 @@ int main() {
     test_class1();
     test_class2();
 
+    /*
     // Derived class study
     test_derived1();
     test_derived2();
