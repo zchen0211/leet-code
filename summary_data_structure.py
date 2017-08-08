@@ -59,6 +59,8 @@ q.put(10)
 q.put(1)
 q.put(5)
 print q.get() # will be 1 (smallest first)
+q.qsize()
+q.empty()
 
 # (Binary) Heap
 # Binomial Heap (To make Union efficient)
