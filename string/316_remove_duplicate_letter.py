@@ -61,8 +61,33 @@ class Solution(object):
           break
     return result
 
+  def solve2(self, s):
+    # solution is very nice!!
+    cnt = [0] * 26
+    pos = 0
+    for i in range(len(s)):
+      ind = ord(s[i]) - ord('a')
+      cnt[ind] += 1 
+    for i in range(len(s)):
+      if s[i] < s[pos]: pos = i
+      ind = ord(s[i]) - ord('a')
+      cnt[ind] -= 1
+      if cnt[ind] == 0:
+        break
+    if len(s) == 0:
+      return ""
+    else:
+      c = s[pos]
+      subs = s[pos+1:]
+      subs = subs.replace(c, "")
+      print c, subs
+      return c + self.solve2(subs)
+
 
 if __name__ == "__main__":
   a = Solution()
-  print a.removeDuplicateLetters("bcabc")
-  print a.removeDuplicateLetters("cbacdcbc")
+  # print a.removeDuplicateLetters("bcabc")
+  # print a.solve2("bcabc")
+  # print a.removeDuplicateLetters("cbacdcbc")
+  print a.solve2("cbacdcbc")
+  print a.solve2("bbcaac")
