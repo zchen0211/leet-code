@@ -60,6 +60,33 @@ class Solution(object):
         node.left = new_node
         return cnt
 
+  def solve2(self, nums):
+    n = len(nums)
+    if n == 0: return []
+    nums_ = zip(range(n), nums)
+    def sort_(enums_):
+      if len(enums_) < 2:
+        return enums_
+      half = len(enums_)/2
+      left, right = sort_(enums_[:half]), sort_(enums_[half:])
+      i, j = 0, 0
+      m, n = len(left), len(right)
+      while i < m or j < n:
+        if j == n or (i < m and left[i][1] <= right[j][1]):
+          enums_[i+j] = left[i]
+          smaller[left[i][0]] += j
+          i += 1
+        else:
+          enums_[i+j] = right[j]
+          j += 1
+      return enums_
+    smaller = [0] * n
+    sort_(nums_)
+    print nums_
+    return smaller
+
+
 if __name__ == "__main__":
   a = Solution()
   print a.countSmaller([6,0, 3,2,2,6,1])
+  print a.solve2([3,2,2,6,1])
