@@ -66,10 +66,51 @@ class Solution(object):
       print best_seq, curr_seq
     return len(best_seq)
 
+  def solve3(self, nums):
+    n = len(nums)
+    if n <= 1: return n
+    result = [0] * n
+    result[0] = nums[0]
+    cnt = 1
+    for item in nums:
+      idx = self.bsearch(result, cnt, item)
+      if idx == cnt:
+        cnt += 1
+        result[idx] = item
+      elif result[idx] > item:
+        result[idx] = item
+      print result, idx, item
+    return cnt
+
+  def bsearch(self, nums, len_, val):
+    print 'search in: ', val, nums[:len_]
+    if val > nums[len_-1]: return len_
+    # find first num >= val
+    start = 0
+    end = len_
+    mid = (start + end)/2
+    while start < end:
+      mid = (start + end) /2 
+      if nums[mid] == val: return mid
+      elif nums[mid] < val:
+        start = mid + 1
+      else: # nums[mid] > val
+        end = mid
+    mid = min(len_-1, max(start, end))
+    if nums[mid] >= val:
+      return mid
+    else:
+      return mid+1
+
 
 if __name__ == '__main__':
   a = Solution()
+  '''
   print 'old'
   print a.lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18])
   print 'new'
   print a.solve2([10, 9, 2, 5, 3, 7, 101, 18])
+  '''
+  print 'dp'
+  print a.solve3([10, 9, 2, 5, 3, 7, 101, 18])
+  print a.solve3([10, 9, 2, 5, 3, 4])
