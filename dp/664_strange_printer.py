@@ -19,8 +19,32 @@ Hint: Length of the given string will not exceed 100.
 """
 
 class Solution(object):
-    def strangePrinter(self, s):
-        """
-        :type s: str
-        :rtype: int
-        """
+  def strangePrinter(self, s):
+    """
+    :type s: str
+    :rtype: int
+    """
+    n = len(s)
+    if n == 0: return 0
+
+    # dp[i..j] best result to get s[i..j]
+    dp = [] # n x n [0] matrix
+    for i in range(n):
+      dp.append([1]*n)
+
+    for i in range(1, n): # length will be i+1
+      for j in range(n-i):
+        dp[j][j+i] = i+1
+        for k in range(j, j+i):
+          tmp = dp[j][k] + dp[k+1][i+j]
+          if s[k] == s[i+j]: tmp-=1
+          dp[j][j+i] = min(dp[j][j+i], tmp)
+    print dp
+    return dp[0][-1]
+
+
+if __name__ == "__main__":
+  a = Solution()
+  # print a.strangePrinter("aaabbb")
+  print a.strangePrinter("moiulcxajmhtxipdymndmvezgitoddbbapjhsyrkduimlxhcamfpdxaqqxdbmrfmrmdsdgeravgzxwpczgfhbxidembvwehtqlvo")
+  # print a.strangePrinter("aba")
