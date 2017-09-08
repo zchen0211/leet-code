@@ -9,8 +9,8 @@ If the frog's last jump was k units, then its next jump must be either k - 1, k,
 
 Note:
 
-The number of stones is ≥ 2 and is < 1,100.
-Each stone's position will be a non-negative integer < 231.
+The number of stones is >= 2 and is < 1,100.
+Each stone's position will be a non-negative integer < 2^31.
 The first stone's position is always 0.
 Example 1:
 
@@ -40,4 +40,37 @@ class Solution(object):
     :type stones: List[int]
     :rtype: bool
     """
-        
+    stone_map = {} # stone_id to a set, contains how many steps required to jump here
+    for item in stones:
+      stone_map[item] = set()
+
+    # corner case
+    if len(stones) <= 1: return True
+    if stones[1] != 1: return False
+    stone_map[1].add(1)
+
+    i = 1
+    n = len(stones)
+    while i < n:
+      # at stones[i]
+      id_ = stones[i]
+      if len(stone_map[id_]) == 0:
+        i += 1
+        continue
+
+      for step in stone_map[id_]:
+        # take step to id_
+        # next can take step-1, step, step+1
+        for k in [step-1, step, step+1]:
+          if id_ + k == stones[-1]: return True
+          if k > 0 and id_+k in stone_map:
+            stone_map[id_+k].add(k)
+      print i, stone_map
+      i += 1
+    return False
+
+
+if __name__ == "__main__":
+  a = Solution()
+  print a.canCross([0,1,3,5,6,8,12,17])
+  print a.canCross([0,1,2,3,4,8,9,11])
