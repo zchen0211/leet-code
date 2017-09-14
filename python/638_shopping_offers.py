@@ -1,5 +1,5 @@
 '''
-638. Shopping Offers My SubmissionsBack to Contest
+638. Shopping Offers 
 
 In LeetCode Store, there are some kinds of items to sell. Each item has a price.
 

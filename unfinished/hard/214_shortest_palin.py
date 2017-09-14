@@ -11,6 +11,16 @@ Given "abcd", return "dcbabcd".
 """
 
 class Solution(object):
+  def solve(self, s):
+    # brute-force: can pass
+    n = len(s)
+    if n == 0: return s
+
+    rev = s[::-1]
+    for i in range(n):
+      if s.startswith(rev[i:]):
+        return rev[:i] + s 
+
   def shortestPalindrome(self, s):
     """
     :type s: str
