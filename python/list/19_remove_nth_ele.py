@@ -27,3 +27,17 @@ class Solution(object):
         :type n: int
         :rtype: ListNode
         """
+        fast = head
+        for i in range(n):
+            fast = fast.next
+        # need to delete the first node
+        if fast is None:
+            return head.next
+        
+        slow = head
+        while fast.next is not None:
+            slow = slow.next
+            fast = fast.next
+        slow.next = slow.next.next
+        return head
+
