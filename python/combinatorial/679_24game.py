@@ -17,8 +17,29 @@ You cannot concatenate numbers together. For example, if the input is [1, 2, 1, 
 """
 
 
-
 class Solution(object):
+	def solve2(self, nums):
+        # solution 2: can AC
+    	from operator import truediv, mul, add, sub
+    	from fractions import Fraction
+
+    	def apply(A, B):
+        	ans = set()
+        	for x, y, op in itertools.product(A, B, (truediv, mul, add, sub)):
+            	if op is not truediv or y: ans.add(op(x, y))
+            	if op is not truediv or x: ans.add(op(y, x))
+        	return ans
+    
+    	A = [{x} for x in map(Fraction, nums)]
+    	for i, j in itertools.combinations(range(4), 2):
+        	r1 = apply(A[i], A[j])
+        	k, l = {0, 1, 2, 3} - {i, j}
+        	if 24 in apply(apply(r1, A[k]), A[l]): return True
+        	if 24 in apply(apply(r1, A[l]), A[k]): return True
+        	if 24 in apply(r1, apply(A[k], A[l])): return True
+    
+    	return False
+
     def judgePoint24(self, nums):
         """
         :type nums: List[int]
