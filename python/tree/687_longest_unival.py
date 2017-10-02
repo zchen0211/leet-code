@@ -45,6 +45,7 @@ class Solution(object):
         :type root: TreeNode
         :rtype: int
         """
+        if root is None: return 0
         res1, res2 = self.helper(root)
         return res2 - 1
         
