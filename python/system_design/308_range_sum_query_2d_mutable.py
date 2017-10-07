@@ -24,57 +24,87 @@ The matrix is only modifiable by the update function.
 You may assume the number of calls to update and sumRegion function is distributed evenly.
 You may assume that row1 <= row2 and col1 <= col2.
 """
-'''
-class SegTreeNode(object):
-  def __init__(self, left, right, up, down, val):
-    self.left = left
-    self.right = right
-    self.up = up
-    self.down = down
-    self.val = val
-    self.lu = None
-    self.ld = None
-    self.ru = None
-    self.rd = None
-'''
 
 class NumMatrix(object):
-  def __init__(self, matrix):
-    m = len(matrix)
-    n = len(matrix[0])
-    self.matrix = matrix
-    self.tree = []
-    for i in range(m+1):
-      self.tree.append([0]*(n+1))
-    # update
 
-  def update(self, row, col, val):
-    m = len(matrix)
-    n = len(matrix[0])
-    delta = val - self.matrix[row][col]
-    self.matrix[row][col] += delta
-    i = row + 1
-    while i <= m:
-      j = col + 1
-      while j <= n:
-        self.tree[i][j] += delta
-        j += j & (-j)
-      i += i & (-i) 
+    def __init__(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        """
+        m = len(matrix)
+        if m == 0: return
+        n = len(matrix[0])
+        if n == 0: return
+        # matrix
+        self.matrix = []
+        for i in range(m):
+            self.matrix.append([0] * n)
+        
+        # binary index tree
+        self.bit = []
+        # init
+        for i in range(m + 1):
+            self.bit.append([0] * (n + 1))
+        # update
+        for i in range(m):
+            for j in range(n):
+                self.update(i, j, matrix[i][j])
 
-  def sumRegion(self, row1, col1, row2, col2):
-    r1 = self.helper_sum(row2, col2)
-    r2 = self.helper_sum(row1-1, col2)
-    r3 = self.helper_sum(row2, col1-1)
-    r4 = self.helper_sum(row1-1, col1-1)
-    return r1+r4-r2-r3
+    def update(self, row, col, val):
+        """
+        :type row: int
+        :type col: int
+        :type val: int
+        :rtype: void
+        """
+        delta = val - self.matrix[row][col]
+        self.matrix[row][col] = val
+        i = row + 1
+        m, n = len(self.matrix), len(self.matrix[0])
+        while i <= m:
+            j = col + 1
+            while j <= n:
+                self.bit[i][j] += delta
+                j += j & (-j)
+            i += i & (-i)
+        
 
-  def helper_sum(self, row, col):
-    sum_ = 0
-    i = row + 1
-    while i >= 0:
-      j = col + 1
-      while j >= 0:
-        sum_ += self.tree[i][j]
-        j -= j & (-j)
-      i -= i & (-i)
-    return sum_
+    def sumRegion(self, row1, col1, row2, col2):
+        """
+        :type row1: int
+        :type col1: int
+        :type row2: int
+        :type col2: int
+        :rtype: int
+        """
+        A = self.helper(row2, col2)
+        B = self.helper(row1 - 1, col2)
+        C = self.helper(row2, col1 - 1)
+        D = self.helper(row1 - 1, col1 - 1)
+        return A + D - B - C
+    
+    def helper(self, row, col):
+        result = 0
+        i = row + 1
+        while i > 0:
+            j = col + 1
+            while j > 0:
+                result += self.bit[i][j]
+                j -= j & (-j)
+            i -= i & (-i)
+        return result
+        
+
+
+# Your NumMatrix object will be instantiated and called as such:
+# obj = NumMatrix(matrix)
+# obj.update(row,col,val)
+# param_2 = obj.sumRegion(row1,col1,row2,col2)
+
+if __name__ == "__main__":
+    obj = NumMatrix([[1]])
+    print obj.bit
+    print obj.sumRegion(0, 0, 0, 0)
+    obj.update(0, 0, -1)
+    print obj.bit
+    print obj.sumRegion(0, 0, 0, 0)
