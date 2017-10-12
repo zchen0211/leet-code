@@ -14,14 +14,17 @@ find(7) -> false
 
 class TwoSum(object):
   def __init__(self):
-    self.table = set()
+    self.table = {}
 
   def add(self, value):
-    self.table.add(value)
+    self.table[value] = self.table.get(value, 0) + 1
 
   def find(self, value):
     for item in self.table:
-      if value-item in self.table: return True
+      if value != item * 2 and value-item in self.table:
+        return True
+      if value == item * 2 and self.table[value] >= 2:
+        return True
     return False
 
 
