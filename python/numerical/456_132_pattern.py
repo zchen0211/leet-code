@@ -27,6 +27,27 @@ Explanation: There are three 132 patterns in the sequence: [-1, 3, 2], [-1, 3, 0
 '''
 
 class Solution(object):
+  def solution2(self, nums):
+        if len(nums) < 3:
+            return False
+
+        stack = [[nums[0], nums[0]]]
+        # stack saves potential patterns like:
+        # [[3,5], [0,2]]
+        minimum = nums[0]
+        for num in nums[1:]:
+            if num <= minimum:
+                minimum = num
+            else:
+                while stack and num > stack[-1][0]:
+                    if num < stack[-1][1]:
+                        return True
+                    else:
+                        stack.pop()
+                stack.append([minimum, num])
+            print num, stack, minimum
+        return False
+
   def find132pattern2(self, nums):
     """
     :type nums: List[int]
@@ -85,6 +106,7 @@ if __name__ == '__main__':
   print a.find132pattern([-1,3,2,0]) # True
   print a.find132pattern([1,0,1,-4,-3]) # False
   print a.find132pattern([3,5,0,3,4]) # True'''
-  print a.find132pattern([10,12,6,8,3,11]) # True
+  # print a.find132pattern([10,12,6,8,3,11]) # True
   # print a.find132pattern([-2, 1, 1, -2, 1, 1]) # False
   # print a.find132pattern([2, 4, 3, 1]) # True
+  print a.solution2([3,5,0,2,4])
