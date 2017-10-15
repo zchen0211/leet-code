@@ -19,6 +19,7 @@ The output list must be sorted by the x position.
 There must be no consecutive horizontal lines of equal height in the output skyline. For instance, [...[2 3], [4 5], [7 5], [11 5], [12 7]...] is not acceptable; the three lines of height 5 should be merged into one in the final output as such: [...[2 3], [4 5], [12 7], ...]
 '''
 import Queue
+import heapq
 
 class Solution(object):
   def getSkyline(self, buildings):
@@ -175,19 +176,56 @@ class Solution(object):
         result.append([critical[i], critical_y[i]])
     return result
 
+  def solve4(self, buildings):
+    events = []
+    for item in buildings:
+      Li, Ri, Hi = item
+      events.append((Li, -Hi, Ri))
+      events.append((Ri, 0, None))
+
+    events.sort()
+
+    ret = [[0, 0]] # [Li, Hi]
+    hp = [(0, float('inf'))] # [Hi, Ri]
+
+    for item in events:
+      Li, NegH, Ri = item
+      while Li >= hp[0][1]:
+        heapq.heappop(hp)
+      if NegH < 0:
+        heapq.heappush(hp, (NegH, Ri))
+      if ret[-1][1] != -hp[0][0]:
+        ret.append([Li, -hp[0][0]])
+      print 'l, h, r', item
+      print 'heap', hp
+      print 'ret', ret
+      print ''
+    return ret[1:]
+
   def solve3(self, buildings):
         """
         :type buildings: List[List[int]]
         :rtype: List[List[int]]
         """
         # AC
+        # organize skyline potentials in 
+        # left, -h, right
         events = sorted([(L, -H, R) for L, R, H in buildings] + list({(R, 0, None) for _, R, _ in buildings}))
+        
+        # res: results to return [L, H]
+        # hp: heap to keep record of (-h, R) as a priority queue
         res, hp = [[0, 0]], [(0, float("inf"))]
+        
         for x, negH, R in events:
+            # safe to remove, since all remaing has larger L
             while x >= hp[0][1]: 
                 heapq.heappop(hp)
+            # if not an ending potential, added to heap
             if negH: 
                 heapq.heappush(hp, (negH, R))
+            # if condition to tackle corner case: h1 = h2
+            # if the new one has exactly the same height
+            # record it and add to the system
             if res[-1][1] + hp[0][0]: 
                 res += [x, -hp[0][0]],
         return res[1:]
@@ -197,8 +235,10 @@ if __name__ == '__main__':
   # a.getSkyline([ [2, 9, 10], [3, 7, 15], [5, 12, 12]])
   print a.solve([ [2, 9, 10], [3, 7, 15], [5, 12, 12]])
   # print a.getSkyline([ [2, 9, 10], [3, 7, 15], [5, 12, 12], [15, 20, 10], [19, 24, 8] ])
-  print a.solve([ [2, 9, 10], [3, 7, 15], [5, 12, 12], [15, 20, 10], [19, 24, 8] ])
+  # print a.solve([ [2, 9, 10], [3, 7, 15], [5, 12, 12], [15, 20, 10], [19, 24, 8] ])
   # print a.getSkyline([[1,2,1],[1,2,3]])
   # print a.getSkyline([[1,2,1],[1,2,2],[1,2,3]])
   # print a.getSkyline([[2,4,70],[3,8,30],[6,100,41],[7,15,70],[10,30,102],[15,25,76],[60,80,91],[70,90,72],[85,120,59]])
-  print a.solve([[2,4,70],[3,8,30],[6,100,41],[7,15,70],[10,30,102],[15,25,76],[60,80,91],[70,90,72],[85,120,59]])
+  # print a.solve([[2,4,70],[3,8,30],[6,100,41],[7,15,70],[10,30,102],[15,25,76],[60,80,91],[70,90,72],[85,120,59]])
+  print a.solve4([ [2, 9, 10], [3, 7, 15], [5, 12, 12]])
+  print a.solve3([ [2, 9, 10], [3, 7, 15], [5, 12, 12]])
