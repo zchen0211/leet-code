@@ -1,0 +1,31 @@
+# Count Inversions (Using Merge Sort)
+# http://www.geeksforgeeks.org/counting-inversions/
+ Merge-Sort with a global accumulator
+
+# Counting Inversions using BIT
+# http://www.geeksforgeeks.org/count-inversions-array-set-3-using-bit/
+ Binary Indexed Tree
+ Each Index saved how many numbers smaller than itself
+ Update from n .. 1
+
+# Write a program to calculate pow(x,n)
+# http://www.geeksforgeeks.org/write-a-c-program-to-calculate-powxn/
+ Naive: O(n)
+ Recursively: O(log n)
+
+# Square root of an integer
+# http://www.geeksforgeeks.org/square-root-of-an-integer/
+ Binary Search
+ Newton's Method
+
+# Heavy Light Decomposition (HLD)
+# http://www.geeksforgeeks.org/heavy-light-decomposition-set-1-introduction/
+ Two queries:
+  1) change(a, b): Update weight of the ath edge to b.
+  2) maxEdge(a, b): Print the maximum edge weight on the path from node a to node b. For example maxEdge(5, 10) should print 25.
+ HLD: coloring of tree edge, then segment tree
+  1) change(u, v): O(log n)
+  2) maxEdge(u, v): LCA, O(log n ^2)
+
+# Rank of Matrix
+# http://www.geeksforgeeks.org/program-for-rank-of-matrix/
