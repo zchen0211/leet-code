@@ -16,9 +16,28 @@ Note:
 """
 
 class Solution(object):
-    def findLength(self, A, B):
-        """
-        :type A: List[int]
-        :type B: List[int]
-        :rtype: int
-        """
+  def findLength(self, A, B):
+    """
+    :type A: List[int]
+    :type B: List[int]
+    :rtype: int
+    """
+    nA, nB = len(A), len(B)
+    ret = []
+    for i in range(nA+1):
+      ret.append([0] * (nB+1))
+
+    for i in range(nA-1, -1, -1):
+      for j in range(nB-1, -1, -1):
+        if A[i] == B[j]:
+          ret[i][j] = 1 + ret[i+1][j+1]
+    result = max(ret[0])
+    for i in range(1, nA):
+      result = max(result, max(ret[i]))
+    return result
+
+if __name__ == "__main__":
+  a = Solution()
+  print a.findLength([1,2,3,2,1], [3,2,1,4,7])
+  print a.findLength([0,1,1,1,1], [1,0,1,0,1])
+ 
