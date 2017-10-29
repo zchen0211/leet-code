@@ -83,21 +83,34 @@ class Solution(object):
 
   def solution2(self, A):
     total = 0
-    dp = [defaultdict(int) for item in A]
-    print dp
+    n = len(A)
+    dp = []
+    for i in range(n):
+      dp.append({})
+    # dp[i]: a dictionary from int to int
+    # dp[i][k]: 
+    # until A[i], how many sequences ends with A[i], has Arith diff k
+    # dp = [defaultdict(int) for item in A]
+    print 'init', dp
     for i in xrange(len(A)):
         for j in xrange(i):
-            dp[i][A[i] - A[j]] += 1
+            dp[i][A[i] - A[j]] = dp[i].get(A[i]-A[j], 0) + 1
             if A[i]-A[j] in dp[j]:
                 dp[i][A[i] - A[j]] += dp[j][A[i]-A[j]]
                 total += dp[j][A[i]-A[j]]
+        print dp, total
     return total
 
 if __name__ == '__main__':
   a = Solution()
+  """
   print a.numberOfArithmeticSlices([2,4,6])
   print a.solution2([2,4,6])
   print a.numberOfArithmeticSlices([2,4,6,8])
   print a.solution2([2,4,6,8])
   print a.numberOfArithmeticSlices([2,4,6,8,10])
-  print a.solution2([2,4,6,8,10])
+  """
+  # print a.solution2([2,4,6,8,10])
+  # print a.solution2([2,3,4,5,6])
+  arr = [1,2,3,1,2,3,4]
+  print a.solution2(arr)

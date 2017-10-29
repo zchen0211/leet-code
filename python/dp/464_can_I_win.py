@@ -30,6 +30,32 @@ Same with other integers chosen by the first player, the second player will alwa
 import timeit
 
 class Solution(object):
+  def solution2(self, maxChoosableInteger, desiredTotal):
+        """
+        :type maxChoosableInteger: int
+        :type desiredTotal: int
+        :rtype: bool
+        """
+        if (1+maxChoosableInteger)*maxChoosableInteger/2 < desiredTotal:
+            return False
+        if desiredTotal <= 0:
+            return True
+        d = collections.defaultdict(bool)
+        
+        def helper(k, M, desiredTotal):
+            if k in d:
+                return d[k]
+            if desiredTotal <= 0:
+                return False
+            for i in xrange(M, 0, -1):
+                if k&(1<<i) == 0:  
+                    if not helper(k+(1<<i), M, desiredTotal - i):
+                        d[k] = True
+                        return True
+            d[k] = False
+            return False
+        return helper(0, maxChoosableInteger, desiredTotal)
+ 
   def canIWin(self, maxChoosableInteger, desiredTotal):
     """
     :type maxChoosableInteger: int

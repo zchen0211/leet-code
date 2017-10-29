@@ -35,12 +35,17 @@ class Solution(object):
     # Good logic
     # easy to understand
     # but will TLE
+
+    # last_[i], n number, i inverse
+    # init with n = 1 number, 0 inverse
     last_ = [1] + [0]*k # 1 num, 0 inverse
     for i in range(2, n+1):
-      # tackle [1...i] now
+      # tackle the new case with (n+1)th digit added
+      # init: 0 inverse
       new_ = [1]
+
       for j in range(1,k+1):
-        # j inverse
+        # put the new digit i can introduce j (0<=j<=i-1) inverse
         # f(i,j) = f(i-1, j)+...+f(i-1, j-i+1)
         min_ = max(0, j-i+1)
         max_ = j
@@ -48,10 +53,10 @@ class Solution(object):
       last_, new_ = new_, []
     return last_[-1]
 
-  def solution2(self, n, k):
+  def solution2(self, n, K):
     MOD = 10**9 + 7
     ds = [0] + [1] * (K + 1)
-    for n in xrange(2, N+1):
+    for n in xrange(2, n+1):
         new = [0]
         for k in xrange(K+1):
             v = ds[k+1]
@@ -63,3 +68,4 @@ class Solution(object):
 if __name__ == '__main__':
   a = Solution()
   print a.kInversePairs(5, 7)
+  print a.solution2(5, 7)

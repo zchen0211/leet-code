@@ -26,7 +26,7 @@ class Solution(object):
     # pay attention to the searching order for min_ and max_!
 
     # to find end: if a num[j] < max[0..j-1], end update as j
-    # to find begin: if a num[i]
+    # to find begin: if a num[i] > min[i+1..n-1], begin update as i
     n = len(nums)
     if n <= 1: return 0
     begin, end = -1, -1

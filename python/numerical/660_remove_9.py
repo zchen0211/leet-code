@@ -14,6 +14,16 @@ Hint: n will not exceed 9 x 10^8.
 """
 
 class Solution(object):
+  def solve2(self, n):
+    n_ = 0
+    base = 1
+    while n != 0:
+      res = n % 9
+      n_ += res * base
+      base *= 10
+      n /= 9
+    return n_
+
   def newInteger(self, n):
     """
     :type n: int
@@ -84,7 +94,8 @@ class Solution(object):
 if __name__ == "__main__":
   a = Solution()
   # print 2000, a.newInteger(2000)
-  print 800000000, a.newInteger(800000000)
+  print a.solve2(1234)
+  # print 800000000, a.newInteger(800000000)
   '''
   print 2, a.newInteger(2)
   print 20, a.newInteger(20)

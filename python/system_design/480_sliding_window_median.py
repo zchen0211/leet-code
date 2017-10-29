@@ -188,6 +188,37 @@ def test_heap():
   print a.nums[7:]'''
 
 class Solution(object):
+  def solution2(self, nums, k):
+    """
+    :type nums: List[int]
+    :type k: int
+    :rtype: List[float]
+    """
+    import bisect
+    kls = nums[:k]
+    kls.sort()
+    def update(num1, num2):
+      # remove num1, add num2 to kls
+      id1 = bisect.bisect_left(kls, num1)
+      del kls[id1]
+      bisect.insort(kls, num2)
+
+      if k%2 == 0:
+        return sum(kls[k/2-1:k/2+1]) / 2.
+      else:
+        return float(kls[k/2])
+    
+    res = []
+    # init
+    if k % 2 == 0:
+      res.append(sum(kls[k/2-1:k/2+1])/2.)
+    else:
+      res.append(float(kls[k/2])
+    # iteration
+    for i in range(len(nums)-k):
+      res.append(update(nums[i], nums[i+k])
+    return res
+
   def medianSlidingWindow(self, nums, k):
     """
     :type nums: List[int]

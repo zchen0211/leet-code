@@ -17,7 +17,47 @@ Return:
 2
 """
 
+import re
 class Solution(object):
+    def solution2(self, s1, n1, s2, n2):
+        """
+        :type s1: str
+        :type n1: int
+        :type s2: str
+        :type n2: int
+        :rtype: int
+        formally the problem can be expressed as a regex problem of pattern='.*?'.join(list(s2)) and string=s1*n1
+        """
+        k=0
+        i=0
+        repeatTimes=0
+        nextIdx=0
+        posRest=['a']
+        reps=['a']
+        foundRep=False
+        while not foundRep:
+            i+=1
+            for j in xrange(0,len(s1)):
+                if s1[j]==s2[nextIdx]:
+                    nextIdx+=1
+                    if nextIdx==len(s2):
+                        repeatTimes+=1
+                        nextIdx=0
+            posRest.append(nextIdx)
+            reps.append(repeatTimes)
+            if i>=n1:
+                return repeatTimes/n2
+            for k in xrange(0,i):
+                if posRest[k]==nextIdx:
+                    foundRep=True
+                    break
+            
+        interval=i-k
+        repeatCount=(n1-k)/interval
+        print i,k,reps
+        repeatTimes=repeatCount*(reps[i]-reps[k])
+        remainTimes=reps[(n1-k)%interval+k]
+        return (repeatTimes+remainTimes)/n2
   def getMaxRepetitions(self, s1, n1, s2, n2):
     """
     :type s1: str
