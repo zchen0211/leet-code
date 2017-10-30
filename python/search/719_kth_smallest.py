@@ -62,8 +62,6 @@ class Solution(object):
       # locate j
       while j < n and nums[j] - nums[i] <= target:
         j += 1
-      # if j == n:
-      #   j -= 1
       j = max(i, j-1)
       print i, j, nums[i], nums[j]
       # if nums[j] - nums[i] > target:
