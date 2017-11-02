@@ -26,3 +26,11 @@ Another possible answer is: "abcabcda"
 
 The same letters are at least distance 2 from each other.
 """
+
+class Solution(object):
+    def rearrangeString(self, s, k):
+        """
+        :type s: str
+        :type k: int
+        :rtype: str
+        """

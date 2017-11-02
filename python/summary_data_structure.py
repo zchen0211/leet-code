@@ -62,6 +62,13 @@ print q.get() # will be 1 (smallest first)
 q.qsize()
 q.empty()
 
+# Implemented in heapq
+import heapq
+
+q = []
+q.heappush(q, (0, [1,2,3,...])
+item = q.heappop(q)
+
 # (Binary) Heap
 # Binomial Heap (To make Union efficient)
 # Recursive, B_k has 2**k nodes, height k
