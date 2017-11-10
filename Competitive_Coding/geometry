@@ -74,3 +74,10 @@ while there exist a free man m who still has a woman w to propose to
  Bipartite Graph: find max edge number without endpoint sharing
   1. Ford-Fulkerson: O(V * E)
   2. Hopcroft-Karp: O(sqrt(V) * E)
+
+# Dinic’s algorithm for Maximum Flow
+# http://www.geeksforgeeks.org/dinics-algorithm-maximum-flow/
+ Edmond Karp Implementation: O(VE^2)
+ Dinic's Implementation: O(EV^2)
+ In Edmond’s Karp algorithm, we use BFS to find an augmenting path and send flow across this path.
+ In Dinic’s algorithm, we use BFS to check if more flow is possible and to construct level graph. In level graph
