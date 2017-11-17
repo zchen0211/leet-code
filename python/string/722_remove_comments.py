@@ -79,15 +79,13 @@ class Solution(object):
       i1 = line.find('/*')
       i2 = line.find('//')
       if i1 == -1 and i2 == -1:
-        tmpline = line.replace(" ", "")
-        if len(tmpline) > 0: ret.append(line)
+        if len(line) > 0: ret.append(line)
         i += 1
         if i < n: line = source[i]
       elif i2 >= 0 and (i1 == -1 or i1 > i2):
         # '// comes first'
         line = line[:i2]
-        tmpline = line[:i2].replace(" ", "")
-        if len(tmpline) > 0: ret.append(line)
+        if len(line) > 0: ret.append(line)
         i += 1
         if i < n: line = source[i]
       else:

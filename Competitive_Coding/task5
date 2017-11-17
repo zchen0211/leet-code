@@ -1,0 +1,33 @@
+11/10-11/16
+
+Progress
+
+Integrated multi-process simulation with the game player. 
+Cleaned up the robot repository. 
+Waiting for the XWorld3D task interfaces. 
+Wrote a baseline model for XWorld3D. 
+图片
+
+Next
+
+Run simple tasks on XWorld3D.
+
+11/03-11/09
+
+Progress
+
+Improved the build of XWorld3D; some third-party libs are automatically downloaded. Learned some basic OpenGL knowledge. Downloaded some 3d models for XWorld3D.
+
+Next
+
+Run simple tasks on XWorld3D.
+
+10/26-11/02
+
+Progress
+
+Improved Robot Learning documentation. Successfully built XWorld3D on my desktop. Figured out how generally to solve the “secondary dependency” issue.
+
+Next
+
+Make an easier build of XWorld3D. Improve the XWorld3D environment. Run a simple training job.

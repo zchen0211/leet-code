@@ -1,0 +1,56 @@
+Weekly Report - Xiao Chu
+
+Weekly Report - Xiao Chu
+
+To do list
+
+Fix the problems in training feudal, get a reasonable result on BEAKOUT game. Hopefully, I can finish it before Thanksgiving.
+Do literature research on proposing target state.
+I’m interested in imitation learning, I will also do some literature research in that direction.
+Add other intrinsic rewards to help to prevent repeatedly visiting the same state and explore new states (i.e., curiosity model, episodic control).
+11/16/2017
+
+Coding and Experiment
+
+Fixed the NAN problem
+The MONTAZUMA takes 4 days to actually see any improvement. Now working on BEAKOUT.
+Implemented Dialated LSTM, but the model is then too complex to debug. The Feudal now stucks at reward = 2, the behaver is staying on the left of the screen.
+Simplify the network to only have the worker. Layer-wisely checked the output. Nothing strange. Still, the reward is 2.
+Now add the context = 4, and expand the length of time. If it still does not work, I will remove the LSTM to further simplify it to Xiaochen’s version to see if there is any other problem.
+Upload everything to AI cluster with Markus’s help.
+11/09/2017
+
+Coding and Experiment
+
+Write a layer to calculate the target value.
+
+Prepare the value of target network, prepare the reward. You can then have the target value
+Support n_step_td, if you have the reward as a batch. If you have the reward (intrinsic) as a sequence, you should calculate it in the process of generating.
+The Feudal now can be trained! But the training result is incorrect. The model quickly adapts to generating one action.
+
+The output of convolution changes to zeros after training a few hundred steps. I think the problem is in data fetch. I will look into that and hopefully, we can have a logically correct model next week.
+Paper Reading
+
+Model-free Episodic Control Charles Blundell, Benigno Uria, Alexander Pritzel, Yazhe Li, Avraham Ruderman, Joel Z Leibo, Jack Rae, Daan Wierstra, Demis Hassabis.
+
+11/02/2017
+
+Coding and Experiment
+
+Migrate the feudal network from xworld to Atari games, for specific, MONTEZUMA_REVENGE.
+
+Such kind of algorithms can easily be proved to work on some games, and do not gain any improvement or even make the framework perform worse on other games. In order to make sure the model is correctly implemented, I decided to move everything to MONTEZUMA_REVENGE.
+Fix the problems in the feual model configuration.
+
+The future C state require use to stop sampling when at size()-c-1
+The previous model for Atari takes 4 images as input and do not use any time dependence. We used 2 LSTM and hence leave to 2 td_error back to cpp.
+The intrinsic reward for the worker. Previously, I forgot to add it to calculate the td_error.
+Paper Reading
+
+Reinforcement Learning with unsupervised auxiliary tasks 
+- This work uses a future step as supervision to learn a better representation.
+
+Hierarchical Deep Reinforcement Learning: Integrating Temporal Abstraction and Intrinsic Motivation 
+- This work is earlier work of feudal. 
+- Pros: The goal is fixed for some time steps and let the worker try to achieve the goal. 
+- Cons: No reward for manager, worse results.

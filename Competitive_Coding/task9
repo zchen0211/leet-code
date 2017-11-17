@@ -1,0 +1,104 @@
+Weekly Report - Markus Kliegl
+
+ klieglmarkus 更新于7 小时前 来自：Weekly Update 历史版本 搜索组内笔记 创建新笔记
+共2位编辑者 :  
+Weekly Report - Markus Kliegl
+
+11/09/2017 - 11/16/2017
+
+Short summary
+
+I started to sketch some of the ideas for hierarchically reusable unsupervised options (PDF).
+The focus going forward is on trying to find good tasks to apply and refine these ideas on.
+Papers
+
+Continuing from last week on successor features
+
+The most interesting paper (in terms of idea) was: 
+Universal Option Models from NIPS 2014. Although this does not use successor representation or features language, it essentially shows how to use the same concepts in a hierarchical options framework. This solves the problem of the successor representation being policy-dependent.
+
+Learning goal-parametrized policies or value functions faster
+
+Several papers (including some older ones) essentially try to make goal-dependent training more sample-efficient by training with respect to multiple goals simultaneously. (That is, a single rollout can be used to train the policies for multiple goals.) The papers differ in details and how to select which goals to train for in a given rollout.
+
+Hindsight Experience Replay
+Universal value function approximators
+Hierarchical learning in stochastic domains: Preliminary results
+TODO
+
+as came up in Wednesday meeting, think about tasks beyond maze navigation that could be useful proving grounds for “hierarchically reusable unsupervised options” ideas
+if “hierarchically reusable unsupervised options” does not look like it would be useful even for such tasks, consider dropping it and looking for a new research direction to pursue
+debug new issues that have come up in compiling XWorld3d on the SVAIL cluster [Workaround for now if you do not need XWorld3d: Edit cmake.sh for robot code to turn off XWorld3d: -DWITH_XWORLD3D=OFF.]
+11/02/2017 - 11/09/2017
+
+Papers
+
+Unsupervised learning of abstract goal spaces and options
+
+One topic I was interested in this week was unsupervised learning of a useful abstract goal space (or more generally: unsupervised learning of useful “subpolicies” or “options”). One interesting sequence of papers along these lines that Yang Yi pointed me to is this: [it’s best to read these in order] 
+1. Proto-Value Functions: Developmental Reinforcement Learning 
+2. Proto-value Functions: A Laplacian Framework for Learning Representation and Control in Markov Decision Processes 
+3. A Laplacian Framework for Option Discovery in Reinforcement Learning 
+4. Eigenoption Discovery through the Deep Successor Representation
+
+Reasoning/Relational Tasks
+
+I looked a little at these (from easiest to hardest): 
+- bABI 
+- CLEVR 
+- SQuAD 
+- ATP (automated theorem proving)
+
+Miscellaneous
+
+An interesting high-level overview of our understanding of human memory systems (as of 1993). 
+- Organization of Memory: Quo Vadis? (h/t Newsha)
+
+10/26/2017 - 11/02/2017
+
+Compiling and running learning robots code
+
+Using docker
+
+With Haonan’s help and instructions, I could compile inside a paddle:dev docker container. All tests pass.
+
+On SVAIL cluster
+
+To run on the SVAIL cluster, Haonan found it is necessary to compile OpenCV without OpenCL. See this pull request.
+
+Aside from that, I found it necessary to install a custom Python virtual env and custom compiled versions of protobuf and swig, as well as set up environment variables pointing to suitable versions of CUDA and CUDNN on the cluster.
+
+If anybody else is interested in running on the SVAIL cluster, a quick start is to just do
+
+source /mnt/data/markus/idl/activate.sh
+Please let me know if you run into any problems or would like help setting up your own environment.
+
+(Some tests still fail, mostly Paddle ones, but they do not seem critical to running game players. For now, investigating this further is low priority.)
+
+Papers
+
+I am still catching up on general background and studied a number of papers related to hierarchical reinforcement learning and intrinsic motivation. I’ll list here some highlights - the ones that I would recommend to others.
+
+The best papers in general were: 
+- Curiosity-driven Exploration by Self-supervised Prediction (h/t Liang) 
+- The hippocampus as a predictive map (h/t Xu Wei and Yang Yi) 
+- Forward models: Supervised learning with a distal teacher (h/t Xu Wei) 
+- Feudal networks for hierarchical reinforcement learning (h/t Chu Xiao)
+
+The best papers related to self-play and automatic curriculum generation were: 
+- The AlphaGo Zero paper: Mastering the game of Go without human knowledge 
+- Intrinsic Motivation and Automatic Curricula via Asymmetric Self-Play 
+- Reverse Curriculum Generation for Reinforcement Learning 
+- Automatic Goal Generation for Reinforcement 
+Learning Agents
+
+Next
+
+Meet all other team members and learn what they are working on! :-)
+Start to formulate some possible research projects.
+Study more papers, lectures, and books on: 
+reinforcement learning in general
+intrinsic motivation (maybe focussing on empowerment and competence-based methods)
+self-play / automatic curriculum generation / goal generation
+one-shot/few-shot learning / meta-learning
+representation learning for 3d

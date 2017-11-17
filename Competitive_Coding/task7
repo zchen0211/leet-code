@@ -1,0 +1,79 @@
+Weekly Report 2017 - Jianyu Wang
+
+ wangjianyu02 更新于5 小时前 来自：Weekly Update 历史版本 搜索组内笔记 创建新笔记
+共1位编辑者 :  
+11/09 - 11/16
+
+fix the bug of tensorflow batch normalization.
+increasing virtual memory size: 30.59 (10) -> 31.72 (50) -> 32.54 (100) . [explicit memory=~34 (10)]
+select better initial codes for generating virtual memory: not better than using random codes (baseline).
+learn GAN from self CIFAR100 but not helpful.
+fix representation, learned beforehand by classification (train on CIFAR10). then do incremental classification by simply gaussian in code/feature space. results are bad (~20).
+finish a cvpr submission, collaboration with lab in JHU.
+Next
+
+VAE on CIFAR10. then do incremental classification on code space.
+11/02 - 11/09
+
+Find a bug in batch norm layer (there is no inference mode) in improved-WGAN code, and fix it. Re-train the GAN model.
+The improved-WGAN uses tf.nn.fused_batch_norm. This function is buggy for the backward if is_training=False (inference mode). Specifically, for different runs under the same input, the forward produces the same results as expected; but the backward produces very different results, even order of magnitude difference. After spending quite some time debugging, I locate the problem and I replace tf.nn.fused_batch_norm by more standard (yet a bit slower) tf.nn.batch_normalization. Now both the forward and backward are correct under training and inference mode.
+apple random seeds
+
+图片
+
+apple initial top seeds (from 100)
+
+图片
+
+apple final top seeds (from 100)
+
+图片
+
+bear random seeds
+
+图片
+
+bear initial top seeds (from 100)
+
+图片
+
+bear final top seeds (from 100)
+
+图片
+
+10/26 - 11/02
+
+Train GAN as natural image priors. Data from cifar10 or smallImagenet.
+Apply to Incremental learning. It works better than TV-norm method.
+Try different variants. But lead to little performance change. 
+图片
+10/19 - 10/26
+
+Get results using virtual memory by TV-norm priors. It only works a little.
+Implement EWC and apply to incremental learning. It only works a little.
+Read some papers and think about how to generate better images. 
+图片
+10/12 - 10/19
+
+Implement AM using TV-norm as priors.
+Apply AM to incremental learning.
+Debugging and visualizing.
+10/5 - 10/12
+
+Method
+
+[1] (iCarl paper) shows that storing a few examples of old classes significantly improve the classification accuracy in the class-incremental scenario. But using memory violates the incremental learning assumption: no access to old data at current stage. In this work, I want to generate some images that “mimic” old classes and use them as “virtual” memory for old classes. Here ‘virtual’ means that the generated images are not the real images from old data. The upper bound is the result by using explicit memory. The lower bound is the result without using any memory.
+
+I use activation-maximization (AM) method to generate examples for old classes. Specifically, AM optimizes the input images so that the network outputs the maximum logit score for each old class. I take the gradient of logit score with respect to the input images and iteratively add the gradient to the input images. Gradient normalization and pixel clipping are needed. But, the image generated this way will not be visually meaningful. So to make sure the generated images are within the natural image manifold, natural image prior are needed as an extra term in the objective function (plus the logit score) . Many works have explored different priors and the most common one is total variation (TV) norm [2]. This is the first method I used for generating virtual memory. Recently, some works have used the learned natural image priors, like GAN. So then AM is reduced to maximizing the input code of generative network, such that the generated images achieve the maximal logit score at the class dimension of interest. So here the role of generative network is a standalone generator for modelling natural images, and it is trained using different held-out data in advance. There is no fine-tuning of generative network during incremental learning process.
+
+In summary, advantages of my method is 
+1). no need to store any old examples, so that fully obey the incremental learning setting. 
+2). comparable results with using explicit memory (To be validated by experiment). 
+3). no need to incrementally update the generator. it is only used for modeling natural images.
+
+References
+
+[1] iCaRL: Incremental Classifier and Representation Learning, CVPR17. 
+[2] Visualizing Deep Convolutional Neural Networks Using Natural Pre-Images, CVPR15. 
+[3] Synthesizing the preferred inputs for neurons in neural networks via deep generator networks, NIPS16. 
+[4] Plug & Play Generative Networks: Conditional Iterative Generation of Images in Latent Space, CVPR17.

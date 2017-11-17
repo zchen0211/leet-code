@@ -1,0 +1,34 @@
+Weekly Report - Yi Yang
+
+ yangyi05 更新于1 天前 来自：Weekly Update 历史版本 搜索组内笔记 创建新笔记
+共1位编辑者 :  
+11.9 - 11.15
+
+Main Progress
+
+Add a background noise estimation layer to remove the random background cluttered noise to estimate better motion for robot arms, looks slightly better
+图片
+
+11.3 - 11.9
+
+Main Progress
+
+Train a baseline method on KITTI with 128x128 resolution, the motion range on KITTI is very large, i.e. max flow 28 pixels, current model motion range is not able to capture such large motion.
+图片
+
+10.30 - 11.3
+
+Main Progress
+
+Try training with noise augmentation to solve motion noisy problem but does not work yet
+Use gradient as loss, qualitative results look slightly better
+Train with 4000 steps instead of 2000 steps, qualitative results looks better
+Replace softmax function with sigmoid function on motion kernel estimation, qualitative results look better
+Download Kitti dataset
+图片
+
+图片
+
+Next Step
+
+Will setup Kitti dataset for quantitative measure

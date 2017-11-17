@@ -1,0 +1,25 @@
+Tianbing's Weekly Report
+
+ xutianbing 更新于1 天前 来自：Weekly Update 历史版本 搜索组内笔记 创建新笔记
+共1位编辑者 :  
+Tianbing’s Weekly Report
+
+11/16 
+1. Implemented full batch TRPO with parametric stein inference, the policy is generated from mean network and variance network. 
+2. Reproduced PPO baselines results. The baselines results (e.g. HumanoidStandup) are pretty good. 
+图片
+
+TODO 
+1. One possible further work is to design and use multi-model action distribution represented by policy network 
+2. Another possible work is to think about how to sample parameters efficiently from variational posterior distributions
+
+11/9 
+1. Implemented mini-batch TRPO with our variational inference
+
+11/2 
+1. Do theoretical derivations and arrive at concrete algorithms 
+2. implemented policy gradient by stochastic variational inference 
+3. The motivation to derive our variational inference is to investigate the possible exploration effects and other potential impacts on the general RL problems
+
+todo 
+implementing TRPO with our own stochastic variational inference

@@ -1,0 +1,55 @@
+Weekly Report - Haichao Zhang
+
+11/09-11/16
+
+Results
+
+~ 90% success rate under sentence based setting for novel concepts, comparable to previous word-based setting
+experiment setting 
+random session with at most two objects involved in each session
+“what”-type of questions, sentence based answers
+no visual appearance variations
+Approaches
+
+attention-based word selection from sentence (same as last week)
+fusion gate conditioned on both rnn-state and knowledge confidence (different from last week)
+beam size 3 (different from last week, which is 1)
+Next
+
+increase variations: dialogue (questions, [increase] answers [increase], statements[add]), visual appearances [add]
+investigate the role of RL in training
+further extension
+11/02-11/09
+
+Results
+
+working towards sentence based setting: attention based word selection is implemented
+encountered side effects on the memory update gate, working on the reasons
+also investigating the impact of memory write/read order on the final performance using the single word answer as the test setting
+Next
+
+continue to work on sentence based answers
+10/26-11/02
+
+Results
+
+achieve ~90% success rate on novel test set (previously ~60%) under the following setting
+setting: random session (objects are presented in a random order within a session), single form of questions, single word answering (+ EOS)
+Approach
+
+add an memory update gate for determining whether a concept should be remembered/stored or not
+use additive noise + schedule layer based sharpening to progressively making the gate output close to binary
+Next
+
+analysis and better understanding of the current model
+add more variations to questions
+extend to sentence based answers
+10/19-10/26
+
+Results
+
+Add learner’s previous response as input for next time step to make the language model leverage the alternating conversational sentences between teacher and learner
+Improved the generalization ability of the model over novel concepts by adjusting the model structure
+Next
+
+Work on external memory which has a more adaptive way to write/store learned concepts

@@ -1,0 +1,28 @@
+Weekly report - Liang Zhao
+
+ zhaoliang07 更新于5 小时前 来自：Weekly Update 历史版本 搜索组内笔记 创建新笔记
+共1位编辑者 :  
+Weekly report – Liang Zhao
+
+Weekly report 11/16
+
+Divide the intrinsic motivation learning into two phases: In phase one, there is no external rewards and tasks. The goal of the agent in this phase is to acquire knowledge(both static and dynamic) about the environment and reusable skills to change the environment. In phase two, the teacher provides tasks and rewards to the agent. The goal is to demonstrate that the agent can learn tasks more efficiently by using the knowledge and skills acquired in the first phase.
+Designing 3D environment settings for the agent to explore driven by intrinsic motivation in phase one ( next week ).
+Designing tasks for the agent to accomplish in phase two ( next week ).
+Designing learning algorithms for phases one and two ( two weeks from now ).
+Weekly report 11/8
+
+Compare A3C + ICM with A3C on XWorld 5x5 game with external rewards. There is not much difference of performance between two algorithms.
+To train navigation and recognition tasks separately.
+To perform theoretical analysis on how a perfect prediction model can help tasks.
+Weekly report 11/1
+
+Compare A3C + ICM with A3C on XWorld 3x3 game with external rewards. There is not much difference of performance between two algorithms.
+Analysis the reason why intrinsic reward does not help for XWorld game. It is probably due to over-fitting and forward model learns faster.
+After simplify the forward model, A3C+ICM performs better than A3C on XWorld. 
+图片
+Weekly report 10/26
+
+Compare A3C + ICM with A3C on Atari game with external rewards. A3C + ICM learns faster than A3C after 12000 games. 
+图片
+To do experiments without external rewards.

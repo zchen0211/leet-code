@@ -1,0 +1,46 @@
+Weekly Report 2017.11 - Xiaochen Lian
+
+ lianxiaochen 更新于3 小时前 来自：Weekly Update 历史版本 搜索组内笔记 创建新笔记
+共1位编辑者 :  
+TODO
+
+updated on 11/16 
+- details listed in report 11/10-11/16 
+- Find more models for XWorld 3D environment (with Haonan) 
+- Rendering problem in XWorld 3D: missing floor 
+- Improve socket communication speed 
+- check other people's implementation on message with header 
+- try asynchronous methods 
+- try gRPC 
+- Follow Haonan’s work on transferring teaching task from C++ to Python (starting from this commit)
+
+11/10 - 11/16
+
+Solved missing floor issue
+Implemented XWorld 3D environment and replace the original XWorld 3D parser with it: 
+refactored the codes dealing with roboschool elements (x3item and xworld3d)
+refactor xworld3d simulator to replace xworld3d parser
+What needs to be done and estimated timelines: 
+correctly parse the folder structures of assets (e.g., 3d models) – today
+synchronize changed entity information in c++ end with python – today
+GameManager supports multi-process – today/tmr
+add orientation to entity information – tmr
+localization problems in 3D (e.g., reachable, location between object) – TBD
+how to check if a grid is occupied – TBD
+11/03 - 11/09
+
+Solved the Socket Communication speed issue: turns out sending two messages is way more time consuming than sending one if we use synchronous write and read. Right now, we will stick to blocking echo server-client model. A possible better solution is the chat room model (asynchronous) where we use only one port for communication and one class to collect and dispatch messages.
+Implementing XWorld3D teaching task and environment: 
+Done: teaching task c++ and python base class
+To-do: XWorld 3D environment python base class
+Issues likely left unsolved for now: 
+color related tasks: we cannot easily change the color of 3d objects
+relative scales between different types of objects: right now we fix the size of an object within a “grid” at the beginning
+no easy way to check if one location is reachable from another
+10/27 - 11/2
+
+Solved Roboschool’s crash issue: fork client processes at the beginning instead of after the main process spawns server threads
+Profiled function calls involved within one simulation time step: 
+data serialization costs close to zero time
+one turn of communication (sending one message and receiving reply) costs about 0.08 sec. A simulation time step requires three turns (get_state, show_screen and take_actions) 
+Currently in order to get intact message without any meaningless tails, we need to send two consecutive messages: one with fixed length containing the length of the next message, the next one with actual content.

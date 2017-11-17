@@ -1,0 +1,44 @@
+Weekly Report - YangWang
+
+ wangyang59 更新于6 小时前 来自：Weekly Update 历史版本 搜索组内笔记 创建新笔记
+共1位编辑者 :  
+Weekly Report
+
+11/16/2017
+
+Progress and Result
+
+resubmit the occlusion optical flow paper to CVPR and arXiv
+Fitted a lossNet for learning a loss metric from g.t. flow
+Trained the our flow estimation network using the learned metric but got worse result
+Next step
+
+Change the loss for lossNet in pixel level to avoid overfitting
+11/09/2017
+
+Progress and Result
+
+Calculate the unsupervised loss of the result of flownet2, and it has higher loss than our result on 1/4 size but lower loss on full-size image
+Trained our model with loss on the full-size which reduces the full-size loss, but got worse epe error.
+It’s better to use resize_area to down-sample image, and use resize_bicubic to upsample image. See http://tanbakuchi.com/posts/comparison-of-openv-interpolation-algorithms/
+Loss Type	Size/4 - Flownet2	Size/4 - Our	Full-size - Flownet2	Full-size - Our	Full-size our train-on
+Total Loss	0.097	0.065	0.111	0.087	0.081
+img_loss	0.021	0.019	0.028	0.03	0.029
+img_grad	0.017	0.016	0.02	0.022	0.021
+smooth	0.0045	0.0015	0.005	0.0021	0.0017
+F-measure on occlusion estimation
+method	Sintel Clean	Sintel Final	KITTI2012	KITTI2015
+Our	0.54	0.48	0.95	0.88
+S2D		0.57		
+modof		0.48		
+11/02/2017
+
+Progress and Result
+
+Found out that reducing the smoothness penalty did not lower the photometric error (which is higher than ground truth), I suspect that my model capacity is not enough. Tuning my extra warped-input network structure did not help. So tried PWC-net
+Implemented PWC-net with unsupervised objective
+PWC net gives a similar EPE with my current network structure with 1/10 number of parameters but similar training time
+Interesting training curve and found a different local minimum
+Next Step
+
+Use enlarged warping technique with image-grad as the goal
