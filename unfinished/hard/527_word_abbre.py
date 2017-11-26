@@ -19,4 +19,8 @@ The return answers should be in the same order as the original array.
 """
 
 class Solution(object):
-  def abbr(self, word, size):
+    def wordsAbbreviation(self, dict):
+        """
+        :type dict: List[str]
+        :rtype: List[str]
+        """
