@@ -1,13 +1,15 @@
 # Deepmind
-## ML
-- Nando de Freitas
+## ML, Optimization,
+- Nando de Freitas, Misha Denil, Matthew W. Hoffman, David Pfau, Adam Santoro, Matthew Botvinick, Yutian Chen, Demis Hassabis
+- Sergio Gómez Colmenarejo, Koray Kavukcuoglu
 ## NLP
 - Chris Dyer, Phil Blunsom, Edward Grefenstette, Karl Hermann, Steve Clark
 - Felix Hill
 ## RNN
-- Alex Graves,
+- Alex Graves, Daan Wierstra, Nal Kalchbrenner,
 ## Reinforcement Learning
-- Tom Schaul
+- David Silver, Tom Schaul, Sergey Bartunov, Timothy Lillicrap, Karen Simonyan, Aja Huang, Arthur Guez, Laurent Sifre, Volodymyr Mnih,
+- Julian Schrittwieser, Ioannis Antonoglou, Thomas Hubert, Lucas Baker, George van den Driessche,
 ## Computer Vision
 - Jeff Donohue, Yuke Zhu,
 
@@ -20,7 +22,7 @@
 - Y-Lan Boureau, Alexis Conneau, Angela Fan, Ledell Wu,
 ## Computer Vision
 - Dhruv Batra, Piotr Dollar, Rob Fergus, Ross Girshick, Benjamin Graham, Kaiming He, Hervé Jégou, Iasonas Kokkinos, Xinlei Chen, Natalia Neverova, Devi Parikh, Marcus Rohrbach, Laurens van der Maaten, Lior Wolf, Larry Zitnick, Yaniv Taigman
-- Piotr Bojanowski, Mohamed Elhoseiny, Priya Goyal, Yedid Hoshen, Jure Zonbotar,
+- Piotr Bojanowski, Mohamed Elhoseiny, Priya Goyal, Yedid Hoshen, Jure Zonbotar, Brenden Lake, 
 ## System
 - Soumith Chintala, Ronan Collobert, Teng Li, Shubho Sengupta, Howard Mansell
 - Jonas Gehring, Sam Gross, Ailing Zhang,
@@ -47,7 +49,7 @@
 ## System
 - Martin Abadi, Paul Barham, Mike Burrows, Jianmin Chen, Zhifeng Chen, Andy Davis, Jeffrey Dean, Matthieu Devin, Sanjay Ghemawat, Geoffrey Irving, Michael Isard, Manjunath Kudlur, Josh Levenberg, Rajat Monga, Sherry Moore, Derek Murray, David Patterson, Benoit Steiner, Paul Tucker, Vijay Vasudevan, Pete Warden, Martin Wicke, Yuan Yu, Xiaoqiang Zheng, Xiaobing Liu, Azalia Mirhoseini
 ## Computer Vision
-- Christian Szegedy, Jonathon Shlens, Dumitru Erhan, Alexander Krizhevsky, Pierre Sermanet, Jonathan Krause, Mohammad Norouzi
+- Christian Szegedy, Jonathon Shlens, Dumitru Erhan, Alexander Krizhevsky, Pierre Sermanet, Jonathan Krause, Mohammad Norouzi, Sergey Ioffe,
 ## RL
 - Vincent Vanhoucke, Anelia Angelova, Sergey Levine, Alex Toshev
 - Eric Jang
@@ -55,10 +57,16 @@
 # Google Research
 ## Computer Vision
 - Kevin P. Murphy
+- Jiang Wang, Ning Ye
 
 # OpenAI
+## ML
+- Marcin Andrychowicz, Ilya Sutskever
 
 # Berkeley
 ## RL
 - Pieter Abbeel, Sergey Levine,
-- Chelsea Finn,
+- Chelsea Finn, Rocky Duan, Peter Chen, Will Wu,
+## Computer Vision
+- Trevor Darrell, Jitendra Malik,
+- Ke Li
