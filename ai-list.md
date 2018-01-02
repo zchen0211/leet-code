@@ -1,17 +1,18 @@
 # Deepmind
 ## ML, Optimization,
-- Nando de Freitas, Misha Denil, Matthew W. Hoffman, David Pfau, Adam Santoro, Matthew Botvinick, Yutian Chen, Demis Hassabis, Max Jaderberg, Simon Osindero, Aäron van den Oord
+- Nando de Freitas, Misha Denil, Matthew W. Hoffman, David Pfau, Adam Santoro, Matthew Botvinick, Yutian Chen, Demis Hassabis, Max Jaderberg, Simon Osindero, Aäron van den Oord, Yee Whye Teh
 - Sergio Gómez Colmenarejo, Koray Kavukcuoglu, Wojciech Marian Czarnecki, Andriy Mnih, Danilo Jimenez Rezende
 ## NLP
 - Chris Dyer, Phil Blunsom, Edward Grefenstette, Karl Hermann, Steve Clark, Heiga Zen
-- Felix Hill, Gábor Melis, Yazhe Li
+- Felix Hill, Gábor Melis, Yazhe Li, Angeliki Lazaridou
 ## RNN
 - Alex Graves, Daan Wierstra, Nal Kalchbrenner, Oriol Vinyals
 ## Reinforcement Learning
 - David Silver, Tom Schaul, Sergey Bartunov, Timothy Lillicrap, Karen Simonyan, Aja Huang, Arthur Guez, Laurent Sifre, Volodymyr Mnih, Alexander Sasha Vezhnevets
 - Julian Schrittwieser, Ioannis Antonoglou, Thomas Hubert, Lucas Baker, George van den Driessche,
 ## Computer Vision
-- Jeff Donohue, Yuke Zhu, Daniel Zoran
+- Jeff Donohue, Yuke Zhu, Daniel Zoran, Relja Arandjelović, Andrew Zisserman
+
 ## System
 - Valentin Dalibard
 
@@ -38,7 +39,7 @@
 ## System
 - Joaquin Candela, Sarah Bird, Bill Jia, Yangqing Jia, Andrew Tulloch, Dmytro Dzhulgakov,
 ## Computer Vision
-- Manohar Paluri
+- Manohar Paluri, Richard Szeliski, Michael Cohen, Matt Uyttendaele
 - Yixuan Li, Guan Pang, Zhicheng Yan, Du Tran,
 ## NLP
 - 
@@ -50,7 +51,8 @@
 
 # Google Brain
 ## ML
-- Jeff Hinton, Ian Goodfellow, George Dahl, Anthony Francis, David Ha, Hugo Larochelle, Quoc V. Le, Nicolas Le Roux, Ofir Nachum, Yoram Singer, Jie Tan, Hector Yee, Ofir Nachum
+- Jeff Hinton, Ian Goodfellow, George Dahl, Anthony Francis, David Ha, Hugo Larochelle, Quoc V. Le, Nicolas Le Roux, Ofir Nachum, Yoram Singer, Jie Tan, Hector Yee, Ofir Nachum, Christopher Olah
+
 ## NLP
 - Ashish Vaswani, Navdeep Jaitly, Samy Bengio, Lukasz Kaiser, Greg Corrado, Kai Chen, Andrew M. Dai, Melody Guan, Pi-Chuan Chang
 ## Speech
@@ -64,9 +66,11 @@
 - Eric Jang
 
 # Google Research
+## ML
+- John C. Platt, Peter Norvig,
 ## Computer Vision
-- Kevin P. Murphy
-- Jiang Wang, Ning Ye
+- Kevin P. Murphy, Ce Liu, Fei-Fei Li, Jia Li, Rahul Sukthankar, Thomas K. Leung, Shengyang Dai, Ting Yu, Yang Song, David Lowe,
+- Jiang Wang, Ning Ye, Chen Sun,
 
 # OpenAI
 ## RL
@@ -74,10 +78,35 @@
 ## ML
 - Marcin Andrychowicz, Ilya Sutskever, Durk Kingma
 
+# MSR
+## ML
+- Christopher Bishop
+## Computer Vision
+- David Wipf, Zhengyou Zhang, Zhuowen Tu, Zicheng Liu,
+- Han Hu, Jifeng Dai,
+
+# Tesla
+## Computer Vision
+- Andrej Karpathy,
+
 # Berkeley
+## ML
+- Michael Jordan
 ## RL
 - Pieter Abbeel, Sergey Levine,
 - Chelsea Finn, Rocky Duan, Peter Chen, Will Wu, Jonathan Ho, 
 ## Computer Vision
-- Trevor Darrell, Jitendra Malik,
+- Trevor Darrell, Jitendra Malik, Alyosha Efros,
 - Ke Li
+
+# Stanford
+## NLP
+- Christopher Manning, Percy Liang
+
+# Baidu
+## ML
+- Wei Xu
+
+# Tencent
+## Computer Vision
+- Jiaya Jia,
