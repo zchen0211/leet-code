@@ -1,20 +1,21 @@
 # Deepmind
 ## ML, Optimization,
-- Nando de Freitas, Misha Denil, Matthew W. Hoffman, David Pfau, Adam Santoro, Matthew Botvinick, Yutian Chen, Demis Hassabis, Max Jaderberg, Simon Osindero, Aäron van den Oord, Yee Whye Teh, Xavier Glorot, Grzegorz Swirszcz
+- Nando de Freitas, Misha Denil, Matthew W. Hoffman, David Pfau, Adam Santoro, Matthew Botvinick, Yutian Chen, Demis Hassabis, Max Jaderberg, Simon Osindero, Aäron van den Oord, Yee Whye Teh, Xavier Glorot, Grzegorz Swirszcz, Mehdi Mirza, Jane Wang,
 - Sergio Gómez Colmenarejo, Koray Kavukcuoglu, Wojciech Marian Czarnecki, Andriy Mnih, Danilo Jimenez Rezende, Yinlam Chow,
 ## NLP
-- Chris Dyer, Phil Blunsom, Edward Grefenstette, Karl Hermann, Steve Clark, Heiga Zen
-- Felix Hill, Gábor Melis, Yazhe Li, Angeliki Lazaridou, Mike Chrzanowski
+- Chris Dyer, Phil Blunsom, Edward Grefenstette, Karl Hermann, Steve Clark, Heiga Zen, Charles Blundell, Mohammad Shoeybi,
+- Felix Hill, Gábor Melis, Yazhe Li, Angeliki Lazaridou, Mike Chrzanowski, Ling Wang,
 ## RNN
 - Alex Graves, Daan Wierstra, Nal Kalchbrenner, Oriol Vinyals
-## Reinforcement Learning
-- David Silver, Tom Schaul, Sergey Bartunov, Timothy Lillicrap, Karen Simonyan, Aja Huang, Arthur Guez, Laurent Sifre, Volodymyr Mnih, Alexander Sasha Vezhnevets
-- Julian Schrittwieser, Ioannis Antonoglou, Thomas Hubert, Lucas Baker, George van den Driessche,
+- Christopher Fougner,
+## RL
+- David Silver, Tom Schaul, Sergey Bartunov, Timothy Lillicrap, Karen Simonyan, Aja Huang, Arthur Guez, Laurent Sifre, Volodymyr Mnih, Alexander Sasha Vezhnevets, Sébastien Racanière
+- Julian Schrittwieser, Ioannis Antonoglou, Thomas Hubert, Lucas Baker, George van den Driessche, Ryan Faulkner,
 ## Computer Vision
-- Jeff Donohue, Yuke Zhu, Daniel Zoran, Relja Arandjelović, Andrew Zisserman, Irina Higgins
+- Jeff Donahue, Yuke Zhu, Daniel Zoran, Relja Arandjelović, Andrew Zisserman, Irina Higgins, Mateusz Malinowski, Pushmeet Kohli,
 - Ang Li,
 ## System
-- Valentin Dalibard
+- Valentin Dalibard, Tom Le Paine,
 
 # Facebook AI Research
 ## Math, Optimization, ML
@@ -37,17 +38,18 @@
 
 # Facebook Research
 ## System
-- Joaquin Candela, Sarah Bird, Bill Jia, Yangqing Jia, Andrew Tulloch, Dmytro Dzhulgakov,
+- Joaquin Candela, Sarah Bird, Bill Jia, Yangqing Jia, Andrew Tulloch, Dmytro Dzhulgakov, Hongyi Zeng,
 ## Computer Vision
 - Manohar Paluri, Richard Szeliski, Michael Cohen, Matt Uyttendaele
-- Yixuan Li, Guan Pang, Zhicheng Yan, Du Tran, Tong Xiao,
+- Yixuan Li, Guan Pang, Zhicheng Yan, Du Tran, Tong Xiao, Xianming Liu, Su Xue, Xianjie Chen,
 ## NLP
 - 
 ## Feeds Ranking
 - Liang Xiong
-- Xue Feng, Huazhong Ning, Jiyan Yang, Xianjie Chen, Xiaolong Wang,
+- Xue Feng, Huazhong Ning, Jiyan Yang, Xianjie Chen, Xiaolong Wang, Erheng Zhong, Shengxin Zha, Jing Qian,
 ## Ads
-- Dan Zhang,
+- Dan Zhang, Tianshi Gao,
+- Hongyu Liang,
 
 # Google Brain
 ## ML
@@ -57,27 +59,38 @@
 ## NLP
 - Ashish Vaswani, Navdeep Jaitly, Samy Bengio, Lukasz Kaiser, Greg Corrado, Kai Chen, Andrew M. Dai, Melody Guan, Pi-Chuan Chang
 ## Speech
-- Jesse Engel, Shuyuan Zhang,
+- Jesse Engel, Shuyuan Zhang, Vinay Rao, Eric Battenberg,
 ## System
 - Martin Abadi, Paul Barham, Mike Burrows, Jianmin Chen, Zhifeng Chen, Andy Davis, Jeffrey Dean, Matthieu Devin, Sanjay Ghemawat, Geoffrey Irving, Michael Isard, Manjunath Kudlur, Josh Levenberg, Rajat Monga, Sherry Moore, Derek Murray, David Patterson, Benoit Steiner, Paul Tucker, Vijay Vasudevan, Pete Warden, Martin Wicke, Yuan Yu, Xiaoqiang Zheng, Xiaobing Liu, Azalia Mirhoseini, Fernanda Viegas, Sergio Guadarrama,
 ## Computer Vision
 - Christian Szegedy, Jonathon Shlens, Dumitru Erhan, Alexander Krizhevsky, Pierre Sermanet, Jonathan Krause, Mohammad Norouzi, Sergey Ioffe,
 ## RL
 - Vincent Vanhoucke, Anelia Angelova, Sergey Levine, Alex Toshev, Mohammad Norouzi
-- Eric Jang
+- Eric Jang, Aleksandra Faust,
 
 # Google Research
 ## ML
 - John C. Platt, Peter Norvig,
 ## Computer Vision
-- Kevin P. Murphy, Ce Liu, Fei-Fei Li, Jia Li, Rahul Sukthankar, Thomas K. Leung, Shengyang Dai, Ting Yu, Yang Song, David Lowe,
-- Jiang Wang, Ning Ye, Chen Sun, Georgios Papandreou
+- Kevin P. Murphy, Ce Liu, Fei-Fei Li, Jia Li, Rahul Sukthankar, Thomas K. Leung, Shengyang Dai, Ting Yu, Yang Song, David Lowe, Yuan Li, Hua Wei, Jingyu Cui, Ali Rahimi,
+- Jiang Wang, Ning Ye, Chen Sun, Georgios Papandreou, Zhaofu Chen, Nan Wang, Xiao Zhang, Feng Yang,
 ## Graphics
 - Dan Goldman,
 ## NLP
-- Ni Lao,
+- Ni Lao, Fangtao Li, Chong Wang,
 ## RL, Robotics
 - Yunfei Bai
+## System
+- Dongtao Liu,
+## Search
+- Jiangzhou He,
+## YouTube
+- Zhikun Wang,
+- Yanjie Li,
+## Growth Products
+- Yuchen Wu,
+## Waymo
+- Fang Da, Ming Zou, Junhua Mao,
 
 # OpenAI
 ## RL
