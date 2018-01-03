@@ -125,10 +125,22 @@
 # Apple
 ## Computer Vision
 - Ruslan Salakhutdinov
-- Kai Kang,
+- Kai Kang, Fan Wang, Weiyu Zhang, Jizhou Gao, Philip Lee,
 ## ML
 - Carlos Guestrin,
-- Shunan Zhang,
+- Shunan Zhang, Lin Li, Shiwen Zhao,
+
+# Snapchat
+## Computer Vision
+- Xutao Lv, Jianchao Yang, Linjie Luo, Ning Zhang, Zhou Ren, Yunchao Gong, Kevin Tang, Linjie Yang
+## Data
+- Xiaolin Shi,
+
+# Amazon
+## Computer Vision
+- Lu Xia
+## ML
+- Alex Smola, Mu Li,
 
 # Berkeley
 ## ML
