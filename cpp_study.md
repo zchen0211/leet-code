@@ -1,6 +1,47 @@
 # C++ Study
 
-## 1. Template
+## Basic Data Structures
+- Enumerate:
+```cpp
+enum class Color {kEmpty, kBlack, kWhite};
+```
+- Type Conversion:
+```cpp
+static_cast<T>(object);
+dynamic_cast<T>(object);
+```
+
+## Specializers
+- Constant and Volatile:
+```cpp
+const
+constexpr
+volatile
+```
+- Static:
+```cpp
+static
+```
+- Class members:
+```cpp
+inline
+
+private:
+protected:
+public:
+```
+- Others:
+```cpp
+noexcept
+```
+
+## Polymorphism
+- Overriding operators:
+```cpp
+Group& operator[](int id) {return group_[id];}
+```
+
+## Template
 - Suggest not split declaration and implementation into .h and .cc;
 - template class
 ```cpp
@@ -106,6 +147,12 @@ template<class R, class... Args>
 class function<R(Args)>;
 ```
 
+## Namespace
+- Define:
+```cpp
+namespace minigo {}
+```
+
 ## Macro
 - Directly replace the codes when compiling, no ";" in definition
 ```cpp
@@ -141,4 +188,40 @@ __TIME__
 ```cpp
 ##__VA_ARGS__
 #define debug(...) printf(##__VA_ARGS__)
+```
+
+## Containers and Iterators
+- General members
+```cpp
+#include <iterator>
+std::begin()
+std::end()
+
+T* begin();
+T* end();
+clear();
+int size();
+bool empty();
+T* data();
+
+// both push_back and emplace_back available in vector, list, deque
+// string only has push_back
+void push_back(const value_type& val);
+void push_back();
+template<class... Args>
+void emplace_back(Args&&... args);
+```
+- Arrays
+```cpp
+std::array<T, kN> arr; // can't change size
+
+std::vector<T> arr;
+
+```
+
+## Streams
+```cpp
+std::ostream& operator<<(std::ostream& os, Color color) {
+	return os << "xxx";
+}
 ```
