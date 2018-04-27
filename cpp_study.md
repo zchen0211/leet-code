@@ -12,9 +12,27 @@ enum class Color {kEmpty, kBlack, kWhite};
 R"" // used to avoid any escaping
 ```
 - Type Conversion:
+-- Static Cast is used to (1) cast void* to other type; (2) regular type conversion; (3) avoid ambiguity;
 ```cpp
 static_cast<T>(object);
-dynamic_cast<T>(object);
+```
+-- Dynamic cast is used to cast between derived and base class;
+```cpp
+Derived* dynamic_cast<Derived*>(basic_ptr);
+Derived2* pd2 = static_cast<Derived2*>(derived1_ptr);
+```
+-- Reinterpret cast: conversion between pointer and int;
+```cpp
+reinterpret_cast<T>(object);
+```
+-- Change something const to volatile
+```cpp
+const_cast<T>(object);
+
+const B b1;
+b1.m_iNum = 100; //comile error
+B b2 = const_cast<B>(b1);
+b2. m_iNum = 200; //fine
 ```
 
 ## Random Number Generators
@@ -36,6 +54,14 @@ Position(const Position&) = default;
 Position& operator=(const Position&) = default;
 Position(const Position&) = delete;
 Position& operator=(const Position&) = delete;
+```
+- Virtual Derive:
+```cpp
+class A;
+class B : public virtual A;
+class C : public virtual A;
+// members of A will only have 1 copy
+class D : public B, public C;
 ```
 
 ## Specializers
