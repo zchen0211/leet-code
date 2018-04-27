@@ -5,10 +5,37 @@
 ```cpp
 enum class Color {kEmpty, kBlack, kWhite};
 ```
+- String:
+```cpp
+// literals
+" (unescaped_character|escaped_character)* "
+R"" // used to avoid any escaping
+```
 - Type Conversion:
 ```cpp
 static_cast<T>(object);
 dynamic_cast<T>(object);
+```
+
+## Random Number Generators
+```cpp
+#include <random>
+// random seed by Mersenne Twister algorithm
+std::mt19937 impl_;
+
+float x = std::uniform_real_distribution<float>(0, 1)(impl_);
+
+std::gamma_distribution<float> distribution(alpha);
+sample = distribution(impl_);
+```
+
+## Classes
+- Constructors:
+```cpp
+Position(const Position&) = default;
+Position& operator=(const Position&) = default;
+Position(const Position&) = delete;
+Position& operator=(const Position&) = delete;
 ```
 
 ## Specializers
@@ -39,6 +66,7 @@ noexcept
 - Overriding operators:
 ```cpp
 Group& operator[](int id) {return group_[id];}
+std::vector::operator =(const vector& x);
 ```
 
 ## Template
