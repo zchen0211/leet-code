@@ -15,6 +15,49 @@ def from_string(cls, date_as_string):
 def is_date_valid(date_as_string):
 ```
 
+## Decorator
+- Some good materials: http://www.cnblogs.com/SeasonLee/articles/1719444.html, https://www.cnblogs.com/cicaday/p/python-decorator.html
+- A wrapper on a function:
+```python
+def debug(func):
+    def wrapper(*args, **kwargs):  # fit any arguments passing
+        print "[DEBUG]: enter {}()".format(func.__name__)
+        print 'Prepare and say...',
+        return func(*args, **kwargs)
+    return wrapper  # return
+
+@debug
+def say(something):
+    print "hello {}!".format(something)
+```
+- Decorator with arguments:
+```python
+def logging(level):
+    def wrapper(func):
+        def inner_wrapper(*args, **kwargs):
+            print "[{level}]: enter function {func}()".format(
+                level=level,
+                func=func.__name__)
+            return func(*args, **kwargs)
+        return inner_wrapper
+    return wrapper
+
+@logging(level='INFO')
+def say(something):
+    print "say {}!".format(something)
+
+# equal to
+# say = logging(level='INFO')(say)
+
+@logging(level='DEBUG')
+def do(something):
+    print "do {}...".format(something)
+
+if __name__ == '__main__':
+    say('hello')
+    do("my work")
+```
+
 ## Parsing Arguments
 - Some good materials https://blog.csdn.net/lis_12/article/details/54618868
 - argparse package
