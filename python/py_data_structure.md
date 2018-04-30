@@ -1,5 +1,19 @@
 # Basic Data-Structures Study
 
+## Basics
+- Everything is an object
+```python
+isinstance(3, object)  # True, everything in python is an object
+isinstance(None, object)  # True
+id(b)  # id of an object
+b.__sizeof__()
+```
+- Boolean Operation:
+```python
+any([True, True, False])  # True
+all([True, True, False])  # False
+```
+
 ## Bit Manipulation
 ```python
 a = 0b110 # 0b prefix to use binary
@@ -16,6 +30,7 @@ print(-sys.maxint)
 ```
 
 ## String
+- Basic string op:
 ```python
 s = 'abccccxxx'
 s.find('x') # first occurence
@@ -32,13 +47,81 @@ s_split = s.split(' ') # split into a list of substr
 s_strip = s.strip() # strip multi-spaces into one
 s_strip = s.replace(' ', '') # stripping all spaces
 ```
+- ASCII number and ch
+```python
+ord('a')  # 97
+chr(97)  # 'a'
+```
 
 ## List
+- Basic Ops
 ```python
+a = [1,2,3,4,5]
+del a[0:3]  # a=[4,5] now
+a.pop()  # return the last element, remove it from the list
+a = range(0, 5)
+a.pop(3)  # return the 4th, remove it, default last
+a.reverse()
+# remove the first 4, if no 4 in the array will raise error
+a.remove(4) 
+a.count(5)  # how many 5 are there in the list
+a = range(0,5)
+b = range(5,10)
+# zip return a list of tuple pairs [(0,5), (1,6), ...]
+for x, y in zip(a,b):
+  print x,y
+```
+- Sorting
+```python
+a.sort(cmp=None, key=None, reverse=False)
 arr.sort(key= lambda x: x[0])
 arr.sort(key= lambda x: (x[0],x[1]))
 arr.sort(key= len)
 reversed(arr)
+```
+
+## Tuple
+- Generally unmodifiable:
+```python
+a = (1,2,3)
+a = (a, 'abc')
+a = 1,2 # packing
+x, y = a # unpacking
+```
+
+## Set
+- Basic Ops:
+```python
+print type({1,2,3}) # will be set
+a = set()
+a = set({'a', 'b', 'c'})
+a = set(['a', 'b', 'c'])
+print 'a' in a
+```
+- Modifiers
+```python
+a.add('r')
+a.remove('a')
+a.discard('b')
+a.pop() # randomly pop out an element
+```
+
+## Dictionary
+- Basics:
+```python
+a = {'1':'a', '2':'b', '3':'c'}
+a.get('1') # save as a[1]
+del a['1']
+a.popitem() # randomly remove one and return it
+b = a.copy() # otherwise, b=a will be the same dict
+```
+- Keys, Values, and K-V pairs:
+```python
+a.keys()
+a.values()
+a.items()  # a list of tuple pairs of k,v
+for k,v in a.items():
+  print k,v
 ```
 
 ## iterator
