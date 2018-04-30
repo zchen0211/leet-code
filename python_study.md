@@ -1,5 +1,20 @@
 # Python Study
 
+## Class and OO Design
+- Class
+```python
+class Date(object):
+  def __init__(self, ...):
+```
+- classmethod and staticmethod are quite similar, there's a slight difference in usage for both entities: classmethod must have a reference to a class object as the first parameter, whereas staticmethod can have no parameters at all.
+```python
+@classmethod
+def from_string(cls, date_as_string):
+
+@staticmethod
+def is_date_valid(date_as_string):
+```
+
 ## Parsing Arguments
 - Some good materials https://blog.csdn.net/lis_12/article/details/54618868
 - argparse package
