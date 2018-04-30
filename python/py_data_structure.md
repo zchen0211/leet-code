@@ -52,6 +52,11 @@ s_strip = s.replace(' ', '') # stripping all spaces
 ord('a')  # 97
 chr(97)  # 'a'
 ```
+- Decode Chinese characters
+```python
+# decode Chinese
+print(r'\xd5'.decode('gbk'))
+```
 
 ## List
 - Basic Ops
@@ -70,6 +75,11 @@ b = range(5,10)
 # zip return a list of tuple pairs [(0,5), (1,6), ...]
 for x, y in zip(a,b):
   print x,y
+```
+- To generate a List:
+```python
+[x for x in a if x>3]
+[(x,y) for x in (1,2,3) for y in [3,1,4] if x!=y]
 ```
 - Sorting
 ```python
@@ -125,6 +135,43 @@ for k,v in a.items():
 ```
 
 ## iterator
+- Iterators are actually called in looping python objects:
+```python
+def my_for_loop(some_iterable):
+  my_iter = some_iterable.__iter__()
+  while True:
+    try:
+      print my_iter.next()
+    except StopIteration:
+      break
+my_for_loop([1,2,3])
+```
+- Fibonnaci iterator as an example:
+```python
+class FibIterable:
+  """
+  this class is a generates a well known sequence of numbers 
+  """
+  def __init__(self,iLast=1,iSecondLast=0,iMax=50):
+    self.iLast = iLast 
+    self.iSecondLast = iSecondLast
+    self.iMax = iMax  #cutoff
+
+  def __iter__(self):
+    return self    # because the object is both the iterable and the itorator
+ 
+  def next(self):
+    iNext = self.iLast + self.iSecondLast
+    if iNext > self.iMax:
+      raise StopIteration()
+    self.iSecondLast = self.iLast
+    self.iLast = iNext
+    return iNext
+
+o = FibIterable()
+for i in o:
+    print(i)
+```
 
 ## Stack
 - Stack is implemented by list in Python:
