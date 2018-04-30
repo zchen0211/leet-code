@@ -8,7 +8,7 @@ a ^ b # to compute add without carry
 (a & b) << 1 # to compute carry
 ```
 
-## integer
+## Integer
 ```python
 import sys
 print(sys.maxint)
