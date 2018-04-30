@@ -53,7 +53,7 @@ const_cast<T>(object);
 const B b1;
 b1.m_iNum = 100; //comile error
 B b2 = const_cast<B>(b1);
-b2. m_iNum = 200; //fine
+b2.m_iNum = 200; //fine
 ```
 
 ## Functions
@@ -346,10 +346,29 @@ std::vector<T> arr;
 ```
 
 ## Streams
+- A very good summary: http://www.cnblogs.com/renyuan/p/4132801.html
+- C-style, can't print a class;
+```cpp
+printf("%dxxx", t);
+scanf("%d", t);
+```
+- C++ Style, can overload operators for own class:
+-- iostream derived from istream and ostream, the following three are all global instances of iostream class:
+```cpp
+cin >>
+cout <<
+cerr <<
+```
+-- Can overload to define output of a specific class;
 ```cpp
 std::ostream& operator<<(std::ostream& os, Color color) {
 	return os << "xxx";
 }
+```
+- ifstream derived from istream, ostream from ofstream, fstream from iostream;
+```cpp
+#include <fstream>
+std::ofstream myfile;
 ```
 
 ## Memory Management
