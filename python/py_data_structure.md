@@ -136,8 +136,28 @@ for k,v in a.items():
 
 ## Iterator and Generators
 - Good articles: http://www.codeceo.com/article/python-iterable-and-iterator.html, https://blog.csdn.net/bitcarmanlee/article/details/51335055
-- Iterables: list, tuple, str, dict, set; non-iterables: int;
-- Make a class iterable:
+* Iterables: list, tuple, str, dict, set; non-iterables: int;
+* Iterators:
+```python
+a = [1, 2, 3]
+it = a.__iter__()
+it.next() # 1
+it.next() # 2
+it.next() # 3
+it.next() # StopIteration
+```
+  * Iterators are actually called in looping python objects:
+```python
+def my_for_loop(some_iterable):
+  my_iter = some_iterable.__iter__()
+  while True:
+    try:
+      print my_iter.next()
+    except StopIteration:
+      break
+my_for_loop([1,2,3])
+```
+  * Make a class iterable:
 ```python
 class xxx(object):
   def __init__(self):
@@ -153,26 +173,7 @@ class xxx(object):
     return self.val[index]
 ```
 - next or __next__() required to generate the next value, and raise StopIteration when done.
-- Iterators:
-```python
-a = [1, 2, 3]
-it = a.__iter__()
-it.next() # 1
-it.next() # 2
-it.next() # 3
-it.next() # StopIteration
-```
-- Iterators are actually called in looping python objects:
-```python
-def my_for_loop(some_iterable):
-  my_iter = some_iterable.__iter__()
-  while True:
-    try:
-      print my_iter.next()
-    except StopIteration:
-      break
-my_for_loop([1,2,3])
-```
+
 - Fibonnaci iterator as an example:
 ```python
 class FibIterable:
