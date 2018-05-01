@@ -86,6 +86,7 @@ class Derived_Dog(Dog):
   nickname = 'Yang_Yi'
 
   def __init__(self, name=None, nickname=None):
+  	# can be written as super().__init__()
     super(Derived_Dog, self).__init__(name=name)
     self.name = name
     self.nickname = nickname
