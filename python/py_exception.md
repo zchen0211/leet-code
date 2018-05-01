@@ -26,7 +26,7 @@ Exception # all exceptions
 AttributeError # error when getting an attribute
 IOError # e.g., can't open a file
 IndexError # index not existing
-Key Error # key not existing
+KeyError # key not existing
 NameError # variable not found
 SyntaxError # code in wrong format
 TypeError
