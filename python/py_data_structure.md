@@ -98,6 +98,15 @@ a = (a, 'abc')
 a = 1,2 # packing
 x, y = a # unpacking
 ```
+- named tuple in collections
+```python
+import collections
+
+ColTest = collections.namedtuple('ColTest', 'a, b, c')
+result = ColTest(1, 2, 3)
+# a, b, c are 1, 2, 3 respectively
+a, b, c = result
+```
 
 ## Set
 - Basic Ops:
