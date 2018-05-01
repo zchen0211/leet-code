@@ -45,3 +45,57 @@ next(x) # => x.__next__()
 len(x) # x.__len__()
 item in x # => x.__contains__(item)
 ```
+
+
+## Inheritance
+- Base class:
+```python
+# base class as object to use super() in derived class
+class Dog(object):
+  kind = 'canine'
+
+  def __init__(self, name='default'):
+    print 'Call base class initializer!'
+    self.name = name
+
+  def greet(self):
+    print 'hello world'
+
+  # definition of various magical method
+  def __str__(self):
+    return self.name + ' fun'
+
+  def __eq__(self, y):
+    return len(self.name) == len(y.name)
+
+dog = class_test.Dog('my dog')
+dog.kind
+type(class_test.Dog.greet) # instancemethod
+type(dog.greet) # instancemethod
+ 
+# reload str() function
+print str(dog) # "my dog fun"
+
+# reload == 
+dog2 = class_test.Dog('dog ll')
+dog == dog2 # True, b/c the reloaded __eq__
+```
+- Derived class:
+```python
+class Derived_Dog(Dog):
+  nickname = 'Yang_Yi'
+
+  def __init__(self, name=None, nickname=None):
+    super(Derived_Dog, self).__init__(name=name)
+    self.name = name
+    self.nickname = nickname
+
+# Will call base class __init__
+dog3 = class_test.Derived_Dog(name='dog', nickname='Wang Jiang')
+dog3.greet() # call the basic one
+dog3.kind # Canine form base class
+# call class shared attribute
+class_test.Derived_Dog.nickname # "Yang_Yi"
+# call instance specific
+print dog3.nickname # will be "Wang Jiang", override original one
+```
