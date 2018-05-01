@@ -53,3 +53,10 @@ module = importlib.import_module("argparse")
 module = importlib.import_module("numpy")
 module.zeros([2, 4])
 ```
+
+## import
+- Good articles: https://www.cnblogs.com/kungfupanda/p/5257174.html
+	* import a module (file), .py .pyo .pyc .pyd .so .dll
+	* import a package (a directory with __init__.py)
+```python
+```
