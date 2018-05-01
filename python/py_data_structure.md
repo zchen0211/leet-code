@@ -106,6 +106,13 @@ ColTest = collections.namedtuple('ColTest', 'a, b, c')
 result = ColTest(1, 2, 3)
 # a, b, c are 1, 2, 3 respectively
 a, b, c = result
+
+Color = collections.namedtuple("Color", ["hue", "saturation", "luminosity"])
+pixel = Color(170, 0.1, 0.6)
+if pixel.saturation >= 0.5:
+  print("Whew, that is bright!")
+if pixel.luminosity >= 0.5:
+  print("Wow, that is light!")
 ```
 
 ## Set
@@ -141,6 +148,54 @@ a.values()
 a.items()  # a list of tuple pairs of k,v
 for k,v in a.items():
   print k,v
+```
+- defaultdict
+```python
+from collections import defaultdict
+
+s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+d = defaultdict(list)
+for k, v in s:
+  d[k].append(v)
+
+print d.items()
+# [('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]
+
+s = 'mississippi'
+d = defaultdict(int)
+for k in s:
+  d[k] += 1
+
+print d.items()
+# [('i', 4), ('p', 2), ('s', 4), ('m', 1)]
+```
+
+## Counter
+```python
+from collections import Counter
+cnt = collections.Counter()
+for word in ['red', 'blue', 'red', 'green', 'blue', 'blue']:
+  cnt[word] += 1
+# counter type containing a dictionary
+print cnt
+print cnt['red']
+print cnt['purple'] # 0
+cnt['red'] = 0 # does not remove it
+del cnt['blue'] # remove
+
+c = collections.Counter(a=4, b=2, c=0, d=-2)
+print list(c.elements())
+# ['a', 'a', 'a', 'a', 'b', 'b']
+print c.keys()
+print c.values()
+
+print collections.Counter('abracadabra').most_common(3)
+# [('a', 5), ('r', 2), ('b', 2)]
+
+# Counter minus
+a = collections.Counter('abc')
+b = collections.Counter('bcd')
+print 'diff:', a-b
 ```
 
 ## Iterator and Generators
