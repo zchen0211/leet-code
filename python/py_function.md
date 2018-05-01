@@ -17,3 +17,15 @@ if __name__ == '__main__':
     
   foo('a', 1, None, a=1, b='2', c=3) # args =  ('a', 1, None), kwargs =  {'a': 1, 'c': 3, 'b': '2'} 
 ```
+
+## Lambda Function
+```python
+g = lambda x: x ** 2
+g(8)
+```
+
+## Map and Reduce
+```python
+# map to [1, 2, 3]
+map(len, ['a', 'aa', 'aaa'])
+```
