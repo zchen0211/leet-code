@@ -57,6 +57,17 @@ module.zeros([2, 4])
 ## import
 - Good articles: https://www.cnblogs.com/kungfupanda/p/5257174.html
 	* import a module (file), .py .pyo .pyc .pyd .so .dll
-	* import a package (a directory with __init__.py)
 ```python
+# module: foo.py
+# if all is defined, only modules with in can be imported
+__all__ = [ 'bar', 'spam' ]
+```
+after first import, .py file will be written in a .pyc
+	* import a package (a directory with __init__.py) all the __init__.py along the path will be run
+- sys.path and sys.modules
+```python
+import sys
+
+sys.path # a list of all pathes to find modules
+sys.modules # all modules loaded including builtins
 ```
