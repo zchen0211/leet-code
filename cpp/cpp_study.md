@@ -49,5 +49,3 @@ noexcept
 namespace minigo {}
 ```
 
-## Memory Management
-- Stack and Heap: how to create objects only on class or heap? (http://www.cnblogs.com/chio/archive/2007/10/23/934335.html)

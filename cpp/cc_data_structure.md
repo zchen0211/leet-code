@@ -170,6 +170,10 @@ const_reference& back() const;
 #include <queue>
 std::priority_queue<T> a;
 
+// priority queue with compare function
+priority_queue<int, vector<int>, std::greater<int> > q;
+
+
 // Access
 T& top(); // a.top() -= 5;
 ```
