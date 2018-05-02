@@ -1,0 +1,56 @@
+# C++ Data Structures Study
+
+## Integers:
+```cpp
+75 // int
+75u // unsigned int
+75l // long
+75ul // unsigned long
+
+int a = 3; // decimal
+int b = 0113; // octal
+int c = 0x4b; // hexa
+```
+
+## Enumerate:
+```cpp
+enum class Color {kEmpty, kBlack, kWhite};
+```
+
+## Structure
+
+## Define Data types:
+```cpp
+typedef char C;
+```
+
+## String:
+```cpp
+// literals
+" (unescaped_character|escaped_character)* "
+R"" // used to avoid any escaping
+```
+
+## Type Conversion:
+-- Static Cast is used to (1) cast void* to other type; (2) regular type conversion; (3) avoid ambiguity;
+```cpp
+static_cast<T>(object);
+```
+-- Dynamic cast is used to cast between derived and base class;
+```cpp
+Derived* dynamic_cast<Derived*>(basic_ptr);
+Derived2* pd2 = static_cast<Derived2*>(derived1_ptr);
+```
+-- Reinterpret cast: conversion between pointer and int;
+```cpp
+reinterpret_cast<T>(object);
+```
+-- Change something const to volatile
+```cpp
+const_cast<T>(object);
+
+const B b1;
+b1.m_iNum = 100; //comile error
+B b2 = const_cast<B>(b1);
+b2.m_iNum = 200; //fine
+```

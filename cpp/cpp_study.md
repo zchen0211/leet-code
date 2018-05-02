@@ -5,57 +5,6 @@
 asm, auto, bool, break, case, catch, char, class, const, const_cast, continue, default, delete, do, double, dynamic_cast, else, enum, explicit, export, extern, false, float, for, friend, goto, if, inline, int, long, mutable, namespace, new, operator, private, protected, public, register, reinterpret_cast, return, short, signed, sizeof, static, static_cast, struct, switch, template, this, throw, true, try, typedef, typeid, typename, union, unsigned, using, virtual, void, volatile, wchar_t, while 
 ```
 
-## Basic Data Structures
-- Integers:
-```cpp
-75 // int
-75u // unsigned int
-75l // long
-75ul // unsigned long
-
-int a = 3; // decimal
-int b = 0113; // octal
-int c = 0x4b; // hexa
-```
-- Enumerate:
-```cpp
-enum class Color {kEmpty, kBlack, kWhite};
-```
-- Structure
-- Define Data types:
-```cpp
-typedef char C;
-```
-- String:
-```cpp
-// literals
-" (unescaped_character|escaped_character)* "
-R"" // used to avoid any escaping
-```
-- Type Conversion:
--- Static Cast is used to (1) cast void* to other type; (2) regular type conversion; (3) avoid ambiguity;
-```cpp
-static_cast<T>(object);
-```
--- Dynamic cast is used to cast between derived and base class;
-```cpp
-Derived* dynamic_cast<Derived*>(basic_ptr);
-Derived2* pd2 = static_cast<Derived2*>(derived1_ptr);
-```
--- Reinterpret cast: conversion between pointer and int;
-```cpp
-reinterpret_cast<T>(object);
-```
--- Change something const to volatile
-```cpp
-const_cast<T>(object);
-
-const B b1;
-b1.m_iNum = 100; //comile error
-B b2 = const_cast<B>(b1);
-b2.m_iNum = 200; //fine
-```
-
 ## Functions
 - How a function is called?
 ```cpp
@@ -313,36 +262,6 @@ __TIME__
 ```cpp
 ##__VA_ARGS__
 #define debug(...) printf(##__VA_ARGS__)
-```
-
-## Containers and Iterators
-- General Iterators: (http://www.cnblogs.com/chio/archive/2007/10/31/944122.html)
-- General members
-```cpp
-#include <iterator>
-std::begin()
-std::end()
-
-T* begin();
-T* end();
-clear();
-int size();
-bool empty();
-T* data();
-
-// both push_back and emplace_back available in vector, list, deque
-// string only has push_back
-void push_back(const value_type& val);
-void push_back();
-template<class... Args>
-void emplace_back(Args&&... args);
-```
-- Arrays
-```cpp
-std::array<T, kN> arr; // can't change size
-
-std::vector<T> arr;
-
 ```
 
 ## Streams
