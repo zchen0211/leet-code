@@ -25,6 +25,14 @@ Conn(c, out) << "test"; // cout << "test";
 #elif
 #endif
 ```
+- Avoid multiple definitions:
+```cpp
+#ifndef FILE_H
+#define FILE_H
+
+// similar effect
+pragma once
+```
 
 ## Other special macros
 ```cpp

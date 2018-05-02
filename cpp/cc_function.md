@@ -27,8 +27,8 @@ class xxx {
 };
 ```
 
-
-## lambda function
+## lambda function and std::function
+- Lambda function:
 ```cpp
 [](int x, int y) {return x + y;}
 [](int& x) {++x;}
@@ -43,7 +43,17 @@ class xxx {
 
 [&, value, this] // make every member under this available
 ```
-- Together with std::function:
+- std::function
+```cpp
+template< class R, class... Args >
+class function<R(Args...)>;
+
+// example in Paddle:
+// typedef std::function<BaseClass*(CreateArgs...)> ClassCreator;
+// ClassCreator creator; return creator(args...);
+// Return an instance of the given class
+```
+- lambda together with std::function<>()
 ```cpp
 auto func = [&](int x) {...;}
 void (*func_ptr)(int) = func;
