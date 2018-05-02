@@ -1,5 +1,18 @@
 # Containers and Iterators
 
+- A good summary of all the containers: https://blog.csdn.net/cywosp/article/details/7353754
+```cpp
+vector, list, queue, stack, deque, priority_queue,
+set, multiset, multimap, 
+// hash table
+hash_multiset, hash_map, hash_multimap
+```
+
+## pair
+```cpp
+pair
+```
+
 ## General Iterators
 - http://www.cnblogs.com/chio/archive/2007/10/31/944122.html
 - General members
@@ -39,7 +52,7 @@ T* cend();
 T* data();
 ```
 
-## Arrays
+## Sequences
 - array: no size change
 ```cpp
 std::array<T, kN> arr; // can't change size
@@ -57,6 +70,22 @@ void emplace_back(Args&&... args);
 insert(int index, T& );
 
 resize(int );
+```
+- List: double-linked list
+```cpp
+#include <list>
+list<T> a;
+// access
+a.top(); a.top() -= 5;
+a.back();
+# Modifier
+a.insert(iterator pos, const T& value);
+a.push_back(const T& value);
+a.push_back(T&& value);
+```
+- slist: single-linked list (queue)
+```cpp
+slist<T> a;
 ```
 
 ## Hash Map Style
@@ -113,23 +142,13 @@ erase();
 
 set<int> a;
 ```
-
-## List
-- A queue
+- multiset (allow duplicate keys)
+- same thing, but implemented in hash-table:
 ```cpp
-#include <list>
-list<T> a;
-```
-- Access
-```
-a.top(); a.top() -= 5;
-a.back();
-```
-- Modifier
-```cpp
-a.insert(iterator pos, const T& value);
-a.push_back(const T& value);
-a.push_back(T&& value);
+hash_set
+hash_multiset
+hash_map
+hash_multimap
 ```
 
 ## stack and queue

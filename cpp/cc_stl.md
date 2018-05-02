@@ -14,7 +14,7 @@
 ```
 - Good articls: http://www.cnblogs.com/CnZyy/p/3317999.html
 
-## Algorithm and Functional
+## Algorithm, Functional and Utility
 - Good summary: http://huqunxing.site/2016/09/29/C++STL%E8%AF%A6%E8%A7%A3%E4%B9%8B%E7%AE%97%E6%B3%95/
 - Sorting
 ```cpp
@@ -26,5 +26,9 @@ std::sort(a.begin(), a.begin()+4);
 std::min();
 std::max();
 ```
-
-## Algorithm
+- Swap
+```cpp
+#include <algorithm> // until c++11
+#include <utility> // since c++11
+void swap(T& a, T& b);
+```
