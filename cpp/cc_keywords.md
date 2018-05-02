@@ -10,7 +10,6 @@ asm, auto, bool, break, case, catch, char, class, const, const_cast, continue, d
 alignas, alignof, char16_t, char32_t, constexpr, decltype, noexcept, nullptr, static_assert, thread_local, auto
 ```
 
-
 ## auto
 To automatically infer variable type
 ```cpp
@@ -145,6 +144,48 @@ extern "C" {}
 ## operator
 ```cpp
 new, delete
+```
+
+## static
+- static: static objects will be on heap rather than stack;
+- Case 1: global static
+```cpp
+static int Temp = 10;  
+void Test();  
+int main() {}  
+```
+- Case 2: local static, can't be called outside function, but will remain in the memory after execution
+```cpp
+// main function
+for(int i=0; i<5; i++)  
+  Test(); // will be 10, 11, 12, ...  
+
+// Test function define
+void Test() {
+  static int Temp = 10;
+  std::cout << Temp << std::endl;
+  Temp++;
+}
+```
+- Case 3: static function (only visible in this function; if used somewhere else, *extern* required)
+```cpp
+static void Test();
+```
+- Case 4: static in class
+```cpp
+class test {
+  // shared across instances
+  static int T;
+  // static member function
+  static show(); {std::cout << T;}
+};
+
+// initialization only allowed outside
+int test::T = 0;
+
+test instance;
+instance.show(); // correct
+test::show(); // also correct
 ```
 
 ## type

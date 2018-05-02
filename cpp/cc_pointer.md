@@ -4,6 +4,15 @@
 
 ## Pointer versus Reference
 - https://blog.csdn.net/tianxiaolu1175/article/details/46889523
+- reference
+```cpp
+int real = 2;
+int& ref = real;
+
+std::vector<int> vec;
+vec.push_back(real);
+vec.push_back(ref); // will change together
+```
 
 ## unique pointer
 - Use a unique_ptr when an object claims ownership of a resource. That is, the object is responsible for managing the memory of the resource, deleting it when it's own destructor is called. Also, note that the assignment operator of a unique_ptr only accepts rvalues, which should be provided by std::move semantics.
