@@ -15,8 +15,14 @@ if (x == 100) {
 ```cpp
 int a;
 switch(a) {
-    case 1 : cout << '1'; // prints "1",
-    case 2 : cout << '2'; // then prints "2"
+  case 1:
+    cout << '1'; // prints "1",
+    break;
+  case 2:
+    cout << '2'; // then prints "2"
+    break;
+  default:
+    break;
 }
 ```
 
