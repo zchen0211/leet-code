@@ -25,8 +25,28 @@ typedef char C;
 ```
 
 ## String:
+- Basics
 ```cpp
-// literals
+#include <string>
+string a;
+// Access
+a[3] = 'c';
+cout << a.at(i);
+// capacity
+a.empty(); a.size();
+a.length();
+// iterators
+a.begin(); a.end();
+// modifiers
+a.clear();
+a.insert(index, "abc");
+// compare
+str1.compare(str2) != 0;
+a += b;
+// find
+```
+- Literals
+```cpp
 " (unescaped_character|escaped_character)* "
 R"" // used to avoid any escaping
 ```

@@ -36,11 +36,6 @@ T* cend();
 ```
 - Other general functions:
 ```cpp
-
-// unordered_map, set, vector
-int size();
-// unordered_map, set, vector
-bool empty();
 T* data();
 ```
 
@@ -135,4 +130,46 @@ a.back();
 a.insert(iterator pos, const T& value);
 a.push_back(const T& value);
 a.push_back(T&& value);
+```
+
+## stack and queue
+- General
+```cpp
+/* Modifier */
+// e.g. a.push(5);
+void push (const value_type& val);
+void push (value_type&& val);
+template <class... Args> void emplace (Args&&... args);
+
+void pop();
+```
+- Stack: LIFO
+```cpp
+#include <stack>
+stack<int> a;
+
+// Access
+T& top(); // a.top() -= 5;
+```
+- Queue: FIFO
+```cpp
+#include <queue>
+queue<T> my_q;
+
+// Access
+// e.g. myqueue.front() -= myqueue.back();
+// first item
+reference& front();
+const_reference& front() const;
+// last item
+reference& back();
+const_reference& back() const;
+```
+- Priority Queue
+```cpp
+#include <queue>
+std::priority_queue<T> a;
+
+// Access
+T& top(); // a.top() -= 5;
 ```
