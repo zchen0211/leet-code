@@ -16,7 +16,19 @@ struct A {
 };
 A a1 = 1; // OK
 A a2 = {1, 2}; // error
+
+// example 2
+class MyClass {
+public:
+  explicit MyClass( int num );
+};
+MyClass obj = 10; // error, b/c explit
+// otherwise, will be MyClass tmp(10); obj = tmp;
 ```
+
+## private, protected and public
+
+## inline
 
 ## Inheritance
 - Multiple inheritance:

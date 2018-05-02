@@ -117,6 +117,7 @@ class test {
   const int SIZE = 100;
   int x;
 }
+- constexpr
 ```
 - mutable: always mutable, override const
 ```cpp
@@ -132,6 +133,13 @@ a.b = 22; // OK
 ## exception
 ```cpp
 catch; throw; try;
+```
+
+## extern
+- some good links: https://www.cnblogs.com/yc_sunniwell/archive/2010/07/14/1777431.html
+```cpp
+// use C in C++ to avoid problems in compiling
+extern "C" {}
 ```
 
 ## operator
