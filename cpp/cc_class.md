@@ -27,6 +27,8 @@ MyClass obj = 10; // error, b/c explit
 ```
 
 ## private, protected and public
+- The difference between private and protected comes into play only within classes derived from the base class;
+- Members of a derived class can access protected members of a base class directly, but they can't directly access private members of the base class.
 
 ## inline
 

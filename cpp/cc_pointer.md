@@ -47,11 +47,30 @@ v.push_back(std::move(str)); // str is now "", moved here
 
 ## shared_ptr
 - Use a shared_ptr when you heap-allocate a resource that needs to be shared among multiple objects. It maintains a reference count internally and only deletes the resource when the reference count goes to zero.
+```cpp
+template< class T >
+class shared_ptr;
+
+// modifier
+void reset() noexcept;
+template <class Y> 
+void reset(Y* ptr);
+template <class Y, class Deleter> 
+void reset(Y* ptr, Deleter d);
+template <class Y, class Deleter, class Alloc> 
+void reset( Y* ptr, Deleter d, Alloc alloc );
+
+T* get();
+```
 - Don't use multiple shared_ptr pointing to a same raw pointer, otherwise problem when destruction.
 ```cpp
+#include <memory>
+
 auto p = shared_ptr<T>(new T(xxx));
 auto p = make_shared<T>(xxx);
 
 p.reset(new T());
 p.reset();
+
+std::cout << *p.get();
 ```
