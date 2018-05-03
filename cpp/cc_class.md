@@ -29,6 +29,33 @@ MyClass obj = 10; // error, b/c explit
 ## private, protected and public
 - The difference between private and protected comes into play only within classes derived from the base class;
 - Members of a derived class can access protected members of a base class directly, but they can't directly access private members of the base class.
+```cpp
+class Base {
+ public:
+  int publicMember; // Everything that is aware of Base is also aware that Base contains publicMember.
+ protected:
+  int protectedMember; // Only the children (and their children) are aware that Base contains protectedMember.
+ private:
+  int privateMember; // No one but Base is aware of privateMember.
+};
+```
+- Inheritance: if not specified, regard as private inheritance
+```cpp
+public Base {
+  public: int a;
+  protected: int b;
+  private: int c;
+}
+
+// a public, b protected, c invisible
+class derived1 : public base {}
+
+// a protected, b protected, c invisible
+class derived2 : protected base {}
+
+// a private, b private, c invisible
+class derived3 : private base {}
+```
 
 ## inline
 

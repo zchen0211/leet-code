@@ -17,6 +17,18 @@ vec.push_back(ref); // will change together
 ## unique pointer
 - Use a unique_ptr when an object claims ownership of a resource. That is, the object is responsible for managing the memory of the resource, deleting it when it's own destructor is called. Also, note that the assignment operator of a unique_ptr only accepts rvalues, which should be provided by std::move semantics.
 ```cpp
+template< class T, class Deleter = std::default_delete<T>>
+class unique_ptr;
+
+void reset( pointer ptr = pointer() ) noexcept;
+pointer release() noexcept; // return and release
+pointer get();
+
+operator*() {}
+pointer operator->() const noexcept;
+```
+- Example
+```cpp
 unique_ptr<T> abc;
 abc.reset(new abc()); // has to be new, shouldn't be passed
 abc.get();
@@ -25,6 +37,8 @@ abc.get();
 // e.g., unique_ptr<int> v1 = make_unique<int>(3);
 auto instance = make_unique<T>(xxx);
 auto instance = unique_ptr<T>(new T(xxx));
+
+Foo* fp = up.release();
 ```
 
 ## rvalue reference and std::move
