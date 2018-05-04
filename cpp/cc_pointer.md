@@ -58,6 +58,14 @@ std::vector<std::string> v;
 v.push_back(str); // str is still "Hello", a deep copy
 v.push_back(std::move(str)); // str is now "", moved here
 ```
+- std::forward() forwards lvalues as either lvalues or as rvalues, depending on T;
+```cpp
+template<class T>
+void wrapper(T&& arg) {
+    // arg is always lvalue
+    foo(std::forward<T>(arg)); // Forward as lvalue or as rvalue, depending on T
+}
+```
 
 ## shared_ptr
 - Use a shared_ptr when you heap-allocate a resource that needs to be shared among multiple objects. It maintains a reference count internally and only deletes the resource when the reference count goes to zero.

@@ -17,7 +17,7 @@
 - http://www.cnblogs.com/CnZyy/p/3317999.html
 - http://huqunxing.site/2016/09/29/C++STL%E8%AF%A6%E8%A7%A3%E4%B9%8B%E7%AE%97%E6%B3%95/
 
-## Algorithm, Functional and Utility
+## Algorithm, Functional
 - Sorting and ranking
 ```cpp
 std::sort(a.begin(), a.end());
@@ -40,18 +40,12 @@ stable_partition();
 - Generation
 ```cpp
 std::fill();
+std::iota(); // similar to fill?
 std::fill_n();
 std::for_each()
 std::generate()
 std::generate_n()
 std::transform()
-```
-- Arithmetic
-```cpp
-accumulate();
-partial_sum();
-inner_product();
-adjacent_difference();
 ```
 - Comparison, relation
 ```cpp
@@ -65,15 +59,16 @@ max_element();
 min_element();
 mismatch();
 ```
-- Swap
+- Modify
 ```cpp
 #include <algorithm> // until c++11
 #include <utility> // since c++11
 void swap(T& a, T& b);
 
-swap_range()
+swap_range();
+copy();
 ```
-- Search: 13
+- Search:
 ```cpp
 adjacent_find()
 binary_search()
@@ -123,4 +118,74 @@ make_heap()
 pop_heap()
 push_heap()
 sort_heap()
+```
+
+## functional
+- std::hash
+```cpp
+template< class Key >
+struct hash;
+
+template<> struct hash<bool>;
+template<> struct hash<char>;
+template<> struct hash<signed char>;
+...
+```
+
+## Numeric Library
+- Complex
+```cpp
+std::complex;
+```
+- Arithmetic
+```cpp
+accumulate();
+partial_sum();
+inner_product();
+adjacent_difference();
+```
+
+## Utility Library
+- Data stucture
+```cpp
+pair
+
+tuple // tuple<double, char, std::string> a;
+std::tie(); // to make a tuple
+```
+- Enable type if the condition is met. The type T is enabled as member type enable_if::type if Cond is true. Otherwise, enable_if::type is not defined.
+```cpp
+template< bool B, class T = void >
+struct enable_if;
+
+// example
+template <typename Actor,
+    std::enable_if_t<has_func_reward<Actor>::value>* U = nullptr>
+float get_reward(const Actor& actor, const Node* node) {
+    return actor.reward(*node->getStatePtr(), node->getValue());
+}
+```
+- Initialization
+```cpp
+std::initializer_list<TF_Operation*>
+
+ S<int> s = {1, 2, 3, 4, 5}; // copy list-initialization
+```
+- Type Support
+```cpp
+template< class T >
+struct is_fundamental;
+
+std::is_fundamental<int>::value; // true
+std::is_fundamental<int&>::value; // false
+
+std::is_trivially_constructible<T,Args&&...>::value
+std::is_copy_assignable<T>::value;
+```
+- numeric limits
+```cpp
+template <class T>
+class numeric_limits;
+
+std::numeric_limits<size_t>::max();
 ```

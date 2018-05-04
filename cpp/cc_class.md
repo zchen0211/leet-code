@@ -87,6 +87,9 @@ struct B : A {
   void bar() override; // Error: A::bar is not virtual
 };
 ```
+- If a method in a base class will be redefined in a derived class, you should make it virtual.
+- If the method should not be redefined, you should make it nonvirtual.
+
 
 ## Friend
 ```cpp

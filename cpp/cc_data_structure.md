@@ -28,6 +28,16 @@ std::end();
 bool empty() const noexcept;
 size_type size() const noexcept;
 ```
+- General access:
+```cpp
+// auto find the one with matching type
+std::get<string>(pair);
+
+std::get<0>(std::pair<>); std::get<1>(std::pair<>);
+std::get<>(std::tuple);
+std::get<int>(std::array);
+std::get<0>(std::variant);
+```
 - General modifiers:
 ```cpp
 // both push_back and emplace_back available in vector, list, deque
@@ -110,8 +120,17 @@ swap();
 ```
 - unordered_map
 ```cpp
+// example
 #include <unordered_map>
 unordered_map<int, char> map;
+
+template<
+    class Key,
+    class T,
+    class Hash = std::hash<Key>,
+    class KeyEqual = std::equal_to<Key>,
+    class Allocator = std::allocator< std::pair<const Key, T> >
+> class unordered_map;
 
 /* Element access */
 mapped_type& operator[] ( const key_type& k );
@@ -170,12 +189,13 @@ stack<int> a;
 // Access
 T& top(); // a.top() -= 5;
 ```
-- Queue: FIFO
+- Queue: FIFO (queue, deque)
 ```cpp
 #include <queue>
 queue<T> my_q;
+deque<T> my_q;
 
-// Access
+// Access: front(), back()
 // e.g. myqueue.front() -= myqueue.back();
 // first item
 reference& front();
