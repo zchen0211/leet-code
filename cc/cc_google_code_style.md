@@ -56,176 +56,237 @@ namespace {
     * When defining a function, parameter order is: inputs, then outputs.
 - Reference Arguments
 
-## Google-Specific Magic
+# Google-Specific Magic
 
-// Smart pointers
+## Smart pointers
 
-// cpplint
-// use cpplint.py to detect style errors
+## cpplint
+- use cpplint.py to detect style errors
 
-// Rvalue References
-// Use rvalue references only to define move constructors and move assignment operators, or for perfect forwarding.
+## Rvalue References
+- Use rvalue references only to define move constructors and move assignment operators, or for perfect forwarding.
+```cpp
 void f(string&& s);
+```
 
-// Friends
+## Friends
 
-// Exceptions
-// We do not use C++ exceptions.
+## Exceptions
+- We do not use C++ exceptions.
 
-// Run-Time Type Information (RTTI)
-// Avoid using Run Time Type Information (RTTI).
-// Decision trees based on type are a strong indication that your code is on the wrong track.
+## Run-Time Type Information (RTTI)
+- Avoid using Run Time Type Information (RTTI).
+- Decision trees based on type are a strong indication that your code is on the wrong track.
+```cpp
 if (typeid(*data) == typeid(D1)) {
   ...
 } else if (typeid(*data) == typeid(D2)) {
   ...
 } else if (typeid(*data) == typeid(D3)) {
 ...
+```
 
-// Casting
-// Use C++-style casts like 
+## Casting
+- Use C++-style casts like 
+```cpp
 static_cast<float>(double_value)
-// Do not use cast formats like 
+```
+- Do not use cast formats like 
+```cpp
 int y = (int)x or int y = int(x)
-// Use static_cast as the equivalent of a C-style cast that does value conversion, when you need to explicitly up-cast a pointer from a class to its superclass, or when you need to explicitly cast a pointer from a superclass to a subclass. In this last case, you must be sure your object is actually an instance of the subclass.
-// Use const_cast to remove the const qualifier (see const).
-// Use reinterpret_cast to do unsafe conversions of pointer types to and from integer and other pointer types. Use this only if you know what you are doing and you understand the aliasing issues.
+```
+- Use **static_cast** as the equivalent of a C-style cast that does value conversion, when you need to explicitly up-cast a pointer from a class to its superclass, or when you need to explicitly cast a pointer from a superclass to a subclass. In this last case, you must be sure your object is actually an instance of the subclass.
+- Use **const_cast** to remove the const qualifier (see const).
+- Use reinterpret_cast to do unsafe conversions of pointer types to and from integer and other pointer types. Use this only if you know what you are doing and you understand the aliasing issues.
+```cpp
 static_cast
 const_cast
 reinterpret_cast
 dynamic_cast
+```
 
-// Streams
-// Use streams where appropriate, and stick to "simple" usages.
+## Streams
+- Use streams where appropriate, and stick to "simple" usages.
 
-// Preincrement and Predecrement
-// Use prefix form (++i) of the increment and decrement operators with iterators and other template objects.
+## Preincrement and Predecrement
+- Use prefix form (++i) of the increment and decrement operators with iterators and other template objects.
 
-// Use of const
-// Use const whenever it makes sense. With C++11, constexpr is a better choice for some uses of const.
+## Use of const
+- Use const whenever it makes sense. With C++11, constexpr is a better choice for some uses of const.
+```cpp
 const     double PI1 = 3.141592653589793;
 constexpr double PI2 = 3.141592653589793; // compile time constant
-// Both PI1 and PI2 are constant, meaning you can not modify them. However only PI2 is a compile-time constant. It shall be initialized at compiled time.  PI1 may be initialized at compile time or run time. Furthermore, only PI2 can be used in a context that requires a compile-time constant. For example:
+```
+Both PI1 and PI2 are constant, meaning you can not modify them. However only PI2 is a compile-time constant. It shall be initialized at compiled time.  PI1 may be initialized at compile time or run time. Furthermore, only PI2 can be used in a context that requires a compile-time constant. For example:
+```cpp
 constexpr double PI3 = PI1;  // error
 constexpr double PI3 = PI2;  // ok
-// and
+```
+and
+```cpp
 static_assert(PI1 == 3.141592653589793, "");  // error
 static_assert(PI2 == 3.141592653589793, "");  // ok
+```
 
-// Integer Types
+## Integer Types
+```cpp
 #include <stdint.h> // contains following
 int16_t, uint32_t, int64_t
-// Following codes will never terminate!
+```
+- Following codes will never terminate!
+```cpp
 for (unsigned int i = foo.Length()-1; i >= 0; --i) ...
-
-// 0 and nullptr/NULL
+```
+- 0 and nullptr/NULL
+```cpp
 0 // integers
 nullptr NULL // for pointers
 '\0' // chars
+```
 
-// sizeof
-Prefer sizeof(varname) to sizeof(type)
+## sizeof
+- Prefer sizeof(varname) to sizeof(type)
 
-// auto
-// Use auto to avoid type names that are noisy, obvious, or unimportant - cases where the type doesn't aid in clarity for the reader. Continue to use manifest type declarations when it helps readability.
+## auto
+- Use auto to avoid type names that are noisy, obvious, or unimportant - cases where the type doesn't aid in clarity for the reader. Continue to use manifest type declarations when it helps readability.
 
-// Braced Initializer List
+## Braced Initializer List
+- Basically the same, ignoring some small technicalities. You may choose to use either form.
+```cpp
 std::vector<string> v{"foo", "bar"};
-// Basically the same, ignoring some small technicalities.
-// You may choose to use either form.
 std::vector<string> v = {"foo", "bar"};
-// Usable with 'new' expressions.
+```
+- Usable with 'new' expressions.
+```cpp
 auto p = new vector<string>{"foo", "bar"};
-// A map can take a list of pairs. Nested braced-init-lists work.
+```
+- A map can take a list of pairs. Nested braced-init-lists work.
+```cpp
 std::map<int, string> m = {{1, "one"}, {2, "2"}};
-// A braced-init-list can be implicitly converted to a return type.
+```
+- A braced-init-list can be implicitly converted to a return type.
+```cpp
 std::vector<int> test_function() { return {1, 2, 3}; }
-// Iterate over a braced-init-list.
+``
+- Iterate over a braced-init-list.
+```cpp
 for (int i : {-1, -2, -3}) {}
-// Call a function using a braced-init-list.
+```
+- Call a function using a braced-init-list.
+```cpp
 void TestFunction2(std::vector<int> v) {}
 TestFunction2({1, 2, 3});
-// Never assign a braced-init-list to an auto local variable. In the single element case, what this means can be confusing.
+```
+- Never assign a braced-init-list to an auto local variable. In the single element case, what this means can be confusing.
+```cpp
 auto d = {1.23};        // Bad: d is a std::initializer_list<double>
 auto d = double{1.23};  // Good -- d is a double, not a std::initializer_list.
+```
 
-// Lambda Expressions
-// Passing function as arguments
+## Lambda Expressions
+
+## Passing function as arguments
+```cpp
 std::sort(v.begin(), v.end(), [](int x, int y) {
   return Weight(x) < Weight(y);
 });
-// Some by value, some by reference
+```
+- Some by value, some by reference
+```cpp
 int weight = 3;
 int sum = 0;
 // Captures `weight` by value and `sum` by reference.
 std::for_each(v.begin(), v.end(), [weight, &sum](int x) {
   sum += weight * x;
 });
+```
 
-// Boost
-// Use only approved libraries from the Boost library collection.
+## Boost
+- Use only approved libraries from the Boost library collection.
 
-// std::hash
-// Do not define specializations of std::hash.
+## std::hash
+- Do not define specializations of std::hash.
 
-// Aliases
+## Aliases
+```cpp
 typedef Foo Bar;
 using Bar = Foo;
 using other_namespace::Foo;
+```
 
-// Naming
-// Good:
+## Naming
+- Good:
+```cpp
 int price_count_reader;    // No abbreviation.
 int num_errors;            // "num" is a widespread convention.
 int num_dns_connections;   // Most people know what "DNS" stands for.
-// Bad:
+```
+- Bad:
+```cpp
 int n;                     // Meaningless.
 int nerr;                  // Ambiguous abbreviation.
 int n_comp_conns;          // Ambiguous abbreviation.
 int wgc_connections;       // Only your group knows what this stands for.
 int pc_reader;             // Lots of things can be abbreviated "pc".
 int cstmr_id;              // Deletes internal letters.
+```
 
-// File Names
-// my_useful_class.cc
-// my-useful-class.cc
-// myusefulclass.cc
-// myusefulclass_test.cc // _unittest and _regtest are deprecated.
+## File Names
+- my_useful_class.cc
+- my-useful-class.cc
+- myusefulclass.cc
+- myusefulclass_test.cc
+- \_unittest and \_regtest are deprecated.
 
-// Type Names
-// no underscores
-// classes and structs
+## Type Names
+- no underscores
+- classes and structs
+```cpp
 class UrlTable { ...
 class UrlTableTester { ...
 struct UrlTableProperties { ...
-// typedefs
+```
+- typedefs
+```cpp
 typedef hash_map<UrlTableProperties *, string> PropertiesMap;
-// using aliases
+```
+- using aliases
+```cpp
 using PropertiesMap = hash_map<UrlTableProperties *, string>;
-// enums
+```
+- enums
+```cpp
 enum UrlTableErrors { ...
-
-// Variable Names
+```
+- Variable Names
+```cpp
 string table_name;  // OK - uses underscore.
 string tablename;   // OK - all lowercase.
 string tableName;   // Bad - mixed case.
-
-// Constant Names
+```
+- Constant Names
+```cpp
 const int kDaysInAWeek = 7;
-
-// Function Names
+```
+- Function Names
+```cpp
 AddTableEntry()
 DeleteUrl()
 OpenFileOrDie()
-
-// Macro Names
+```
+- Macro Names
+```cpp
 #define ROUND(x) ...
 #define PI_ROUNDED 3.0
+```
 
-// Comment Style
+## Comment Style
+```cpp
 // v.s. /* */
+```
 
-// Lambda Expressions
+## Lambda Expressions
+```cpp
 int x = 0;
 auto x_plus_n = [&x](int n) -> int { return x + n; }
 
@@ -235,8 +296,11 @@ digits.erase(std::remove_if(digits.begin(), digits.end(), [&blacklist](int i) {
                return blacklist.find(i) != blacklist.end();
              }),
              digits.end());
+```
 
-// Conditionals
+## Conditionals
+- if else
+```cpp
 if (condition) {  // no spaces inside parentheses
   ...  // 2 space indent.
 } else if (...) {  // The else goes on the same line as the closing brace.
@@ -248,7 +312,9 @@ if (condition) {  // no spaces inside parentheses
 if(condition) {   // Bad - space missing after IF.
 if (condition){   // Bad - space missing before {.
 if(condition){    // Doubly bad.
-
+```
+- switch
+```cpp
 // Loops and Switch Statements
 switch (var) {
   case 0: {  // 2 space indent
@@ -263,24 +329,31 @@ switch (var) {
     assert(false);
   }
 }
-
+```
+- while
+```cpp
 while (condition) {
   // Repeat test until it returns false.
 }
-// Empty loop bodies should use an empty pair of braces or continue, but not a single semicolon.
+```
+- Empty loop bodies should use an empty pair of braces or continue, but not a single semicolon.
+```cpp
 for (int i = 0; i < kSomeNumber; ++i) {}  // Good - one newline is also OK.
 while (condition) continue;  // Good - continue indicates no logic.
-
-// Boolean
+```
+- Boolean
+```cpp
 if (this_one_thing > this_other_thing &&
     a_third_thing == a_fourth_thing &&
     yet_another && last_one) {
   ...
 }
+```
 
-// Return Values
+## Return Values
 
-// Namespace Formatting
+## Namespace Formatting
+```cpp
 namespace {
 
 void foo() {  // Correct.  No extra indentation within namespace.
@@ -288,8 +361,10 @@ void foo() {  // Correct.  No extra indentation within namespace.
 }
 
 }  // namespace
+```
 
-// Horizontal Whitespace
+## Horizontal Whitespace
+```cpp
 void f(bool b) {  // Open braces should always have a space before them.
   ...
 int i = 0;  // Semicolons usually have no space before them.
@@ -297,8 +372,9 @@ int i = 0;  // Semicolons usually have no space before them.
 // put them on both sides!
 int x[] = { 0 };
 int x[] = {0};
-
-// Spaces around the colon in inheritance and initializer lists.
+```
+- Spaces around the colon in inheritance and initializer lists.
+```cpp
 class Foo : public Bar {
  public:
   // For inline function implementations, put spaces between the braces
@@ -306,8 +382,9 @@ class Foo : public Bar {
   Foo(int b) : Bar(), baz_(b) {}  // No spaces inside empty braces.
   void Reset() { baz_ = 0; }  // Spaces separating braces from implementation.
   ...
-
-// Loop and Conditions
+```
+- Loop and Conditions
+```cpp
 if (b) {          // Space after the keyword in conditions and loops.
 } else {          // Spaces around else.
 }
@@ -332,29 +409,32 @@ switch (i) {
   case 1:         // No space before colon in a switch case.
     ...
   case 2: break;  // Use a space after a colon if there's code after it.
-
-// Operators
-// Assignment operators always have spaces around them.
+```
+- Operators
+    * Assignment operators always have spaces around them.
+```cpp
 x = 0;
-
-// Other binary operators usually have spaces around them, but it's
-// OK to remove spaces around factors.  Parentheses should have no
-// internal padding.
+```
+- Other binary operators usually have spaces around them, but it's OK to remove spaces around factors.  Parentheses should have no internal padding.
+```cpp
 v = w * x + y / z;
 v = w*x + y/z;
 v = w * (x + z);
-
-// No spaces separating unary operators and their arguments.
+```
+- No spaces separating unary operators and their arguments.
+```cpp
 x = -5;
 ++x;
 if (x && !y)
   ...
-
-// Template and Casts
-// No spaces inside the angle brackets (< and >), before
-// <, or between >( in a cast
+```
+- Template and Casts
+    * No spaces inside the angle brackets (< and >), before <, or between >( in a cast
+```cpp
 std::vector<string> x;
 y = static_cast<char*>(x);
-
-// Spaces between type and pointer are OK, but be consistent.
+```
+    * Spaces between type and pointer are OK, but be consistent.
+```cpp
 std::vector<char *> x;
+```
