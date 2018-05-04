@@ -35,6 +35,9 @@ if not os.path.exists('today'):
 os.rmdir('today')
 os.remove() # to remove a file
 shutil.rmtree() # to rm recursively
+
+# To traverse all files recursively
+[(base, files) for base, files in os.walk(dir)]
 ```
 
 ## system library

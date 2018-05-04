@@ -2,6 +2,7 @@
 
 ## A wrapper on a function:
 - Some good materials: http://www.cnblogs.com/SeasonLee/articles/1719444.html, https://www.cnblogs.com/cicaday/p/python-decorator.html
+- Function has arugements:
 ```python
 def debug(func):
     def wrapper(*args, **kwargs):  # fit any arguments passing
@@ -41,7 +42,33 @@ if __name__ == '__main__':
     say('hello')
     do("my work")
 ```
-- property
+- Built-in decorators
+    - property decorators, functions with property decorators returns a property object
+```python
+@property
+def x(self):
+  
+@setter
+@getter
+@deleter
+```
+- staticmethod, classmethod
+```python
+class A(object):
+    def m1(self, n):
+        print("self:", self)
 
-- setter
+    @classmethod
+    def m2(cls, n):
+        print("cls:", cls)
+
+    @staticmethod
+    def m3(n):
+        pass
+
+a = A()
+a.m1(1) # self: <__main__.A object at 0x000001E596E41A90>
+A.m2(1) # cls: <class '__main__.A'>
+A.m3(1)
+```
 
