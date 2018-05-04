@@ -1,7 +1,9 @@
-# Convex Hull
-# http://www.geeksforgeeks.org/convex-hull-set-1-jarviss-algorithm-or-wrapping/
- Jarvis's Algorithm for Wrapping
+## Geometry
 
+## Convex Hull
+- http://www.geeksforgeeks.org/convex-hull-set-1-jarviss-algorithm-or-wrapping/
+- Jarvis's Algorithm for Wrapping
+```
  1) Initialize p as leftmost point.
  2) Do following while we don’t come back to the first (or leftmost) point.
    a) The next point q is the point such that the triplet (p, q, r) is counterclockwise for any other point r.
@@ -9,9 +11,10 @@
    c) p = q (Set p as q for next iteration).
  Time complexity: O(m * n)
    m: convex points
+```
 
-# Graham Scan
-# http://www.geeksforgeeks.org/convex-hull-set-2-graham-scan/
+## Graham Scan
+- http://www.geeksforgeeks.org/convex-hull-set-2-graham-scan/
  1. Sort
  2. Go through from left to right
   reject by polar angle
