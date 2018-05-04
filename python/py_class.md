@@ -13,6 +13,18 @@ def from_string(cls, date_as_string):
 @staticmethod
 def is_date_valid(date_as_string):
 ```
+- Access a member:
+```python
+class test(object):
+  def method(self, ...):
+    ...
+
+obj = test()
+func = getattr(obj, "method")
+result = func(args)
+
+func = getattr(self, "method")
+```
 
 ## Operators
 - Override class operators
@@ -23,6 +35,22 @@ class x(object):
   def __add__(self, other):
 
 x + y # x.__add__() willl be called
+```
+- Output
+```python
+class Point3D(object):
+    def __init__(self,a,b,c):
+        self.x = a
+        self.y = b
+        self.z = c
+    def __repr__(self):
+        return "Point3D(%d, %d, %d)" % (self.x, self.y, self.z)
+    def __str__(self):
+        return "(%d, %d, %d)" % (self.x, self.y, self.z)
+        
+my_point = Point3D(1, 2, 3)
+print `my_point` # __repr__ gets called automatically
+print my_point # __str__ gets called automatically
 ```
 - Other operations
 ```python

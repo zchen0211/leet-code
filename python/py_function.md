@@ -18,6 +18,15 @@ if __name__ == '__main__':
   foo('a', 1, None, a=1, b='2', c=3) # args =  ('a', 1, None), kwargs =  {'a': 1, 'c': 3, 'b': '2'} 
 ```
 
+## functools
+- Partially customize arguments
+```
+import functools
+
+my_func = functools.partial(func, arg=...,)
+my_func(input) # func(input, arg=...)
+```
+
 ## Lambda Function
 ```python
 g = lambda x: x ** 2

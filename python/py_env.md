@@ -26,7 +26,6 @@ dir(lis) # check all
 dir(list)
 ```
 
-
 ## Parse from os.envirson
 - A bash run like:
 ```bash
@@ -41,6 +40,31 @@ envs = os.environ
 envs["root"] = "xxx"
 envs["game"] = "elfgames.go.game"
 ...
+```
+
+## Dispatch a module from command line
+```python
+import argh
+
+# declaring:
+
+def echo(text):
+    "Returns given word as is."
+    return text
+
+def greet(name, greeting='Hello'):
+    "Greets the user with given name. The greeting is customizable."
+    return greeting + ', ' + name
+
+# assembling:
+
+parser = argh.ArghParser()
+parser.add_commands([echo, greet])
+
+# dispatching:
+
+if __name__ == '__main__':
+    parser.dispatch()
 ```
 
 ## Load Modules by Name

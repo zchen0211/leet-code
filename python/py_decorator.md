@@ -41,3 +41,7 @@ if __name__ == '__main__':
     say('hello')
     do("my work")
 ```
+- property
+
+- setter
+
