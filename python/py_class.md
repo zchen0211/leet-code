@@ -27,7 +27,7 @@ func = getattr(self, "method")
 ```
 
 ## Magic Methods
-- Good summaries: https://rszalski.github.io/magicmethods/, 
+- Good summaries: https://rszalski.github.io/magicmethods/, http://pycoders-weekly-chinese.readthedocs.io/en/latest/issue6/a-guide-to-pythons-magic-methods.html
 - Constructors
 ```python
 def __new__(cls, ...):
@@ -164,6 +164,15 @@ __delete__(self, instance)
 __copy__(self): # copy.copy(obj)
 __deepcopy__(self, memodict={}): # copy.deepcopy()
 ```
+- Documentation
+```python
+def f(x):
+    """This is the function docstring."""
+    return 2 * x
+
+# will print "This is the function docstring."
+print(mymodule.f.__doc__)
+```
 - Examples
 ```python
 class Point3D(object):
@@ -180,23 +189,6 @@ my_point = Point3D(1, 2, 3)
 print `my_point` # __repr__ gets called automatically
 print my_point # __str__ gets called automatically
 ```
-- Other operations
-```python
-x - y # x.__sub__()
-x * y # x.__mul__()
-x // y # x.__floordiv__()
-x / y # x.__div__()
-
-+= # object.__iadd__(self, other)
--= # object.__isub__(self, other)
-*= # object.__imul__(self, other)
-/= # object.__idiv__(self, other)
-
-iter(x) # => x.__iter__()
-len(x) # x.__len__()
-item in x # => x.__contains__(item)
-```
-
 
 ## Inheritance
 - Base class:
