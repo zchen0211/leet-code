@@ -58,3 +58,30 @@ conda remove -n snakes --all
 # remove conda
 rm -rf ~/miniconda 
 ```
+
+
+## pip
+- Look for packges: https://pypi.org/pypi/
+- Install and update self
+```bash
+pip install -U pip
+```
+- Install a package
+```
+pip install PackageName                # latest version
+pip install PackageName==1.0.4         # specific version
+```
+- Show package info (folder...)
+```bash
+pip show pkg
+```
+- Show all packages
+```bash
+pip list --outdated
+pip list
+```
+- Install and uninstall
+```bash
+pip install -U pkg
+pip uninstall pkg
+```
