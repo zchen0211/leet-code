@@ -23,9 +23,13 @@ when p is prime, a ** (p-1) = 1 (mod p)
 - DAG, topologcial sort (DFS) b/c runtime
 - MST (Minimum Spanning Tree)
 - Kruskal: Add an edge to connect two disjoint trees
-    - O(E log(E))
+```
+O(E log(E))
+```
 - Prim:
-    - O(E logV) with Priority Queue implemented by Heap
+```
+O(E logV) with Priority Queue implemented by Heap
+```
 - can be improved to O(E+ VlogV) by Fibonnaci Heap
 - All-pairs shortest paths: the Floyd-Warshall Algorithm
 
@@ -37,21 +41,29 @@ when p is prime, a ** (p-1) = 1 (mod p)
 
 ## Computational Geometry
 - Cross Product: 
-    - (x1, x2) and (y1, y2)
-    - >0 if clockwise; <0 counter-clockwise
+```
+(x1, x2) and (y1, y2)
+>0 if clockwise; <0 counter-clockwise
+```
 - To check if two line sgements p1->p2, p3->p4 intersect
-    - intersect: (p3-p1)x(p2-p1), (p4-p1)x(p2-p1) different sign
-    - do not intersect: (p3-p1)x(p2-p1), (p4-p1)x(p2-p1) same sign
+```
+intersect: (p3-p1)*(p2-p1), (p4-p1)*(p2-p1) different sign
+do not intersect: (p3-p1)(p2-p1), (p4-p1)*(p2-p1) same sign
+```
 - Convex Hull:
-    - Graham's Scan: O(n*logn)
+    - Graham's Scan: O(n logn)
     - Jarvis' March
 - Finding Closest Pair of Points
-    - T(n) = 2 T(n/2) + O(n) if n > 3
-    - T(n) = O(1) if n <= 3
+```
+    T(n) = 2 T(n/2) + O(n) if n > 3
+    T(n) = O(1) if n <= 3
+```
 
 ## Stable Matching
 - David Gale and Lloyd Shapley (G-S)
-    - M={m1, ..., mn}, W={w1, ..., wn}
+```
+M={m1, ..., mn}, W={w1, ..., wn}
+```
 
 ## Greedy
 
@@ -60,12 +72,14 @@ when p is prime, a ** (p-1) = 1 (mod p)
 ## Dynamic Programming
 
 ## Max-flow
-- Constraint 1: 0 <= f(e) <= c(e)
-- Constraint 2: 0 sum_into_v f(e) = sum_outof_v f(e)
-- Ford-Fulkerson Algorithm
-- Augment path in a residual graph, increase by bottleneck 
-- Choosing Good Augmenting Paths: with bottleneck at least delta
-- Preflow-push Algorithm
+```
+Constraint 1: 0 <= f(e) <= c(e)
+Constraint 2: 0 sum_into_v f(e) = sum_outof_v f(e)
+Ford-Fulkerson Algorithm
+Augment path in a residual graph, increase by bottleneck 
+Choosing Good Augmenting Paths: with bottleneck at least delta
+Preflow-push Algorithm
+```
 
 ## NP-Complete
 
