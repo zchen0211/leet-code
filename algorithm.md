@@ -3,14 +3,18 @@
 ## Number Theory
 - gcd (greatest common divider)
 - The Chinese remainder theorem:
-    - n = n1 * n2 * n3 * ... * nk
-    - Given a, a1, a2, ..., ak, find a s.t. ai = a mod ni
-    - let mi = n1 * n2* n_i-1 * n_i+1 * ... * nk
-    - ci = mi(mi^-1 mod ni)
-    - a = a1*c1 + a2*c2 + ... + ak*ck
+```
+n = n1 * n2 * n3 * ... * nk
+Given a, a1, a2, ..., ak, find a s.t. ai = a mod ni
+let mi = n1 * n2* n_i-1 * n_i+1 * ... * nk
+ci = mi(mi^-1 mod ni)
+a = a1*c1 + a2*c2 + ... + ak*ck
+```
 - Power set
-    - a ** phi(n) = 1 (mod n), phi(n) Euler-Phi function size of (Z*n)
-    - when p is prime, a ** (p-1) = 1 (mod p)
+```
+a ** phi(n) = 1 (mod n), phi(n) Euler-Phi function size of (Z*n)
+when p is prime, a ** (p-1) = 1 (mod p)
+```
 - RSA public-key cryptosystem
 
 ## Graphs
