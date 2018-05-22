@@ -13,3 +13,15 @@ pybind11_add_module(example example.cc)
 ```cmake
 find_package(pybind11)
 ```
+
+## Binding
+- Notice the same module name *example* should be the same as cmake
+```cpp
+PYBIND11_MODULE(example, m) {
+}
+```
+- Then when we call
+```python
+import example
+```
+everything can work properly.
