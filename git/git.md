@@ -15,6 +15,8 @@ git config --list
 git config -e [--global]
 git config [--global] user.name "[name]"
 git config [--global] user.email "[email address]"
+
+git config --global push.default simple
 ```
 - Add/remove files
 ```
