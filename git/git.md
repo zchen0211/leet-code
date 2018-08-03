@@ -18,6 +18,22 @@ git config [--global] user.email "[email address]"
 
 git config --global push.default simple
 ```
+- Eable Two-Factor Authorization
+- Make it work with SSH key
+```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+# Generating public/private rsa key pair.
+# Enter a file in which to save the key (/home/you/.ssh/id_rsa): [Press enter]
+# Enter passphrase (empty for no passphrase): [Type a passphrase]
+# Enter same passphrase again: [Type passphrase again]
+
+eval "$(ssh-agent -s)"
+# Agent pid 59566
+
+ssh-add ~/.ssh/id_rsa
+# Then in ~/.ssh folder, we have two files (private and public keys)
+```
+- Then always push to git@git... 
 - Add/remove files
 ```
 git add file1 [file2] [folder] [.]
