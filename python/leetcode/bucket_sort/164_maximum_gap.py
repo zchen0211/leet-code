@@ -1,5 +1,5 @@
 '''
-164. Maximum Gap
+164. Maximum Gap (Hard)
 
 Given an unsorted array, find the maximum difference between the successive elements in its sorted form.
 
@@ -14,6 +14,10 @@ import collections
 
 class Solution(object):
   def solve2(self, nums):
+    """
+    :type nums: List[int]
+    :rtype: int
+    """
     n = len(nums)
     if n < 2: return 0
     min_ = min(nums)

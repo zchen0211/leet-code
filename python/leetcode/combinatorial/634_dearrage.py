@@ -1,5 +1,5 @@
 """
-634. Find the Derangement of An Array My SubmissionsBack to Contest (Medium)
+634. Find the Derangement of An Array (Medium)
 
 In combinatorial mathematics, a derangement is a permutation of the elements of a set, such that no element appears in its original position.
 
