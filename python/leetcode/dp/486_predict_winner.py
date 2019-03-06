@@ -23,6 +23,14 @@ Any scores in the given array are non-negative integers and will not exceed 10,0
 If the scores of both players are equal, then player 1 is still the winner.
 '''
 
+"""
+what's the best score? (>=0, player 1 win)
+a vector of len(n)
+each item records the best score one can achieve of len(k)
+iterate k = 1..n times starting from the corner case
+"""
+
+
 class Solution(object):
   def PredictTheWinner(self, nums):
     n = len(nums)

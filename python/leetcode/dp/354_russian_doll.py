@@ -9,6 +9,14 @@ Example:
 Given envelopes = [[5,4],[6,4],[6,7],[2,3]], the maximum number of envelopes you can Russian doll is 3 ([2,3] => [5,4] => [6,7]).
 """
 
+"""
+Sort the array. Ascend on width and descend on height if width are same.
+Find the longest increasing subsequence based on height.
+
+Since the width is increasing, we only need to consider height.
+[3, 4] cannot contains [3, 3], so we need to put [3, 4] before [3, 3] when sorting otherwise it will be counted as an increasing number if the order is [3, 3], [3, 4]
+"""
+
 class Solution(object):
   def maxEnvelopes(self, envelopes):
     """

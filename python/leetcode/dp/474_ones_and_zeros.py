@@ -22,6 +22,14 @@ Output: 2
 
 Explanation: You could form "10", but then you'd have nothing left. Better form "0" and "1".
 '''
+
+"""
+0-1 Knapsack problem
+time complexity: O(m*n*len(strs))
+
+a matrix m by n to remember best solution with k strs(dp)
+iterate over the strings
+"""
 import collections
 
 class Solution(object):

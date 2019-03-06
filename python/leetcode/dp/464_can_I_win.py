@@ -27,6 +27,14 @@ If the first player choose 1, the second player can only choose integers from 2 
 The second player will win by choosing 10 and get a total = 11, which is >= desiredTotal.
 Same with other integers chosen by the first player, the second player will always win.
 """
+
+"""
+Memoization: 
+time complexity: O(2^n)
+no state kept: O(n!)
+Solution 2: faster with bit operation
+"""
+
 import timeit
 
 class Solution(object):
