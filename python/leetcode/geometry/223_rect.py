@@ -7,6 +7,11 @@ Each rectangle is defined by its bottom left corner and top right corner as show
 Assume that the total area is never beyond the maximum possible value of int.
 '''
 
+"""
+intersection: easy to compute
+different cases (no intersection)
+"""
+
 class Solution(object):
   def computeArea(self, A, B, C, D, E, F, G, H):
     """

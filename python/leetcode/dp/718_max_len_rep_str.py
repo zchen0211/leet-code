@@ -15,6 +15,13 @@ Note:
 0 <= A[i], B[i] < 100
 """
 
+"""
+longest common substr
+len(A) = m, len(B) = n
+dp[m][n]
+dp[i][j]: longest sequence of A[i:] and B[j:]
+"""
+
 class Solution(object):
   def findLength(self, A, B):
     """

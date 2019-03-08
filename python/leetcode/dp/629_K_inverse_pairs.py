@@ -25,6 +25,11 @@ Note:
 The integer n is in the range [1, 1000] and k is in the range [0, 1000].
 """
 
+"""
+For a list of k numbers:
+dp[i]: number of list with <= i inverse pairs
+"""
+
 class Solution(object):
   def kInversePairs(self, n, k):
     """
