@@ -37,6 +37,22 @@ Given x =
 Return true (self crossing)
 """
 
+"""
+case 1: i crosses i - 3
+ --
+|__|_
+   |
+case 2: i overlaps with i - 4
+ ____
+|    |
+ _->_
+case 3: i overlaps with i - 5
+ ----
+|   -|--|
+|       |
+ -------
+"""
+
 class Solution(object):
   def isSelfCrossing(self, x):
     """

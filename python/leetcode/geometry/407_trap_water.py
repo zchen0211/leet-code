@@ -20,6 +20,50 @@ Return 4.
 The above image represents the elevation map [[1,4,3,1,3,2],[3,2,1,3,2,4],[2,3,3,2,3,1]] before the rain.
 """
 
+"""
+Solution 1:
+https://leetcode.com/problems/trapping-rain-water-ii/discuss/89467/Why-reinvent-the-wheel-An-easy-understood-commented-solution-based-on-trapping-rain-1
+
+Basic physics:
+Unlike bricks, water flows to wherever it could. 
+i.e we can't have the follwoing config made with water, but can do it with bricks
+000
+010
+000
+In the case above, if the "1" is built with water, that water can't stay. It needs to be spilled!
+
+2 steps Algorithm: 
+1. Since we know how to trap rain water in 1d, we can just transfor this 2D problem into 2 1D problems
+    we go row by row, to calculate each spot's water
+    we go column by column, to calculate each spot's water
+
+2. Then, here comes the meat,
+    For every spot that gets wet, from either row or column calculation, the water can possibly spill.
+    We need to check the water height aganist it's 4 neighbors. 
+        If the water height is taller than any one of its 4 neightbors, we need to spill the extra water.
+        If we spill any water from any slot, then its 4 neightbors needs to check themselves again.
+            For example, if we spill some water in the current slot b/c its bottm neighbor's height, current slot's top neighbor's height might need to be updated again.
+        we keep checking until there is no water to be spilled.
+"""
+
+"""
+Solution 2:
+start from boundries, go to inside;
+h[new] - h is the water to trap
+traversal order: from priority queue
+
+For every point on the border set the water level to the point height
+For every point not on the border set the water level to infinity
+Put every point on the border into the set of active points
+While the set of active points is not empty:
+    Select the active point P with minimum level
+    Remove P from the set of active points
+    For every point Q adjacent to P:
+        Level(Q) = max(Height(Q), min(Level(Q), Level(P)))
+        If Level(Q) was changed:
+            Add Q to the set of active points
+"""
+
 import Queue
 
 class Solution(object):

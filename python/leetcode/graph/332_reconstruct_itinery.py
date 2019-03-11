@@ -15,6 +15,13 @@ tickets = [["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]
 Return ["JFK","ATL","JFK","SFO","ATL","SFO"].
 Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","SFO"]. But it is larger in lexical order.
 '''
+
+"""
+Solution 1: DFS
+go until stuck, retreat
+the order to try first can be alphabetical
+"""
+
 import collections
 
 class Solution(object):

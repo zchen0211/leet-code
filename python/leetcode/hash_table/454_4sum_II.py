@@ -22,6 +22,14 @@ The two tuples are:
 2. (1, 1, 0, 0) -> A[1] + B[1] + C[0] + D[0] = 2 + (-1) + (-1) + 0 = 0
 """
 
+"""
+Solution:
+brute-force: O(ABC), b/c check D can be reduced to constant by hash table
+
+double hash-table:
+O(AB) or O(CD)
+"""
+
 class Solution(object):
   def fourSumCount(self, A, B, C, D):
     """

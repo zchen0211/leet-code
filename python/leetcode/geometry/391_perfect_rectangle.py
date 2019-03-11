@@ -51,6 +51,13 @@ rectangles = [
 Return false. Because two of the rectangles overlap with each other.
 '''
 
+"""
+math problem:
+1.a all internal points shared by 2 or 4;
+1.b all corners should be 1;
+2. sum should be equal to overall area
+"""
+
 class Solution(object):
   def solution2(self, rectangles):
     n = len(rectangles)

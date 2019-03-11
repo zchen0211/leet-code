@@ -10,6 +10,32 @@ You are given a helper function bool knows(a, b) which tells you whether A knows
 Note: There will be exactly one celebrity if he/she is in the party. Return the celebrity's label if there is a celebrity in the party. If there is no celebrity, return -1.
 """
 
+"""
+brute force: O(n^2)
+
+Good solution: O(n)
+condition:
+in-degree: n -1 
+out-degree: 0
+
+step 1:
+celebrity candidate k start from 0:
+for i = 1 .. n - 1
+  if i knows k: 
+  else: i becomes candidate
+step 2: verify k
+
+    int findCelebrity(int n) {
+        int k = 0;
+        for(int i = 1; i < n; i++)
+            k = knows(i, k)?k:i;
+        for(int i = 0; i < n; i++)
+            if(i != k && (knows(k, i)||!knows(i, k)))
+                return -1;
+        return k;
+    }
+"""
+
 # The knows API is already defined for you.
 # @param a, person a
 # @param b, person b

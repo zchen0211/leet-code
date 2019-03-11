@@ -23,6 +23,11 @@ The length of accounts[i] will be in the range [1, 10].
 The length of accounts[i][j] will be in the range [1, 30].
 """
 
+"""
+union find to check connected component
+then merge the result?
+"""
+
 class Solution(object):
   def accountsMerge(self, accounts):
     """

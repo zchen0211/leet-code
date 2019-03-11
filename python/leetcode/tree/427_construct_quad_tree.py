@@ -20,9 +20,9 @@ class Solution(object):
         n = self.helper(grid, 0, len_-1, 0, len_-1)
         return n
 
-    def helper(self, grid, x_min, x_max, y_min, y_max):
-    	if x_min == x_max and y_min == y_max:
-    		val = grid[x_min][x_max] == 1
+    def helper(self, grid, x_min, x_max, y_min, y_max_):
+    	if len_ == 1:
+    		val = grid[x_min][y_min] == 1
 
     		n = Node(val, True, None, None, None, None)
     		return n

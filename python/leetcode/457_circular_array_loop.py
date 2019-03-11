@@ -12,8 +12,66 @@ Note: The given array is guaranteed to contain no element "0".
 Can you do it in O(n) time complexity and O(1) space complexity?
 """
 
+"""
+all indices as a set
+for each item in the set, check:
+  1. go until back to an visited item;
+  2.a. if len of cycle == 1: false;
+  2.b. elif re-visit the cycle if pos/neg iterates: fale;
+  2.c. return True;
+  3. return False;
+"""
+
 class Solution(object):
   def circularArrayLoop(self, nums):
+    len_ = len(nums)
+    if len_ <= 1:
+      return False
+
+    set_ = set([i for i in range(len_)])
+    result = [True] * len_ # record bad loops to avoid recomputation
+
+    while len(set_) > 0:
+      # randomly pop an item
+      i = set_.pop()
+      # start from i, go until
+      ii = (i + nums[i]) % len_
+      tmp_loop = [i, ii]
+      while len(set_) > 0 and ii in set_:
+        set_.remove(ii)
+        ii = (ii + nums[ii]) % len_
+        tmp_loop.append(ii)
+      print(set_, ii)
+
+      # now ii is the starting point of the loop
+      flag = True
+      if (ii + nums[ii]) % len_ == ii:
+        # case 1: check loop-len == 1?
+        flag = False
+      elif result[ii] == False:
+        # case 2: go to a previous known bad loop?
+        flag = False
+      else:
+        # check +/- alternates
+        pos_flag = nums[ii] > 0
+        jj = (ii + nums[ii]) % len_
+        while jj != ii:
+          if nums[jj] > 0 and not pos_flag:
+            flag = False
+            break
+          if nums[jj] < 0 and pos_flag:
+            flag = False
+            break
+          jj = (jj + nums[jj]) % len_
+      if flag:
+        return True
+      else:
+        for item in tmp_loop:
+          result[item] = False
+    return False
+
+  """
+  def circularArrayLoop2(self, nums):
     n = len(nums)
     for i in range(n):
       if nums[i] == 0:
@@ -24,10 +82,6 @@ class Solution(object):
     return False
 
   def helper(self, nums, start):
-    """
-    :type nums: List[int]
-    :rtype: bool
-    """
     n = len(nums)
     if n <= 1: return False
     print 'searching'
@@ -74,10 +128,12 @@ class Solution(object):
         slow = slow_next
     print nums
     return ret
+  """
 
 if __name__ == '__main__':
   a = Solution()
-  # print a.circularArrayLoop([2,-1,1,2,2])
-  # print a.circularArrayLoop([-1,2])
-  print a.circularArrayLoop([-2, 1, -1, -2, -2])
+  print(a.circularArrayLoop([2,-1,1,2,2]))
+  print(a.circularArrayLoop([-1,2]))
+  print(a.circularArrayLoop([-2, 1, -1, -2, -2]))
+  print(a.circularArrayLoop([2,2,2,2,2,4,7]))
   # print a.circularArrayLoop([3,1,2])

@@ -31,6 +31,10 @@ All possible pairs are returned from the sequence:
 [1,3],[2,3]
 '''
 
+"""
+min-heap to keep an active set k smallest
+"""
+
 class Solution(object):
   def kSmallestPairs(self, nums1, nums2, k):
     '''

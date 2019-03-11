@@ -22,6 +22,11 @@ The garden has at least one tree.
 All coordinates are distinct.
 Input points have NO order. No order required for output.
 """
+
+"""
+convex hull
+"""
+
 import math
 
 # Definition for a point.

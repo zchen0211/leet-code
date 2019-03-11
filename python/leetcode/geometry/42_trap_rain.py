@@ -7,6 +7,14 @@ For example,
 Given [0,1,0,2,1,0,1,3,2,1,2,1], return 6.
 """
 
+"""
+key point:
+collect water by level
+keep an active set (stack) of height starting from the highest so far;
+for a new relative high height
+collect the water between left high and current (which we can definitely collect)
+"""
+
 class Solution(object):
   def trap(self, height):
     """

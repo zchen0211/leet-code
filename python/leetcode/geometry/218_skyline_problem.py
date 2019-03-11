@@ -18,6 +18,68 @@ The input list is already sorted in ascending order by the left x position Li.
 The output list must be sorted by the x position.
 There must be no consecutive horizontal lines of equal height in the output skyline. For instance, [...[2 3], [4 5], [7 5], [11 5], [12 7]...] is not acceptable; the three lines of height 5 should be merged into one in the final output as such: [...[2 3], [4 5], [12 7], ...]
 '''
+
+"""
+Divide and Conquer
+A Simple Solution is to initialize skyline or result as empty, then one by one add buildings to skyline. A building is added by first finding the overlapping strip(s). If there are no overlapping strips, the new building adds new strip(s). If overlapping strip is found, then height of the existing strip may increase. Time complexity of this solution is O(n2)
+
+We can find Skyline in Θ(nLogn) time using Divide and Conquer. The idea is similar to Merge Sort, divide the given set of buildings in two subsets. Recursively construct skyline for two halves and finally merge the two skylines.
+
+How to Merge two Skylines?
+The idea is similar to merge of merge sort, start from first strips of two skylines, compare x coordinates. Pick the strip with smaller x coordinate and add it to result. The height of added strip is considered as maximum of current heights from skyline1 and skyline2.
+Example to show working of merge:
+
+  Height of new Strip is always obtained by takin maximum of following
+     (a) Current height from skyline1, say 'h1'.  
+     (b) Current height from skyline2, say 'h2'
+  h1 and h2 are initialized as 0. h1 is updated when a strip from
+  SkyLine1 is added to result and h2 is updated when a strip from 
+  SkyLine2 is added.
+ 
+  Skyline1 = {(1, 11),  (3, 13),  (9, 0),  (12, 7),  (16, 0)}
+  Skyline2 = {(14, 3),  (19, 18), (22, 3), (23, 13),  (29, 0)}
+  Result = {}
+  h1 = 0, h2 = 0
+ 
+  Compare (1, 11) and (14, 3).  Since first strip has smaller left x,
+  add it to result and increment index for Skyline1. 
+  h1 = 11, New Height  = max(11, 0)   
+  Result =   {(1, 11)}
+
+  Compare (3, 13) and (14, 3). Since first strip has smaller left x,
+  add it to result and increment index for Skyline1
+  h1 = 13, New Height =  max(13, 0)
+  Result =  {(1, 11), (3, 13)}   
+  
+  Similarly (9, 0) and (12, 7) are added.
+  h1 = 7, New Height =  max(7, 0) = 7
+  Result =   {(1, 11), (3, 13), (9, 0), (12, 7)}
+
+  Compare (16, 0) and (14, 3). Since second strip has smaller left x, 
+  it is added to result.
+  h2 = 3, New Height =  max(7, 3) = 7
+  Result =   {(1, 11), (3, 13), (9, 0), (12, 7), (14, 7)}
+
+  Compare (16, 0) and (19, 18). Since first strip has smaller left x, 
+  it is added to result.
+  h1 = 0, New Height =  max(0, 3) = 3
+  Result =   {(1, 11), (3, 13), (9, 0), (12, 7), (14, 3), (16, 3)}
+
+Since Skyline1 has no more items, all remaining items of Skyline2 
+are added 
+  Result =   {(1, 11), (3, 13), (9, 0), (12, 7), (14, 3), (16, 3), 
+              (19, 18), (22, 3), (23, 13), (29, 0)}
+
+One observation about above output is, the strip (16, 3) is redundant
+(There is already an strip of same height). We remove all redundant 
+strips. 
+  Result =   {(1, 11), (3, 13), (9, 0), (12, 7), (14, 3), (19, 18), 
+              (22, 3), (23, 13), (29, 0)}
+
+In below code, redundancy is handled by not appending a strip if the 
+previous strip in result has same height.
+"""
+
 import Queue
 import heapq
 
