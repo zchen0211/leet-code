@@ -1,4 +1,4 @@
-'''
+"""
 160. Intersection of Two Linked Lists (Easy)
 
 Write a program to find the node at which the intersection of two singly linked lists begins.
@@ -20,13 +20,28 @@ If the two linked lists have no intersection at all, return null.
 The linked lists must retain their original structure after the function returns.
 You may assume there are no cycles anywhere in the entire linked structure.
 Your code should preferably run in O(n) time and use only O(1) memory.
-'''
+"""
+
+"""
+Solution:
+1. easy way: keep a hash table;
+  problem: O(n) time, O(n) memory;
+2. imagine the list as:
+    a-self->
+             ab-shared
+    b-self->
+  pointer A goes a-self, ab-shared, b-self
+  pointer B goes b-self, ab-shared, a-self
+  A and B will meet at the intersection point;
+  if A and B doesn't meet, A == B will end at None;
+"""
 
 # Definition for singly-linked list.
 class ListNode(object):
-  def __init__(self, x):
-    self.val = x
-    self.next = None
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
 
 class Solution(object):
     def getIntersectionNode(self, headA, headB):
@@ -36,7 +51,7 @@ class Solution(object):
         """
         tmp1 = headA
         tmp2 = headB
-        while(tmp1 != tmp2):
+        while tmp1 != tmp2:
             if tmp1 is not None:
                 tmp1 = tmp1.next
             else:

@@ -37,6 +37,7 @@ num of negatives
 
 import heapq
 
+
 class Solution(object):
     def largestSumAfterKNegations(self, A, K):
         """
@@ -45,39 +46,39 @@ class Solution(object):
         :rtype: int
         """
         if len(A) == 0:
-        	return 0
+            return 0
         if K == 0:
-        	return sum(A)
+            return sum(A)
         cnt_neg = 0
         for item in A:
-        	if item < 0:
-        		cnt_neg += 1
+            if item < 0:
+                cnt_neg += 1
         if cnt_neg > K:
-        	# heapq
-        	q = []
-        	sum_ = 0
-        	for item in A:
-        		if item < 0:
-        			heapq.heappush(q, item)
-        		else:
-        			sum_ += item
-        	for i in range(K):
-        		item = heapq.heappop(q)
-        		sum_ += -item # negate large negatives
-        	for item in q:
-        		sum_ += item
-        	return sum_
+            # heapq
+            q = []
+            sum_ = 0
+            for item in A:
+                if item < 0:
+                    heapq.heappush(q, item)
+                else:
+                    sum_ += item
+            for i in range(K):
+                item = heapq.heappop(q)
+                sum_ += -item  # negate large negatives
+            for item in q:
+                sum_ += item
+            return sum_
         else:
-        	A = [abs(item) for item in A]
-        	if (K - cnt_neg) % 2 == 0:
-        		return sum(A)
-        	else:
-        		min_A = min(A)
-        		return sum(A) - 2 * min_A
+            A = [abs(item) for item in A]
+            if (K - cnt_neg) % 2 == 0:
+                return sum(A)
+            else:
+                min_A = min(A)
+                return sum(A) - 2 * min_A
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.largestSumAfterKNegations([4,2,3], 1))
-	print(a.largestSumAfterKNegations([3,-1,0,2], 3))
-	print(a.largestSumAfterKNegations([2,-3,-1,5,-4], 2))
+    a = Solution()
+    print(a.largestSumAfterKNegations([4, 2, 3], 1))
+    print(a.largestSumAfterKNegations([3, -1, 0, 2], 3))
+    print(a.largestSumAfterKNegations([2, -3, -1, 5, -4], 2))

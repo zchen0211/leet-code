@@ -16,7 +16,7 @@ Given the list [1,[4,[6]]], return 27. (one 1 at depth 1, one 4 at depth 2, and 
 # This is the interface that allows for creating nested lists.
 # You should not implement it, or speculate about its implementation
 # """
-#class NestedInteger(object):
+# class NestedInteger(object):
 #    def isInteger(self):
 #        """
 #        @return True if this NestedInteger holds a single integer, rather than a nested list.
@@ -37,19 +37,20 @@ Given the list [1,[4,[6]]], return 27. (one 1 at depth 1, one 4 at depth 2, and 
 #        :rtype List[NestedInteger]
 #        """
 
+
 class Solution(object):
-  def depthSum(self, nestedList):
-    """
+    def depthSum(self, nestedList):
+        """
     :type nestedList: List[NestedInteger]
     :rtype: int
     """
-    self.ret = 0
-    self.helper(nestedList, 1)
-    return self.ret
+        self.ret = 0
+        self.helper(nestedList, 1)
+        return self.ret
 
-  def helper(self, nestedList, depth):
-    for item in nestedList:
-      if item.isInteger():
-        self.ret += item.getInteger() * depth
-      else:
-        self.helper(item.getList(), depth + 1)
+    def helper(self, nestedList, depth):
+        for item in nestedList:
+            if item.isInteger():
+                self.ret += item.getInteger() * depth
+            else:
+                self.helper(item.getList(), depth + 1)

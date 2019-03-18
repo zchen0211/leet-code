@@ -67,6 +67,7 @@ C++ version: (use vector<pair<int, int>> dp to combine len[] and cnt[])
     }
 """
 
+
 class Solution(object):
     def findNumberOfLIS(self, nums):
         """
@@ -74,49 +75,53 @@ class Solution(object):
         :rtype: int
         """
         n = len(nums)
-        if n == 0: return 0
+        if n == 0:
+            return 0
 
-        seq = [max(nums)+1] * n
+        seq = [max(nums) + 1] * n
         stat = []
-        for i in range(n): stat.append({})
+        for i in range(n):
+            stat.append({})
 
         seq[0] = nums[0]
         stat[0][nums[0]] = 1
 
         curr_len = 1
         for i in range(1, n):
-          item = nums[i]
-          # look up update stat
-          id_ = self.lookup(seq, curr_len, item)
-          # print item, seq, id_
-          seq[id_] = item
+            item = nums[i]
+            # look up update stat
+            id_ = self.lookup(seq, curr_len, item)
+            # print item, seq, id_
+            seq[id_] = item
 
-          if id_ == 0: inc = 1
-          else:
-            inc = 0
-            for k in stat[id_-1].keys():
-                if k < item:
-                    inc += stat[id_-1][k]
+            if id_ == 0:
+                inc = 1
+            else:
+                inc = 0
+                for k in stat[id_ - 1].keys():
+                    if k < item:
+                        inc += stat[id_ - 1][k]
 
-          if item in stat[id_]:
-            stat[id_][item] += inc
-          else:
-            stat[id_][item] = inc
-          # print 'after', item, seq, id_, stat
-          if id_ == curr_len:
-            curr_len += 1
-        return sum(stat[curr_len-1].values())
-    
+            if item in stat[id_]:
+                stat[id_][item] += inc
+            else:
+                stat[id_][item] = inc
+            # print 'after', item, seq, id_, stat
+            if id_ == curr_len:
+                curr_len += 1
+        return sum(stat[curr_len - 1].values())
+
     def lookup(self, seq, curr_len, item):
         # look up in seq[0:curr_len]
         # search id_ s.t. seq[id_] >=  item
         i = 0
         j = curr_len
         while i < j:
-          mid = (i + j) / 2
-          if seq[mid] == item: return mid
-          elif seq[mid] < item:
-            i = mid + 1
-          else:
-            j = mid
+            mid = (i + j) / 2
+            if seq[mid] == item:
+                return mid
+            elif seq[mid] < item:
+                i = mid + 1
+            else:
+                j = mid
         return i

@@ -1,4 +1,4 @@
-'''
+"""
 226. Invert Binary Tree (Easy)
 
 Invert a binary tree.
@@ -17,7 +17,7 @@ to
 Trivia:
 This problem was inspired by this original tweet by Max Howell:
 Google: 90% of our engineers use the software you wrote (Homebrew), but you canâ€™t invert a binary tree on a whiteboard so fuck off.
-'''
+"""
 
 # Definition for a binary tree node.
 # class TreeNode(object):
@@ -26,14 +26,15 @@ Google: 90% of our engineers use the software you wrote (Homebrew), but you canâ
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
-  def invertTree(self, root):
-    """
+    def invertTree(self, root):
+        """
     :type root: TreeNode
     :rtype: TreeNod
     """
-    if root is None:
-      return
-    root.left, root.right = root.right, root.left
-    self.invertTree(root.left)
-    self.invertTree(root.right)
+        if root is None:
+            return
+        root.left, root.right = root.right, root.left
+        self.invertTree(root.left)
+        self.invertTree(root.right)

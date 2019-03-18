@@ -19,6 +19,13 @@ Output:
 One possible longest palindromic subsequence is "bb".
 """
 
+"""
+dp:
+dp[i, j] := longest palindrome from i to j of substring s[i..j+1]
+
+or bottom-up memoized dp?
+"""
+
 class Solution(object):
   def longestPalindromeSubseq(self, s):
     """

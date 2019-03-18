@@ -22,12 +22,11 @@ Year ranges from [2000,2017]. Hour ranges from [00,23].
 Output for Retrieve has no order required.
 """
 
-class LogSystem(object):
 
+class LogSystem(object):
     def __init__(self):
         self.data = []
         return
-        
 
     def put(self, id, timestamp):
         """
@@ -46,33 +45,40 @@ class LogSystem(object):
         :type gra: str
         :rtype: List[int]
         """
-        s_l = s.split(':')
+        s_l = s.split(":")
         s_l = [int(item) for item in s_l]
-        e_l = e.split(':')
+        e_l = e.split(":")
         e_l = [int(item) for item in e_l]
         gra_l = -1
-        if gra == 'Year': gra_l = 0
-        elif gra == 'Month': gra_l = 1
-        elif gra == 'Day': gra_l = 2
-        elif gra == 'Hour': gra_l = 3
-        elif gra == 'Minute': gra_l = 4
-        else: gra_l = 5
+        if gra == "Year":
+            gra_l = 0
+        elif gra == "Month":
+            gra_l = 1
+        elif gra == "Day":
+            gra_l = 2
+        elif gra == "Hour":
+            gra_l = 3
+        elif gra == "Minute":
+            gra_l = 4
+        else:
+            gra_l = 5
         result = []
         for item in self.data:
             id, tmp = item
-            if self.helper_smaller(s_l, tmp, gra_l) and self.helper_smaller(tmp, e_l, gra_l):
+            if self.helper_smaller(s_l, tmp, gra_l) and self.helper_smaller(
+                tmp, e_l, gra_l
+            ):
                 result.append(id)
         return result
 
     def helper_smaller(self, s_l, tmp, gra):
-        '''s_l1 = tuple(s_l[:gra+1])
+        """s_l1 = tuple(s_l[:gra+1])
         tmp1 = tuple(tmp[:gra+1])
-        return s_l1 <= tmp1'''
-        return tuple(s_l[:gra+1]) <= tuple(tmp[:gra+1])
-        
+        return s_l1 <= tmp1"""
+        return tuple(s_l[: gra + 1]) <= tuple(tmp[: gra + 1])
+
     def helper_larger(self, tmp, e_l, gra):
-        return tuple(tmp[:gra+1]) <= tuple(e_l[:gra+1])
-        
+        return tuple(tmp[: gra + 1]) <= tuple(e_l[: gra + 1])
 
 
 # Your LogSystem object will be instantiated and called as such:

@@ -1,4 +1,4 @@
-'''
+"""
 521. Longest Uncommon Subsequence I (Easy)
 
 Given a group of two strings, you need to find the longest uncommon subsequence of this group of two strings. The longest uncommon subsequence is defined as the longest subsequence of one of these strings and this subsequence should not be any subsequence of the other strings.
@@ -17,11 +17,12 @@ Note:
 
 Both strings' lengths will not exceed 100.
 Only letters from a ~ z will appear in input strings.
-'''
+"""
+
 
 class Solution(object):
-  def findLUSlength(self, a, b):
-    if a != b:
-      return max(len(a), len(b))
-    else:
-      return -1	
+    def findLUSlength(self, a, b):
+        if a != b:
+            return max(len(a), len(b))
+        else:
+            return -1

@@ -32,6 +32,7 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
+
 class Solution(object):
     def bstFromPreorder(self, preorder):
         """
@@ -54,5 +55,4 @@ class Solution(object):
 
 if __name__ == "__main__":
     a = Solution()
-    print(a.bstFromPreorder([8,5,1,7,10,12]))
-
+    print(a.bstFromPreorder([8, 5, 1, 7, 10, 12]))

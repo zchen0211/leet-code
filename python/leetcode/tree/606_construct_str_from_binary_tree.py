@@ -35,43 +35,46 @@ except we can't omit the first parenthesis pair to break the one-to-one mapping 
 
 # Definition for a binary tree node.
 class TreeNode(object):
-  def __init__(self, x):
-    self.val = x
-    self.left = None
-    self.right = None
+    def __init__(self, x):
+        self.val = x
+        self.left = None
+        self.right = None
+
 
 class Solution(object):
-  def tree2str(self, t):
-    """
+    def tree2str(self, t):
+        """
     :type t: TreeNode
     :rtype: str
     """
-    if t is None: return ''
-    result = self.helper(t)
-    return result
+        if t is None:
+            return ""
+        result = self.helper(t)
+        return result
 
-  def helper(self, t):
-    result = ''
-    result += str(t.val)
-    if t.left is None and t.right is None: return result
+    def helper(self, t):
+        result = ""
+        result += str(t.val)
+        if t.left is None and t.right is None:
+            return result
 
-    if t.left is not None:
-      result += '(' + self.helper(t.left) + ')'
-    else:
-      result += '()'
+        if t.left is not None:
+            result += "(" + self.helper(t.left) + ")"
+        else:
+            result += "()"
 
-    if t.right is not None:
-      result += '(' + self.helper(t.right) + ')'
-    return result
+        if t.right is not None:
+            result += "(" + self.helper(t.right) + ")"
+        return result
 
-if __name__ == '__main__':
-  t1 = TreeNode(1)
-  t2 = TreeNode(2)
-  t3 = TreeNode(3)
-  t4 = TreeNode(4)
-  t1.left, t1.right = t2, t3
-  t2.left = t4
-  
-  a = Solution()
-  a.tree2str(t1)
 
+if __name__ == "__main__":
+    t1 = TreeNode(1)
+    t2 = TreeNode(2)
+    t3 = TreeNode(3)
+    t4 = TreeNode(4)
+    t1.left, t1.right = t2, t3
+    t2.left = t4
+
+    a = Solution()
+    a.tree2str(t1)

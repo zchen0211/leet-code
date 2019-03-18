@@ -27,8 +27,14 @@ Output: 3
 Explanation: The first 6 elements of magical string S is "12211" and it contains three 1's, so return 3.
 Subscribe to see which companies asked this question.
 '''
+
+
 class Solution(object):
   def magicalString(self, n):
+    """
+    :type n: int
+    :rtype: int
+    """
     if n == 0:
       return 0
     elif n == 1:

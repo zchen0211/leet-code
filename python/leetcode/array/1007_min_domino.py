@@ -40,6 +40,7 @@ case 2. one digit i > half
 case 3. one digit i and one digit j == half
 """
 
+
 class Solution(object):
     def minDominoRotations(self, A, B):
         """
@@ -58,7 +59,8 @@ class Solution(object):
         for i in range(1, 7):
             if stat_A.get(i, 0) + stat_B.get(i, 0) >= len_:
                 candidates.append(i)
-        if len(candidates) == 0: return -1
+        if len(candidates) == 0:
+            return -1
         # case 2:
         k = candidates[0]
 
@@ -81,6 +83,6 @@ class Solution(object):
 
 
 if __name__ == "__main__":
-	a = Solution()
-	print(a.minDominoRotations([2,1,2,4,2,2], [5,2,6,2,3,2]))
-	print(a.minDominoRotations([3,5,1,2,3], [3,6,3,3,4]))
+    a = Solution()
+    print(a.minDominoRotations([2, 1, 2, 4, 2, 2], [5, 2, 6, 2, 3, 2]))
+    print(a.minDominoRotations([3, 5, 1, 2, 3], [3, 6, 3, 3, 4]))

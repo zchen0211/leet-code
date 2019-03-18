@@ -1,4 +1,4 @@
-'''
+"""
 10. Regular Expression Matching (Hard)
 
 Implement regular expression matching with support for '.' and '*'.
@@ -19,7 +19,8 @@ isMatch("aa", "a*") → true
 isMatch("aa", ".*") → true
 isMatch("ab", ".*") → true
 isMatch("aab", "c*a*b") → true
-'''
+"""
+
 
 class Solution(object):
     def isMatch(self, s, p):
@@ -35,20 +36,21 @@ class Solution(object):
         lp = len(p)
         # boundary condition: end
         if i == ls:
-            while j < lp-1 and p[j+1] == '*':
+            while j < lp - 1 and p[j + 1] == "*":
                 j += 2
             return j == lp
-        if j == lp: return i == ls
-        # case 1: 
+        if j == lp:
+            return i == ls
+        # case 1:
         # print s[i], p[j]
-        
-        if j < lp-1 and p[j+1] == '*':
-            c = p[j] # char
+
+        if j < lp - 1 and p[j + 1] == "*":
+            c = p[j]  # char
             j += 2
-            while j < lp-1 and p[j] == c and p[j+1] == '*':
+            while j < lp - 1 and p[j] == c and p[j + 1] == "*":
                 j += 2
             i_start = i
-            if c != '.':
+            if c != ".":
                 while i < ls and s[i] == c:
                     i += 1
             else:
@@ -60,7 +62,7 @@ class Solution(object):
                     return True
                 ii -= 1
             return False
-        elif p[j] == '.' or s[i] == p[j]:
-            return self.helper(s, p, i+1, j+1)
+        elif p[j] == "." or s[i] == p[j]:
+            return self.helper(s, p, i + 1, j + 1)
         else:
             return False

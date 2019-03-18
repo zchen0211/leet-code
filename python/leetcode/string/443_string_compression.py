@@ -42,6 +42,7 @@ All characters have an ASCII value in [35, 126].
 1 <= len(chars) <= 1000.
 """
 
+
 class Solution(object):
     def compress(self, chars):
         """
@@ -49,19 +50,20 @@ class Solution(object):
         :rtype: int
         """
         n = len(chars)
-        if n == 0: return 0
+        if n == 0:
+            return 0
 
         i = 0
         while i != len(chars):
-          cnt = 1
-          j = i
-          while j<len(chars)-1 and chars[j+1] == chars[i]:
-            j += 1
-          n = j - i + 1
-          del chars[i+1:j+1]
-          if n > 1:
-            for c in str(n):
-              chars.insert(i+1, c)
-              i += 1
-          i += 1
+            cnt = 1
+            j = i
+            while j < len(chars) - 1 and chars[j + 1] == chars[i]:
+                j += 1
+            n = j - i + 1
+            del chars[i + 1 : j + 1]
+            if n > 1:
+                for c in str(n):
+                    chars.insert(i + 1, c)
+                    i += 1
+            i += 1
         return len(chars)

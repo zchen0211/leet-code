@@ -34,6 +34,7 @@ Output: False
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     def findTarget(self, root, k):
         """
@@ -41,4 +42,3 @@ class Solution(object):
         :type k: int
         :rtype: bool
         """
-        

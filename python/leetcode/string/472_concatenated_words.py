@@ -19,6 +19,12 @@ The length sum of elements in the given array will not exceed 600,000.
 All the input string will only include lower case letters.
 The returned elements order does not matter.
 """
+
+"""
+dfs: recursive
+# trie for look-up
+"""
+
 class TrieNode(object):
   def __init__(self):
     self.isword = False

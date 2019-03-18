@@ -28,25 +28,21 @@ The input is two lists: the subroutines called and their arguments. Solution's c
 
 
 class Solution(object):
-
     def __init__(self, n_rows, n_cols):
         """
         :type n_rows: int
         :type n_cols: int
         """
 
-
     def flip(self):
         """
         :rtype: List[int]
         """
 
-
     def reset(self):
         """
         :rtype: None
         """
-
 
 
 # Your Solution object will be instantiated and called as such:

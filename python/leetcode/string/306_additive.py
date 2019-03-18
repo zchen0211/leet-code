@@ -19,6 +19,11 @@ Follow up:
 How would you handle overflow for very large input integers?
 '''
 
+"""
+generate first and second;
+all following goes recursively
+"""
+
 class Solution(object):
   def isAdditive(self, num):
     n = len(num)

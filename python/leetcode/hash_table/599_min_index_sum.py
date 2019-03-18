@@ -1,4 +1,4 @@
-'''
+"""
 599. Minimum Index Sum of Two Lists (Easy)
 
 Suppose Andy and Doris want to choose a restaurant for dinner, and they both have a list of favorite restaurants represented by strings.
@@ -23,7 +23,8 @@ The length of both lists will be in the range of [1, 1000].
 The length of strings in both lists will be in the range of [1, 30].
 The index is starting from 0 to the list length minus 1.
 No duplicates in both lists.
-'''
+"""
+
 
 class Solution(object):
     def findRestaurant(self, list1, list2):
@@ -36,7 +37,7 @@ class Solution(object):
         for i in range(len(list1)):
             tmp = list1[i]
             map1[tmp] = i
-        
+
         least_sum = len(list1) + len(list2)
         result = []
         for i in range(len(list2)):
@@ -48,5 +49,5 @@ class Solution(object):
                     result = [tmp]
                 elif tmp_sum == least_sum:
                     result.append(tmp)
-                    
+
         return result

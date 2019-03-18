@@ -1,4 +1,4 @@
-'''
+"""
 165 Compare Version Numbers (Medium)
 
 Compare two version numbers version1 and version2.
@@ -11,31 +11,31 @@ For instance, 2.5 is not "two and a half" or "half way to version three", it is 
 Here is an example of version numbers ordering:
 
 0.1 < 1.1 < 1.2 < 13.37
-'''
+"""
+
 
 class Solution(object):
-  def compareVersion(self, version1, version2):
-    v1_list = version1.split('.')
-    v2_list = version2.split('.')
+    def compareVersion(self, version1, version2):
+        v1_list = version1.split(".")
+        v2_list = version2.split(".")
 
-    v1_n = len(v1_list)
-    v2_n = len(v2_list)
+        v1_n = len(v1_list)
+        v2_n = len(v2_list)
 
-    for i in range(min(v1_n, v2_n)):
-      if int(v1_list[i]) > int(v2_list[i]):
-        return 1
-      elif int(v1_list[i]) < int(v2_list[i]):
-        return -1
+        for i in range(min(v1_n, v2_n)):
+            if int(v1_list[i]) > int(v2_list[i]):
+                return 1
+            elif int(v1_list[i]) < int(v2_list[i]):
+                return -1
 
-    # go through remaining
-    if v1_n > v2_n:
-      for i in range(v2_n, v1_n):
-        if int(v1_list[i]) > 0:
-          return 1
-    elif v2_n > v1_n:
-      for i in range(v1_n, v2_n):
-        if int(v2_list[i]) > 0:
-          return -1
-      
-    return 0
+        # go through remaining
+        if v1_n > v2_n:
+            for i in range(v2_n, v1_n):
+                if int(v1_list[i]) > 0:
+                    return 1
+        elif v2_n > v1_n:
+            for i in range(v1_n, v2_n):
+                if int(v2_list[i]) > 0:
+                    return -1
 
+        return 0

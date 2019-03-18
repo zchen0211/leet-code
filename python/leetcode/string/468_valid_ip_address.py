@@ -35,6 +35,18 @@ Output: "Neither"
 Explanation: This is neither a IPv4 address nor a IPv6 address.
 """
 
+"""
+check ipv4 and ipv6 separately:
+IPv4:
+  4 numbers separated by "."
+  each number between 0, 255
+  no beginning zeros
+  check "-0"
+IPv6:
+  8 hex numbers separated by ":"
+  each digit between 0, .., 9, a, .., f
+"""
+
 class Solution(object):
   def validIPAddress(self, IP):
     """

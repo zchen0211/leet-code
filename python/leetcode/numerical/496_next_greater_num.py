@@ -1,4 +1,4 @@
-'''
+"""
 496 Next Greater Element I (Easy)
 
 The Next Greater Number of a number x in nums1 is the first greater number to its right in nums2. If it does not exist, output -1 for this number.
@@ -19,7 +19,7 @@ Explanation:
 Note:
 All elements in nums1 and nums2 are unique.
 The length of both nums1 and nums2 would not exceed 1000.
-'''
+"""
 
 
 class Solution(object):
@@ -37,16 +37,16 @@ class Solution(object):
         next_dic = {}
         for i in range(len(nums)):
             tmp = nums[i]
-            while len(stack)>0 and tmp>stack[-1]:
+            while len(stack) > 0 and tmp > stack[-1]:
                 # not empty and still larger than current
                 tmp2 = stack.pop()
                 next_dic[tmp2] = tmp
             stack.append(tmp)
         # go through remaining stuff
-        while len(stack)>0:
+        while len(stack) > 0:
             num = stack.pop()
             next_dic[num] = -1
-            
+
         result = []
         for num in findNums:
             result.append(next_dic[num])

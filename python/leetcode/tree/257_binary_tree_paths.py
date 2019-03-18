@@ -1,4 +1,4 @@
-'''
+"""
 257. Binary Tree Paths (Easy)
 
 Given a binary tree, return all root-to-leaf paths.
@@ -13,7 +13,7 @@ For example, given the following binary tree:
 All root-to-leaf paths are:
 
 ["1->2->5", "1->3"]
-'''
+"""
 
 # Definition for a binary tree node.
 # class TreeNode(object):
@@ -21,6 +21,7 @@ All root-to-leaf paths are:
 #         self.val = x
 #         self.left = None
 #         self.right = None
+
 
 class Solution(object):
     def binaryTreePaths(self, root):
@@ -37,8 +38,8 @@ class Solution(object):
             result = []
             if root.left:
                 result_l = self.binaryTreePaths(root.left)
-                result += [str(root.val)+'->'+item for item in result_l]
+                result += [str(root.val) + "->" + item for item in result_l]
             if root.right:
                 result_r = self.binaryTreePaths(root.right)
-                result += [str(root.val)+'->'+item for item in result_r]
+                result += [str(root.val) + "->" + item for item in result_r]
         return result

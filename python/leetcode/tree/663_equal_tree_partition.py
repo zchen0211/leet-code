@@ -46,6 +46,7 @@ The range of tree node value is in the range of [-100000, 100000].
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     def checkEqualTree(self, root):
         """
@@ -53,17 +54,19 @@ class Solution(object):
         :rtype: bool
         """
         self.stat = {}
-        if root is None: return False
+        if root is None:
+            return False
         tmp = self.sumdown(root)
         # print self.stat
-        if tmp % 2 == 1: return False
-        if tmp!=0 and tmp/2 in self.stat:
+        if tmp % 2 == 1:
+            return False
+        if tmp != 0 and tmp / 2 in self.stat:
             return True
         elif tmp == 0 and self.stat[0] >= 2:
             return True
         else:
             return False
-        
+
     def sumdown(self, node):
         s1, s2 = 0, 0
         if node.left is not None:

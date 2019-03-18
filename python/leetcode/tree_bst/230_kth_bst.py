@@ -10,6 +10,11 @@ Follow up:
 What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine?
 '''
 
+"""
+A static var to save result.
+In-order-traversal
+"""
+
 # Definition for a binary tree node.
 class TreeNode(object):
     def __init__(self, x):

@@ -10,13 +10,13 @@ GetMinKey() - Returns one of the keys with minimal value. If no element exists, 
 Challenge: Perform all these in O(1) time complexity.
 """
 
-class AllOne(object):
 
+class AllOne(object):
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        self.table = {} # str 2 key
+        self.table = {}  # str 2 key
         self.rev_table = {}
 
     def inc(self, key):
@@ -36,13 +36,13 @@ class AllOne(object):
             else:
                 self.rev_table[1].add(key)
         else:
-            self.rev_table[tmp_v-1].remove(key)
+            self.rev_table[tmp_v - 1].remove(key)
             if tmp_v in self.rev_table:
                 self.rev_table[tmp_v].add(key)
             else:
                 self.rev_table[tmp_v] = set([key])
-            if len(self.rev_table[tmp_v-1]) == 0:
-                del self.rev_table[tmp_v-1]
+            if len(self.rev_table[tmp_v - 1]) == 0:
+                del self.rev_table[tmp_v - 1]
 
     def dec(self, key):
         """
@@ -59,12 +59,13 @@ class AllOne(object):
                 del self.table[key]
                 self.rev_table[1].remove(key)
             else:
-                self.rev_table[tmp_v+1].remove(key)
-                if tmp_v in self.rev_table: self.rev_table[tmp_v].add(key)
-                else: self.rev_table[tmp_v] = set([key])
-            if len(self.rev_table[tmp_v+1]) == 0:
-                del self.rev_table[tmp_v+1]
-        
+                self.rev_table[tmp_v + 1].remove(key)
+                if tmp_v in self.rev_table:
+                    self.rev_table[tmp_v].add(key)
+                else:
+                    self.rev_table[tmp_v] = set([key])
+            if len(self.rev_table[tmp_v + 1]) == 0:
+                del self.rev_table[tmp_v + 1]
 
     def getMaxKey(self):
         """
@@ -72,7 +73,7 @@ class AllOne(object):
         :rtype: str
         """
         if len(self.rev_table) == 0:
-            return ''
+            return ""
         v_max = max(self.rev_table.keys())
         x = self.rev_table[v_max].pop()
         self.rev_table[v_max].add(x)
@@ -84,12 +85,11 @@ class AllOne(object):
         :rtype: str
         """
         if len(self.rev_table) == 0:
-            return ''
+            return ""
         v_min = min(self.rev_table.keys())
         x = self.rev_table[v_min].pop()
         self.rev_table[v_min].add(x)
         return x
-        
 
 
 # Your AllOne object will be instantiated and called as such:

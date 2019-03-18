@@ -1,4 +1,4 @@
-'''
+"""
 49. Group Anagrams (Medium)
 
 Given an array of strings, group anagrams together.
@@ -11,7 +11,8 @@ Return:
   ["nat","tan"],
   ["bat"]
 ]
-'''
+"""
+
 
 class Solution(object):
     def groupAnagrams(self, strs):
@@ -25,7 +26,7 @@ class Solution(object):
         for str_ in strs:
             re = list(str_)
             re.sort()
-            re = ''.join(re)
+            re = "".join(re)
             if re in mapping:
                 mapping[re].append(str_)
             else:
@@ -34,4 +35,4 @@ class Solution(object):
         for k in mapping.keys():
             tmp = list(mapping[k])
             result.append(tmp)
-        return result        
+        return result

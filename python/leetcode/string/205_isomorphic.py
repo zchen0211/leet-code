@@ -1,4 +1,4 @@
-'''
+"""
 205. Isomorphic Strings (Easy)
 
 Given two strings s and t, determine if they are isomorphic.
@@ -16,24 +16,25 @@ Given "paper", "title", return true.
 
 Note:
 You may assume both s and t have the same length.
-'''
+"""
+
 
 class Solution(object):
-  def isIsomorphic(self, s, t):
-    if len(s) != len(t):
-      return False
-    num = len(s)
-    map_s2t = {}
-    map_t2s = {}
-    for i in range(num):
-      if map_s2t.has_key(s[i]):
-        if t[i] != map_s2t[s[i]]:
-          return False
-      else:
-        map_s2t[s[i]] = t[i]
-      if map_t2s.has_key(t[i]):
-        if s[i] != map_t2s[t[i]]:
-          return False
-      else:
-        map_t2s[t[i]] = s[i]
-    return True
+    def isIsomorphic(self, s, t):
+        if len(s) != len(t):
+            return False
+        num = len(s)
+        map_s2t = {}
+        map_t2s = {}
+        for i in range(num):
+            if map_s2t.has_key(s[i]):
+                if t[i] != map_s2t[s[i]]:
+                    return False
+            else:
+                map_s2t[s[i]] = t[i]
+            if map_t2s.has_key(t[i]):
+                if s[i] != map_t2s[t[i]]:
+                    return False
+            else:
+                map_t2s[t[i]] = s[i]
+        return True

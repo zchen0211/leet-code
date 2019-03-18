@@ -17,24 +17,25 @@ return 2.
 # from Queue import PriorityQueue
 from heapq import *
 
+
 class Solution(object):
-  def minMeetingRooms(self, intervals):
-    """
+    def minMeetingRooms(self, intervals):
+        """
     :type intervals: List[Interval]
     :rtype: int
     """
-    ints = []
-    for int_ in intervals:
-      i, j = int_.start, int_.end
-      ints.append((i, j))
-    ints.sort() # sort based on start
+        ints = []
+        for int_ in intervals:
+            i, j = int_.start, int_.end
+            ints.append((i, j))
+        ints.sort()  # sort based on start
 
-    heap = []
-    result = 0
-    for item in ints:
-      start, end = item
-      while len(heap) > 0 and heap[0] <= start:
-        heappop(heap)
-      heappush(heap, end)
-      result = max(result, len(heap))
-    return result
+        heap = []
+        result = 0
+        for item in ints:
+            start, end = item
+            while len(heap) > 0 and heap[0] <= start:
+                heappop(heap)
+            heappush(heap, end)
+            result = max(result, len(heap))
+        return result

@@ -27,17 +27,17 @@ cache.get(4);       // returns 4
 
 import collections
 
-class LFUCache(object):
 
+class LFUCache(object):
     def __init__(self, capacity):
         """
         :type capacity: int
         """
         self.capacity = capacity
-        self.table = {} # original k: (v, freq)
-        self.step = 0 # curr_step
-        self.freq_2_key = {} # frequency to [key]
-        
+        self.table = {}  # original k: (v, freq)
+        self.step = 0  # curr_step
+        self.freq_2_key = {}  # frequency to [key]
+
     def get(self, key):
         """
         :type key: int
@@ -46,19 +46,17 @@ class LFUCache(object):
         if key in self.table:
             # inc freq
             v, freq = self.table[key]
-            self.table[key] = (v, freq+1)
+            self.table[key] = (v, freq + 1)
             self.freq_2_key[freq].remove(key)
             if len(self.freq_2_key[freq]) == 0:
                 del self.freq_2_key[freq]
-            if freq+1 not in self.freq_2_key:
-                self.freq_2_key[freq+1] = [key]
+            if freq + 1 not in self.freq_2_key:
+                self.freq_2_key[freq + 1] = [key]
             else:
-                self.freq_2_key[freq+1].append(key)
+                self.freq_2_key[freq + 1].append(key)
             return v
         else:
             return -1
-        
-        
 
     def put(self, key, value):
         """
@@ -69,16 +67,16 @@ class LFUCache(object):
         if key in self.table:
             # reset
             v, freq = self.table[key]
-            self.table[key] = (value, freq+1)
-            
+            self.table[key] = (value, freq + 1)
+
             # change frequency
             self.freq_2_key[freq].remove(key)
             if len(self.freq_2_key[freq]) == 0:
                 del self.freq_2_key[freq]
-            if freq+1 in self.freq_2_key:
-                self.freq_2_key[freq+1].append(key)
+            if freq + 1 in self.freq_2_key:
+                self.freq_2_key[freq + 1].append(key)
             else:
-                self.freq_2_key[freq+1] = [key]
+                self.freq_2_key[freq + 1] = [key]
         else:
             if self.capacity > 0:
                 if len(self.table.keys()) == self.capacity:
@@ -95,7 +93,6 @@ class LFUCache(object):
                     self.freq_2_key[1].append(key)
                 else:
                     self.freq_2_key[1] = [key]
-        
 
 
 # Your LFUCache object will be instantiated and called as such:

@@ -1,4 +1,4 @@
-'''
+"""
 155. Min Stack (Easy)
 
 Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
@@ -16,17 +16,16 @@ minStack.getMin();   --> Returns -3.
 minStack.pop();
 minStack.top();      --> Returns 0.
 minStack.getMin();   --> Returns -2.
-'''
+"""
+
 
 class MinStack(object):
-
     def __init__(self):
         """
         initialize your data structure here.
         """
         self.stack = []
         self.min_so_far = []
-        
 
     def push(self, x):
         """
@@ -38,7 +37,6 @@ class MinStack(object):
             self.min_so_far.append(min(self.min_so_far[-1], x))
         else:
             self.min_so_far.append(x)
-            
 
     def pop(self):
         """
@@ -46,14 +44,12 @@ class MinStack(object):
         """
         self.min_so_far.pop()
         return self.stack.pop()
-        
 
     def top(self):
         """
         :rtype: int
         """
         return self.stack[-1]
-        
 
     def getMin(self):
         """

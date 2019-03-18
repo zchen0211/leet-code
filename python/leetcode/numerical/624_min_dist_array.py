@@ -17,6 +17,7 @@ The total number of the integers in all the m arrays will be in the range of [2,
 The integers in the m arrays will be in the range of [-10000, 10000].
 """
 
+
 class Solution(object):
     def maxDistance(self, arrays):
         """
@@ -32,7 +33,7 @@ class Solution(object):
         best = 0
         for i in range(1, n):
             min_, max_ = result[i]
-            best = max(best, curr_max-min_, max_-curr_min)
+            best = max(best, curr_max - min_, max_ - curr_min)
             curr_min = min(curr_min, min_)
             curr_max = max(curr_max, max_)
         return best

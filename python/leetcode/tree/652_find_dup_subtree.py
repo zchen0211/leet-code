@@ -80,8 +80,6 @@ class Solution(object):
       self.table[res].append(root)
     return res
 
-
-
   def preorder_(self, root):
     if root is None:
       return

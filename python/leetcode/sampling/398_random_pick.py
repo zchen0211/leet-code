@@ -1,4 +1,4 @@
-'''
+"""
 398. Random Pick Index (Medium)
 
 Given an array of integers with possible duplicates, randomly output the index of a given target number. You can assume that the given target number must exist in the array.
@@ -16,9 +16,10 @@ solution.pick(3);
 
 // pick(1) should return 0. Since in the array only nums[0] is equal to 1.
 solution.pick(1);
-'''
+"""
 
 import random
+
 
 class Solution(object):
     def __init__(self, nums):
@@ -28,7 +29,7 @@ class Solution(object):
         :type numsSize: int
         """
         self.nums = nums
-        
+
     def pick(self, target):
         """
         :type target: int
@@ -42,6 +43,6 @@ class Solution(object):
                 continue
             else:
                 cnt += 1
-                if random.randint(0,n) % cnt == 0:
+                if random.randint(0, n) % cnt == 0:
                     result = i
         return result

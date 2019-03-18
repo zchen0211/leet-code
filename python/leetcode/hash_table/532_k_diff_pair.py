@@ -1,4 +1,4 @@
-'''
+"""
 532 K-diff Pairs in an Array (Easy)
 
 Given an array of integers and an integer k, you need to find the number of unique k-diff pairs in the array. Here a k-diff pair is defined as an integer pair (i, j), where i and j are both numbers in the array and their absolute difference is k.
@@ -21,7 +21,8 @@ The pairs (i, j) and (j, i) count as the same pair.
 The length of the array won't exceed 10,000.
 All the integers in the given input belong to the range: [-1e7, 1e7].
 
-'''
+"""
+
 
 class Solution(object):
     def findPairs(self, nums, k):
@@ -30,14 +31,14 @@ class Solution(object):
         :type k: int
         :rtype: int
         """
-        if len(nums) == 0 or k<0:
+        if len(nums) == 0 or k < 0:
             return 0
         # k != 0 case
         if k != 0:
             result = 0
             nums_set = set(nums)
             for i in nums_set:
-                if i+k in nums_set:
+                if i + k in nums_set:
                     result += 1
         else:
             nums_dict = {}

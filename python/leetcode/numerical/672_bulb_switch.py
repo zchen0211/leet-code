@@ -23,6 +23,7 @@ Explanation: Status can be: [off, on, off], [on, off, on], [off, off, off], [off
 Note: n and m both fit in range [0, 1000].
 """
 
+
 class Solution(object):
     def flipLights(self, n, m):
         """
@@ -30,4 +31,3 @@ class Solution(object):
         :type m: int
         :rtype: int
         """
-        

@@ -38,11 +38,13 @@ class Solution(object):
         :type N: int
         :rtype: int
         """
-        if N == 0: return 0
-        if N == 1: return 1
+        if N == 0:
+            return 0
+        if N == 1:
+            return 1
         curr, prev = 1, 0
-        for i in range(N-1):
-            curr, prev = curr+prev, curr
+        for i in range(N - 1):
+            curr, prev = curr + prev, curr
         return curr
 
 
@@ -50,4 +52,3 @@ if __name__ == "__main__":
     a = Solution()
     for i in range(10):
         print(a.fib(i))
-

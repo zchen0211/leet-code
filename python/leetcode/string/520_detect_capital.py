@@ -1,4 +1,4 @@
-'''
+"""
 520 Detect Capital (Easy)
 
 Given a word, you need to judge whether the usage of capitals in it is right or not.
@@ -16,7 +16,8 @@ Example 2:
 Input: "FlaG"
 Output: False
 Note: The input will be a non-empty word consisting of uppercase and lowercase latin letters.
-'''
+"""
+
 
 class Solution(object):
     def detectCapitalUse(self, word):

@@ -14,13 +14,12 @@ Input: insert("app", 2), Output: Null
 Input: sum("ap"), Output: 5
 """
 
-class MapSum(object):
 
+class MapSum(object):
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        
 
     def insert(self, key, val):
         """
@@ -28,14 +27,12 @@ class MapSum(object):
         :type val: int
         :rtype: void
         """
-        
 
     def sum(self, prefix):
         """
         :type prefix: str
         :rtype: int
         """
-        
 
 
 # Your MapSum object will be instantiated and called as such:

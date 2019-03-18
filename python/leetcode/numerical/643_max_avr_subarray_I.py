@@ -12,6 +12,7 @@ Note:
 Elements of the given array will be in the range [-10,000, 10,000].
 """
 
+
 class Solution(object):
     def findMaxAverage(self, nums, k):
         """
@@ -23,10 +24,10 @@ class Solution(object):
         n = len(nums)
         max_ = sum(nums[:k])
         curr = max_
-        while i < n-k:
+        while i < n - k:
             curr -= nums[i]
-            curr += nums[i+k]
+            curr += nums[i + k]
             max_ = max(max_, curr)
             i += 1
-        result = float(max_)/k
+        result = float(max_) / k
         return result

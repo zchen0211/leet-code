@@ -1,4 +1,4 @@
-'''
+"""
 173. Binary Search Tree Iterator (Medium)
 
 Implement an iterator over a binary search tree (BST). Your iterator will be initialized with the root node of a BST.
@@ -6,7 +6,7 @@ Implement an iterator over a binary search tree (BST). Your iterator will be ini
 Calling next() will return the next smallest number in the BST.
 
 Note: next() and hasNext() should run in average O(1) time and uses O(h) memory, where h is the height of the tree.
-'''
+"""
 
 # Definition for a  binary tree node
 # class TreeNode(object):
@@ -14,6 +14,7 @@ Note: next() and hasNext() should run in average O(1) time and uses O(h) memory,
 #         self.val = x
 #         self.left = None
 #         self.right = None
+
 
 class BSTIterator(object):
     def __init__(self, root):
@@ -27,8 +28,7 @@ class BSTIterator(object):
         """
         :rtype: bool
         """
-        return len(self.stack)!=0
-        
+        return len(self.stack) != 0
 
     def next(self):
         """
@@ -37,11 +37,12 @@ class BSTIterator(object):
         result = self.stack.pop()
         self.pushAll(result.right)
         return result.val
-        
+
     def pushAll(self, node):
-        while(node is not None):
+        while node is not None:
             self.stack.append(node)
             node = node.left
+
 
 # Your BSTIterator will be called like this:
 # i, v = BSTIterator(root), []

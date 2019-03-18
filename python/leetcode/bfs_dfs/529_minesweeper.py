@@ -55,40 +55,53 @@ For simplicity, not mentioned rules should be ignored in this problem. For examp
 """
 import collections
 
+
 class Solution(object):
-  def updateBoard(self, board, click):
-    """
+    def updateBoard(self, board, click):
+        """
     :type board: List[List[str]]
     :type click: List[int]
     :rtype: List[List[str]]
     """
-    m = len(board)
-    n = len(board[0])
-    i, j = click
-    if board[i][j] == 'M':
-      board[i][j] = 'X'
-      return board
-    tmp = self.neighbor_mine(i,j)
-    if tmp == 0:
-      board[i][j] = 'B'
-      if i>0 and board[i-1][j]=='E': Q.append((i-1,j))
-      if i<m-1 and board[i+1][j]=='E': Q.append((i+1,j))
-      if j>0 and board[i][j-1]=='E': Q.append((i-1,j))
-      if j<n-1 and board[i][j+1]=='E': Q.append((i-1,j))
-    else:
-      board[i][j] = str(tmp)
-    return board
+        m = len(board)
+        n = len(board[0])
+        i, j = click
+        if board[i][j] == "M":
+            board[i][j] = "X"
+            return board
+        tmp = self.neighbor_mine(i, j)
+        if tmp == 0:
+            board[i][j] = "B"
+            if i > 0 and board[i - 1][j] == "E":
+                Q.append((i - 1, j))
+            if i < m - 1 and board[i + 1][j] == "E":
+                Q.append((i + 1, j))
+            if j > 0 and board[i][j - 1] == "E":
+                Q.append((i - 1, j))
+            if j < n - 1 and board[i][j + 1] == "E":
+                Q.append((i - 1, j))
+        else:
+            board[i][j] = str(tmp)
+        return board
 
-  def neighbor_mine(self, board, i, j):
-    m = len(board)
-    n = len(board[0])
-    cnt = 0
-    if i>0 and board[i-1][j] == 'M': cnt += 1
-    if i<m-1 and board[i-1][j] == 'M': cnt += 1
-    if j>0 and board[i][j-1] == 'M': cnt += 1
-    if j<n-1 and board[i][j+1] == 'M': cnt += 1
-    if i>0 and j>0 and board[i-1][j-1] == 'M': cnt += 1
-    if i>0 and j<n-1 and board[i-1][j+1] == 'M': cnt += 1
-    if i<m-1 and j>0 and board[i+1][j-1] == 'M': cnt += 1
-    if i<m-1 and j<n-1 and board[i+1][j+1] == 'M': cnt += 1
-    return cnt
+    def neighbor_mine(self, board, i, j):
+        m = len(board)
+        n = len(board[0])
+        cnt = 0
+        if i > 0 and board[i - 1][j] == "M":
+            cnt += 1
+        if i < m - 1 and board[i - 1][j] == "M":
+            cnt += 1
+        if j > 0 and board[i][j - 1] == "M":
+            cnt += 1
+        if j < n - 1 and board[i][j + 1] == "M":
+            cnt += 1
+        if i > 0 and j > 0 and board[i - 1][j - 1] == "M":
+            cnt += 1
+        if i > 0 and j < n - 1 and board[i - 1][j + 1] == "M":
+            cnt += 1
+        if i < m - 1 and j > 0 and board[i + 1][j - 1] == "M":
+            cnt += 1
+        if i < m - 1 and j < n - 1 and board[i + 1][j + 1] == "M":
+            cnt += 1
+        return cnt

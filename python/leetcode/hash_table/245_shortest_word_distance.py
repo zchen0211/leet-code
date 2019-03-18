@@ -17,6 +17,7 @@ Note:
 You may assume word1 and word2 are both in the list.
 """
 
+
 class Solution(object):
     def shortestWordDistance(self, words, word1, word2):
         """
@@ -33,22 +34,24 @@ class Solution(object):
                 table[word].append(i)
             else:
                 table[word] = [i]
-                
+
         # case 1:
         if word1 != word2:
             n1, n2 = len(table[word1]), len(table[word2])
             best = max(table[word1]) + max(table[word2])
             i1, i2 = 0, 0
             while i1 < n1 and i2 < n2:
-              id1_ = table[word1][i1]
-              id2_ = table[word2][i2]
-              best = min(best, abs(id1_ - id2_))
-              if id1_ < id2_: i1 += 1
-              else: i2 += 1
+                id1_ = table[word1][i1]
+                id2_ = table[word2][i2]
+                best = min(best, abs(id1_ - id2_))
+                if id1_ < id2_:
+                    i1 += 1
+                else:
+                    i2 += 1
             return best
         else:
             n1 = len(table[word1])
             best = n
-            for i in range(n1-1):
-                best = min(best, table[word1][i+1] - table[word1][i])
-            return best        
+            for i in range(n1 - 1):
+                best = min(best, table[word1][i + 1] - table[word1][i])
+            return best

@@ -1,4 +1,4 @@
-'''
+"""
 19. Remove Nth Node From End of List (Medium)
 
 Given a linked list, remove the nth node from the end of list and return its head.
@@ -11,13 +11,20 @@ For example,
 Note:
 Given n will always be valid.
 Try to do this in one pass.
-'''
+"""
 
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, x):
 #         self.val = x
 #         self.next = None
+
+
+"""
+Solution:
+  requirement: do in one pass
+  so fast/slow pointer (common trick)
+"""
 
 
 class Solution(object):
@@ -33,11 +40,10 @@ class Solution(object):
         # need to delete the first node
         if fast is None:
             return head.next
-        
+
         slow = head
         while fast.next is not None:
             slow = slow.next
             fast = fast.next
         slow.next = slow.next.next
         return head
-

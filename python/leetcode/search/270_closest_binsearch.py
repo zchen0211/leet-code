@@ -15,6 +15,7 @@ You are guaranteed to have only one unique value in the BST that is closest to t
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     def closestValue(self, root, target):
         """
@@ -38,9 +39,11 @@ class Solution(object):
                     small = node.val
                 small = max(small, node.val)
                 node = node.right
-        if large is None: return small
-        if small is None: return large
-        
+        if large is None:
+            return small
+        if small is None:
+            return large
+
         if large - target > target - small:
             return small
         else:

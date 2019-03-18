@@ -62,6 +62,7 @@ Note: Answer will in the range of 32-bit signed integer.
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     def widthOfBinaryTree(self, root):
         """

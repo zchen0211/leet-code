@@ -1,4 +1,4 @@
-'''
+"""
 563. Binary Tree Tilt (Easy)
 
 Given a binary tree, return the tilt of the whole tree.
@@ -22,7 +22,7 @@ Note:
 
 The sum of node values in any subtree won't exceed the range of 32-bit integer.
 All the tilt values won't exceed the range of 32-bit integer.
-'''
+"""
 
 # Definition for a binary tree node.
 # class TreeNode(object):
@@ -30,6 +30,7 @@ All the tilt values won't exceed the range of 32-bit integer.
 #         self.val = x
 #         self.left = None
 #         self.right = None
+
 
 class Solution(object):
     def findTilt(self, root):
@@ -41,7 +42,7 @@ class Solution(object):
             return 0
         result, _ = self.helper(root)
         return result
-    
+
     def helper(self, root):
         # return tilt of all left and right, sum of self
         if root is None:
@@ -50,5 +51,4 @@ class Solution(object):
             return 0, root.val
         tilt_l, sum_l = self.helper(root.left)
         tilt_r, sum_r = self.helper(root.right)
-        return tilt_l+tilt_r+abs(sum_l-sum_r), sum_l+sum_r+root.val
-
+        return tilt_l + tilt_r + abs(sum_l - sum_r), sum_l + sum_r + root.val

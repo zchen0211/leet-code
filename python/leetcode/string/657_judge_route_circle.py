@@ -13,6 +13,7 @@ Input: "LL"
 Output: false
 """
 
+
 class Solution(object):
     def judgeCircle(self, moves):
         """
@@ -20,8 +21,10 @@ class Solution(object):
         :rtype: bool
         """
         n = len(moves)
-        if n == 0: return True
-        if n % 2 == 1: return False
+        if n == 0:
+            return True
+        if n % 2 == 1:
+            return False
         record = [0, 0]
         for i in range(len(moves)):
             if moves[i] == "L":

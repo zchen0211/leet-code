@@ -14,17 +14,19 @@ Output: False
 
 import math
 
+
 class Solution(object):
     def judgeSquareSum(self, c):
         """
         :type c: int
         :rtype: bool
         """
-        if c == 0: return True
+        if c == 0:
+            return True
         a = 0
-        while a*a*2 <= c:
+        while a * a * 2 <= c:
             b = round(math.sqrt(c - a ** 2))
-            if b*b + a*a == c:
+            if b * b + a * a == c:
                 return True
             a += 1
         return False

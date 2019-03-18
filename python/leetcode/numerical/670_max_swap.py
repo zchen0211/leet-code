@@ -15,10 +15,10 @@ Note:
 The given number is in the range [0, 108]
 """
 
+
 class Solution(object):
     def maximumSwap(self, num):
         """
         :type num: int
         :rtype: int
         """
-        

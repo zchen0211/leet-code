@@ -38,34 +38,39 @@ case 3: + (update sum_)
 case 4: - (keep negative flag)
 """
 
+
 class Solution(object):
     def clumsy(self, N):
         """
         :type N: int
         :rtype: int
         """
-        if N == 1: return 1
-        if N == 2: return 2*1
-        if N == 3: return 3*2/1
+        if N == 1:
+            return 1
+        if N == 2:
+            return 2 * 1
+        if N == 3:
+            return 3 * 2 / 1
 
-        sum_ = N * (N-1) // (N-2)
+        sum_ = N * (N - 1) // (N - 2)
         item = N - 3
         while item >= 1:
-        	# pos
-        	sum_ += item
-        	item -= 1
-        	if item == 0:
-        		break
-        	elif item == 1:
-        		curr = item
-        	elif item == 2:
-        		curr = item * (item-1)
-        	else:
-        		curr = item * (item-1) // (item-2)
-        	sum_ -= curr
-        	item = item-3
+            # pos
+            sum_ += item
+            item -= 1
+            if item == 0:
+                break
+            elif item == 1:
+                curr = item
+            elif item == 2:
+                curr = item * (item - 1)
+            else:
+                curr = item * (item - 1) // (item - 2)
+            sum_ -= curr
+            item = item - 3
         return sum_
 
+
 if __name__ == "__main__":
-	a = Solution()
-	print(a.clumsy(4))
+    a = Solution()
+    print(a.clumsy(4))

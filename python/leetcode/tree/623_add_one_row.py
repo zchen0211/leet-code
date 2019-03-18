@@ -60,6 +60,7 @@ The given binary tree has at least one tree node.
 #         self.left = None
 #         self.right = None
 
+
 class Solution(object):
     def addOneRow(self, root, v, d):
         """
@@ -72,24 +73,26 @@ class Solution(object):
             new_root = TreeNode(v)
             new_root.left = root
             return new_root
-            
+
         stack = [root]
-        while d>2:
+        while d > 2:
             new_stack = []
             while len(stack) > 0:
                 node = stack.pop()
-                if node.left is not None: new_stack.append(node.left)
-                if node.right is not None: new_stack.append(node.right)
+                if node.left is not None:
+                    new_stack.append(node.left)
+                if node.right is not None:
+                    new_stack.append(node.right)
             stack = new_stack
             d -= 1
-            
+
         # add a new layer of nodes
-        while len(stack)>0:
+        while len(stack) > 0:
             node = stack.pop()
             new_node = TreeNode(v)
             new_node.left = node.left
             node.left = new_node
-            
+
             new_node = TreeNode(v)
             new_node.right = node.right
             node.right = new_node

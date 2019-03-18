@@ -1,4 +1,4 @@
-'''
+"""
 187 Repeated DNA Sequences (Medium)
 
 All DNA is composed of a series of nucleotides abbreviated as A, C, G, and T, for example: "ACGAATTCCG". When studying DNA, it is sometimes useful to identify repeated sequences within the DNA.
@@ -11,7 +11,8 @@ Given s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT",
 
 Return:
 ["AAAAACCCCC", "CCCCCAAAAA"].
-'''
+"""
+
 
 class Solution(object):
     def findRepeatedDnaSequences(self, s):
@@ -21,11 +22,11 @@ class Solution(object):
         """
         n = len(s)
         tmp_set = {}
-        for i in range(n-9):
-            if tmp_set.has_key(s[i:i+10]):
-                tmp_set[s[i:i+10]] += 1
+        for i in range(n - 9):
+            if tmp_set.has_key(s[i : i + 10]):
+                tmp_set[s[i : i + 10]] += 1
             else:
-                tmp_set[s[i:i+10]] = 1
+                tmp_set[s[i : i + 10]] = 1
         # print tmp_set
-        result = [k for k, v in tmp_set.items() if v>1]
+        result = [k for k, v in tmp_set.items() if v > 1]
         return result

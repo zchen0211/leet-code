@@ -1,10 +1,11 @@
-'''
+"""
 13. Roman to Integer (Easy)
 
 Given a roman numeral, convert it to an integer.
 
 Input is guaranteed to be within the range from 1 to 3999.
-'''
+"""
+
 
 class Solution(object):
     def romanToInt(self, s):
@@ -13,19 +14,19 @@ class Solution(object):
         :rtype: int
         """
         rec = []
-        rec.append(('M', '-', '-'))
-        rec.append(('C', 'D', 'M'))
-        rec.append(('X', 'L', 'C'))
-        rec.append(('I', 'V', 'X'))
+        rec.append(("M", "-", "-"))
+        rec.append(("C", "D", "M"))
+        rec.append(("X", "L", "C"))
+        rec.append(("I", "V", "X"))
         result = 0
         i = 0
-        while s != '':
+        while s != "":
             tmp = 0
             c1, c2, c3 = rec[i]
-            if s.startswith(c1+c2):
+            if s.startswith(c1 + c2):
                 tmp = 4
                 s = s[2:]
-            elif s.startswith(c1+c3):
+            elif s.startswith(c1 + c3):
                 tmp = 9
                 s = s[2:]
             else:
@@ -37,7 +38,7 @@ class Solution(object):
                     j += 1
                 tmp += j
                 s = s[j:]
-            result += tmp * (10 ** (3-i))          
-            
+            result += tmp * (10 ** (3 - i))
+
             i += 1
         return result

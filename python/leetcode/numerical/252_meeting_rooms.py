@@ -14,6 +14,7 @@ return false.
 #         self.start = s
 #         self.end = e
 
+
 class Solution(object):
     def canAttendMeetings(self, intervals):
         """
@@ -23,12 +24,12 @@ class Solution(object):
         if len(intervals) == 0:
             return True
 
-        intervals.sort(key= lambda item:(item.start, item.end))
-        
+        intervals.sort(key=lambda item: (item.start, item.end))
+
         n = len(intervals)
-        for i in range(n-1):
+        for i in range(n - 1):
             int1 = intervals[i]
-            int2 = intervals[i+1]
+            int2 = intervals[i + 1]
             if int1.end > int2.start:
                 return False
         return True

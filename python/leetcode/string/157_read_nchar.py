@@ -20,6 +20,7 @@ def read4(buf):
     else:
         return len(buf)
 
+
 class Solution(object):
     def read(self, buf, n):
         """
@@ -29,8 +30,9 @@ class Solution(object):
         """
         res = 0
         i = 0
-        while i <= n/4:
+        while i <= n / 4:
             curr = read4(buf[res:])
             res += curr
-            if curr == 0: break
+            if curr == 0:
+                break
         return min(res, n)

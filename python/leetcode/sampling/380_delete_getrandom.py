@@ -1,4 +1,4 @@
-'''
+"""
 380. Insert Delete GetRandom O(1) (Medium)
 
 Design a data structure that supports all following operations in average O(1) time.
@@ -31,12 +31,12 @@ randomSet.insert(2);
 
 // Since 2 is the only number in the set, getRandom always return 2.
 randomSet.getRandom();
-'''
+"""
 
 import random
 
-class RandomizedSet(object):
 
+class RandomizedSet(object):
     def __init__(self):
         """
         Initialize your data structure here.
@@ -67,11 +67,11 @@ class RandomizedSet(object):
             n = len(self.data)
             i = self.data2loc[val]
             tmp_val = self.data[-1]
-            
-            self.data[i], self.data[n-1] = self.data[n-1], self.data[i]
+
+            self.data[i], self.data[n - 1] = self.data[n - 1], self.data[i]
             # remove from data
             self.data = self.data[:-1]
-            
+
             # remove from data2loc
             self.data2loc[tmp_val] = i
             del self.data2loc[val]

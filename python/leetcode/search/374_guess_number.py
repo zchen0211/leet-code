@@ -1,4 +1,4 @@
-'''
+"""
 374. Guess Number Higher or Lower (Easy)
 
 We are playing the Guess Game. The game is as follows:
@@ -16,7 +16,7 @@ Example:
 n = 10, I pick 6.
 
 Return 6.
-'''
+"""
 
 # The guess API is already defined for you.
 # @param num, your guess
@@ -25,14 +25,13 @@ Return 6.
 
 
 class Solution(object):
-  def guessNumber(self, n):
-    low, high = 1, n
-    mid = (low+high)/2 
-    while(high!=low):
-      if guess(mid) == -1:
-        low = mid + 1
-      elif guess(mid) == 0:
-        return mid
-      else:
-        high = mid-1
-
+    def guessNumber(self, n):
+        low, high = 1, n
+        mid = (low + high) / 2
+        while high != low:
+            if guess(mid) == -1:
+                low = mid + 1
+            elif guess(mid) == 0:
+                return mid
+            else:
+                high = mid - 1
