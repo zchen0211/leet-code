@@ -18,6 +18,16 @@ Solution solution = new Solution(head);
 solution.getRandom();
 '''
 
+"""
+reservoir sampling:
+  given a list of n numbers
+  at step t
+   1. keep current with probability (t-1) / t;
+   2. choose the new t with probability 1 / t;
+
+good space complexity: O(1)
+"""
+
 import random
 
 # Definition for singly-linked list.

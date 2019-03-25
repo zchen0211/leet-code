@@ -17,9 +17,9 @@ You are given an API bool isBadVersion(version) which will return whether versio
 class Solution(object):
     def firstBadVersion(self, n):
         """
-    :type n: int
-    :rtype: int
-    """
+        :type n: int
+        :rtype: int
+        """
         begin = 1
         end = n
         while begin < end:

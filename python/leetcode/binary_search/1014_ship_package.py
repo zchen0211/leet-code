@@ -7,8 +7,6 @@ The i-th package on the conveyor belt has a weight of weights[i].  Each day, we 
 
 Return the least weight capacity of the ship that will result in all the packages on the conveyor belt being shipped within D days.
 
- 
-
 Example 1:
 
 Input: weights = [1,2,3,4,5,6,7,8,9,10], D = 5
@@ -47,6 +45,12 @@ Note:
 1 <= weights[i] <= 500
 """
 
+"""
+find minimum number x in [min_, max_]
+s.t. f(x) <= D
+x smaller, f(x) larger
+can query f(x)
+"""
 
 class Solution(object):
     def shipWithinDays(self, weights, D):
@@ -83,10 +87,7 @@ class Solution(object):
                 end_ = mid
             else:
                 start_ = mid + 1
-        if helper(start_) <= D:
-            return start_
-        else:
-            return end_
+        return start_
 
 
 if __name__ == "__main__":

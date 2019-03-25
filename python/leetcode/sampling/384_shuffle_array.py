@@ -18,6 +18,12 @@ solution.reset();
 // Returns the random shuffling of array [1,2,3].
 solution.shuffle();
 '''
+
+"""
+Fisher-Yates shuffle
+"""
+
+
 import random
 
 class Solution(object):

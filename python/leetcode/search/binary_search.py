@@ -1,26 +1,3 @@
-def find_smaller(arr, nums):
-  print 'array in order: ', arr
-  print 'nums to look up nearest smaller: ', nums
-  # arr.append(float('inf'))
-  for tmp_num in nums:
-    st_id = 0
-    end_id = len(arr) - 1
-    mid_id = (st_id + end_id) / 2
-    while(st_id<mid_id):
-      # print mid_id
-      if tmp_num <= arr[mid_id]:
-        end_id = mid_id
-      elif tmp_num > arr[mid_id]:
-        st_id = mid_id
-      mid_id = (st_id + end_id) / 2
-    if tmp_num > arr[end_id]:
-      print tmp_num, arr[end_id]
-    elif tmp_num > arr[st_id]:
-      print tmp_num, arr[st_id]
-    else:
-      print tmp_num, '-'
-
-
 def find_larger(arr, nums):
   print 'array in order: ', arr
   print 'nums to look up nearest larger: ', nums

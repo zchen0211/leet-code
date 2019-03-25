@@ -12,6 +12,15 @@ You may imagine that num[-1] = num[n] = -\infty.
 For example, in array [1, 2, 3, 1], 3 is a peak element and your function should return the index number 2.
 '''
 
+"""
+Notice edge condition: num[-1], num[n], neg infinity
+
+divide and conquer.
+
+MIT course with explan
+https://www.youtube.com/watch?v=HtSuA80QTyo&feature=youtu.be
+"""
+
 class Solution(object):
   def findPeakElement(self, nums):
     if len(nums) == 1:
