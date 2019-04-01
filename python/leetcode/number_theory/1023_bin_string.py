@@ -19,6 +19,50 @@ Note:
 1 <= N <= 10^9
 """
 
+"""
+Intuition
+We can process the entire string and track all numbers [1..N] that we can build.
+
+OR
+
+We can generate binary string representation for [1..N], and search for it in the string.
+
+Solution 1
+For each non-zero position i in S, gradually build num while num <= N.
+Track each num in seen, increment X for new num.
+Return true if we built all numbers from 1 to N (X == N).
+bool queryString(string S, int N, int X = 0) {
+  vector<bool> seen(N);
+  for (auto i = 0; i < S.size() && X < N; ++i) {
+    if (S[i] == '0') continue;
+    for (auto j = i, num = 0; num <= N && j < S.size(); ++j) {
+      num = (num << 1) + S[j] - '0';
+      if (num > 0 && num <= N && !seen[num - 1]) {
+        ++X;
+        seen[num - 1] = true;
+      }
+    }
+  }
+  return X == N;
+}
+Complexity Analysis
+Runtime: O(S log N), where S is the string size. For every position, we analyze log N digits.
+Memory: O(N) as we need to track all numbers from 1 to N.
+
+Solution 2
+Iterate from N to 1. Build binary string and search.
+
+bool queryString(string S, int N) {
+  while (N > 0) {
+    auto s = bitset<32>(N--).to_string();
+    if (S.find(s.substr(s.find("1"))) == string::npos) return false;
+  }
+  return true;
+}
+Complexity Analysis
+Runtime: O(N * (S + log N)), where S is the string size. We search N times, and every search is O(S + log N).
+Memory: O(1).
+"""
 
 class Solution(object):
     def queryString(self, S, N):

@@ -11,6 +11,16 @@ Update (2015-02-10):
 The signature of the C++ function had been updated. If you still see your function signature accepts a const char * argument, please click the reload button  to reset your code definition.
 '''
 
+"""
+problem definition:
+ 1. integer! (not float)
+ 2. integer always valid?
+edge condition:
+ 1. starting spaces;
+ 2. +/-;
+ 3. > INT_MAX; < INT_MIN; trim and return;
+"""
+
 class Solution(object):
     def myAtoi(self, str):
         """

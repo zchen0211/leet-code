@@ -16,11 +16,26 @@ Output: 28
 Explanation: The maximum result is 5 ^ 25 = 28.
 '''
 
-# take-aways:
-# 1. iteration by bit, starting from most significant
-# 2. mask: 111..1100..00, all 1 until i-th digit
-# 3. tmp: current max_ with new '1' added ath i-th digit to see if achievable
-# 4. if tmp achievable, update max_, check tmp^prefix in tmp_set (***)
+"""
+Algorithm:
+ iteration by bit, starting from most significant
+ O(n * 32) rather than O(n*n)
+
+For ith iteration, (ith digit starting from most significant)
+  check if it possible to add a new '1' to the max prefix
+  map every number masked until ith digit into a set S
+  for every item in S:
+    if item2 s.t. item^item2 == tmp exist?
+      if yes, break, update max_
+return max_
+
+vars (at ith iteration):
+max_: current maximum prefix achievable until (i-1)th digit
+mask: 111..1100..00, all 1 until i-th digit
+tmp: current max_ with new '1' added ath i-th digit to see if achievable
+if tmp achievable, update max_, check tmp^prefix in tmp_set (***)
+"""
+
 
 class Solution(object):
   def findMaximumXOR(self, nums):

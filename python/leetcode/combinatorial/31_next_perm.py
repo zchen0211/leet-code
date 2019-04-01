@@ -13,6 +13,13 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 1,1,5 to 1,5,1
 '''
 
+"""
+key points:
+1. from back to front;
+2. switch and re-order
+3. do it in-order, i.e., nums = nums[::-1] is not ok.
+"""
+
 class Solution(object):
     def nextPermutation(self, nums):
         """

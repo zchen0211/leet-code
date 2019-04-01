@@ -11,6 +11,8 @@ You may assume all elements in the array are non-negative integers and fit in th
 
 '''
 import collections
+import math
+
 
 class Solution(object):
   def solve2(self, nums):
@@ -24,7 +26,7 @@ class Solution(object):
     max_ = max(nums)
     if min_ == max_: return 0
     # ceil(max_-min_)/(n-1)
-    gap = (max_ - min_ + n - 2) / (n-1)
+    gap = math.ceil((max_ - min_) / (n-1))
     # n - 1 bucket
     # [0]: [min_, min_+gap)
     # [1]: [min_+gap, min_+2*gap)

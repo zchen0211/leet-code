@@ -21,7 +21,29 @@ Example 3:
 nums = [1, 2, 2], n = 5
 Return 0.
 '''
+
+"""
+Keypoints: no need to enumerate n+1, if n exists,
+  since 1 should have been added if not appearing.
+
+Let miss be the smallest sum in [0,n] that we might be missing. 
+Meaning we already know we can build all sums in [0,miss). 
+Then if we have a number num <= miss in the given array, 
+  we can add it to those smaller sums to build all sums in [0,miss+num).
+If we don't, then we must add such a number to the array,
+  and it's best to add miss itself, to maximize the reach.
+
+missing: least potential missing number, i.e.,
+  we can build [0, missing)
+if next number num[i] <= missing;
+  we can build [0, missing + num[i])
+else:
+  add missing,
+  missing *= 2
+"""
+
 from collections import Counter
+
 
 class Solution(object):
   def minPatches(self, nums, n):
@@ -30,49 +52,6 @@ class Solution(object):
     :type n: int
     :rtype: int
     """
-    # too brute force! will TLE and oom
-    if n == 0: return 0
-    # nums.sort()
-    self.set_ = set([0])
-    # step 1: all numbers reachable
-    self.reach(nums)
-    print self.set_
-
-    # step 2: fill too large hole in the back
-    added = []
-    max_ = max(self.set_)
-    while n > max_*2:
-      added.append( (n+1)/2)
-      n = n/2
-    print added, n
-
-    # step 2: filling the holes
-    for i in range(1, n+1):
-      if i not in self.set_:
-        # update
-        new_set = set()
-        for item in self.set_:
-          if item+i not in self.set_:
-            new_set.add(item+i)
-        for item in new_set:
-          self.set_.add(item)
-        added.append(i)
-    print added
-    return len(added)
-
-  def reach(self, nums):
-    # a counter first?
-    nums_cnt = dict(Counter(nums))
-
-    for item in nums_cnt.keys():
-      n = nums_cnt[item]
-      new_set = set()
-      for old in self.set_:
-        for j in range(1, n+1):
-          if item+old*j not in self.set_:
-            new_set.add(item+old*j)
-      for new in new_set:
-        self.set_.add(new)
 
   def solve2(self, nums, n):
     if n == 0: return 0
@@ -93,12 +72,12 @@ class Solution(object):
 if __name__ == "__main__":
   a = Solution()
   # print a.minPatches([1,3], 6) 
-  print a.solve2([1,3], 6) 
+  print(a.solve2([1,3], 6))
   # print a.minPatches([1,5,10], 20) 
-  print a.solve2([1,5,10], 20) 
+  print(a.solve2([1,5,10], 20))
   # print a.minPatches([1,2,2], 5) 
-  print a.solve2([1,2,2], 5) 
+  print(a.solve2([1,2,2], 5))
   # print a.minPatches([1,2,31,33], 1000)
-  print a.solve2([1,2,31,33], 1000) 
+  print(a.solve2([1,2,31,33], 1000))
   # print a.minPatches([1,2,31,33], 2147483647) 
-  print a.solve2([1,2,31,33], 2147483647) 
+  print(a.solve2([1,2,31,33], 2147483647))

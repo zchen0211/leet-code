@@ -114,136 +114,93 @@ public int removeBoxes(int[] boxes) {
 Side notes: In case you are curious, for the problem "leetcode 312. Burst Balloons", the external information to subarray nums[i, j] is the two numbers (denoted as left and right) adjacent to nums[i] and nums[j], respectively. If we absorb this extra piece of information into the definition of T(i, j), we have T(i, j, left, right) which represents the maximum coins obtained by bursting balloons of subarray nums[i, j] whose two adjacent numbers are left and right. The original problem will be T(0, n - 1, 1, 1) and the termination condition is T(i, i, left, right) = left * right * nums[i]. The recurrence relations will be: T(i, j, left, right) = max(left * nums[k] * right + T(i, k - 1, left, nums[k]) + T(k + 1, j, nums[k], right)) where i <= k <= j (here we interpret it as that the balloon at index k is the last to be burst. Since all balloons can be the last one so we try each case and choose one that yields the maximum coins). For more details, refer to dietpepsi 's post.
 """
 
+
 class Solution(object):
   def removeBoxes(self, boxes):
     """
     :type boxes: List[int]
     :rtype: int
     """
-    # re-arrange data
-    box_arr = []
-    curr_ = boxes[0]
-    curr_cnt = 1
-    i = 1
-    while(i<len(boxes)):
-      if boxes[i] == curr_:
-        curr_cnt += 1
-      else:
-        box_arr.append([curr_, curr_cnt])
-        curr_ = boxes[i]
-        curr_cnt = 1
-      i += 1
-    box_arr.append([curr_, curr_cnt])
-    print box_arr
-    result = self.helper(box_arr)
-    return result
-
-
-  def helper(self, box_arr):
-    offset, box_arr = self.prune(box_arr)
-    # print 'final_offset:', offset
-    # print 'final_box:', box_arr
-    if len(box_arr) == 0: return offset
-
-    # recursively dfs
-    result = 0
-    n = len(box_arr)
-    print 'working on: ', box_arr, offset 
-    for i in range(n):
-      print 'remove: ', i, box_arr[i],
-      # remove item box_arr[i]
-      new_box_arr = []
-      for j in range(i):
-        b_id, b_n = box_arr[j]
-        new_box_arr.append([b_id,b_n])
-      
-      b_id, b_n = box_arr[i]
-
-      new_offset1 = b_n ** 2
-      if i>0 and i+1 < n and box_arr[i+1][0] == new_box_arr[-1][0]:
-        new_box_arr[-1][1] += box_arr[i+1][1]
-        for j in range(i+2, n):
-          new_box_arr.append(box_arr[j])
-      else:
-        for j in range(i+1, n):
-          new_box_arr.append(box_arr[j])
-      print 'after remove, ', new_box_arr
-      # prune
-      new_offset2, new_box_arr = self.prune(new_box_arr)
-      # recursively helper
-      if len(new_box_arr) > 0:
-        new_offset3 = self.helper(new_box_arr)
-      else:
-        new_offset3 = 0
-      print new_offset1, new_offset2, new_offset3
-      # get max
-      result = max(result, new_offset1+new_offset2+new_offset3)
-    return offset+result
-
-
-  def prune(self, box_arr):
-    # return offset and new box_arr after pruning
-
-    # one-step pruning: remove all 1-time result
-    # statistics of box_arr
-    offset = 0
-    stat = {}
-    for item in box_arr:
-      b_id, b_n = item
-      if b_id not in stat: stat[b_id] = 1
-      else: stat[b_id] += 1
-    new_box_arr = []
-    for item in box_arr:
-      b_id, b_n = item
-      # print b_id, b_n, stat[b_id]
-      if stat[b_id]>1:
-        if len(new_box_arr)==0 or new_box_arr[-1][0]!=b_id:
-          new_box_arr.append([b_id, b_n])
-        else:
-          new_box_arr[-1][1] += b_n
-          stat[b_id] -= 1
-      else:
-        offset += b_n ** 2
-        del stat[b_id]
-      # print new_box_arr, offset
-    # print stat, new_box_arr
-    # corner case: empty, or not reducible
-    if len(new_box_arr) == 0 or min(stat.values()) >= 2:
-      return offset, new_box_arr
-    else:
-      # otherwise: recursively pruning
-      new_offset, new_box_arr = self.prune(new_box_arr)
-      return offset+new_offset, new_box_arr
 
   def solution2(self, boxes):
     n = len(boxes)
     # create n * n * n box
-    matrix = []
+    dp = []
     for i in range(n):
       tmp1 = []
       for j in range(n):
         tmp2 = [0] * n
         tmp1.append(tmp2)
-      matrix.append(tmp1)
-    return self.dfs(boxes, matrix, 0, n-1, 0)
+      dp.append(tmp1)
+    result = self.dp_td(boxes, dp, 0, n-1, 0)
 
-  def dfs(self, boxes, matrix, l, r, k):
-    if l>r: return 0
-    if matrix[l][r][k] != 0:
-      return matrix[l][r][k]
+    return result
 
-    while(r>l and boxes[r]==boxes[r-1]):
-      r -= 1
-      k += 1
-    matrix[l][r][k] = self.dfs(boxes, matrix, l, r-1,0) + (k+1)*(k+1)
-    for i in range(l, r):
-      if boxes[i] == boxes[r]:
-        matrix[l][r][k] = max(matrix[l][r][k], self.dfs(boxes,matrix,l,i,k+1)+self.dfs(boxes,matrix,i+1,r-1,0))
-    return matrix[l][r][k]
+  def dp_td(self, boxes, dp, i, j, k):
+    # top-down dp
+    if i > j: return 0
+    if dp[k][i][j] > 0:
+        return dp[k][i][j]
+
+    while j > i and boxes[i+1] == boxes[i]:
+        i += 1
+        k += 1
+
+    dp[k][i][j] = self.dp_td(boxes, dp, i+1, j,0) + (k+1)*(k+1)
+
+    for m in range(i+1, j+1):
+      if boxes[i] == boxes[m]:
+        dp[k][i][j] = max(dp[k][i][j], self.dp_td(boxes, dp, i+1, m-1,0) + self.dp_td(boxes, dp, m, j, k+1))
+    return dp[k][i][j]
+
+  def solution3(self, boxes):
+    n = len(boxes)
+    # create n * n * n box of zeros
+    dp = []
+    for i in range(n):
+      tmp1 = []
+      for j in range(n):
+        tmp2 = [0] * n
+        tmp1.append(tmp2)
+      dp.append(tmp1)
+    # set diagonal
+    for i in range(n):
+      for k in range(j+1):
+        dp[k][i][i] = (k+1) ** 2
+    result = self.dp_bu(boxes, dp, 0, n-1, 0)
+
+    return result
+
+  def dp_bu(self, boxes, dp, i, j, k):
+    # bottom-up dp
+    n = len(boxes)
+    for l in range(1, n):
+      for j in range(l, n):
+        i = j - l
+        for k in range(i+1):
+          res = (k+1) ** 2 + dp[0][i+1][j]
+          for m in range(i+1, j+1):
+            if boxes[m] == boxes[i]:
+              res = max(res, dp[0][i+1][m-1] + dp[k+1][m][j])
+          dp[k][i][j] = res
+    if n > 0:
+      return dp[0][0][n-1]
+    else:
+      return 0
+
+"""
+my own explanation:
+1. subproblem of left repetitive and always been processed at last without changing the result;
+  but can be done with the global problem;
+2. dp matrix serves as a memoized dp; (if computed, just use)
+"""
 
 if __name__ == '__main__':
   a = Solution()
-  # print a.removeBoxes([1, 3, 2, 2, 2, 3, 4, 3, 1])
+  """
+  array = [36,46,75,36,30,81,82,22,78,6,48,37,25,33,49,97,18,18,53,87,54,37,33,52,37,79,59,53,77,39,66,1,56,1,83,51,65,67,47,21,9,48,55,19,62,37,58,85,36,33,39,19,55,61,99,41,84,76,85,65,78,69,49,46,73,47,80,14,55,43,87,88,51,81,65,86,45,100,31,100,5,7,16,59,95,51,26,91,17,26,17,43,36,5,17,43,27,17,37,19]
+  """
+  # print(a.solution3([1, 3, 2, 2, 2, 3, 4, 3, 1]))
   # print a.removeBoxes([2, 2, 3, 3, 3, 2, 2, 3, 3, 1])
   # print a.solution2([2, 2, 3, 3, 3, 2, 2, 3, 3, 1])
-  print a.solution2([1,2,1])
+  print(a.solution2([1, 2, 1]))

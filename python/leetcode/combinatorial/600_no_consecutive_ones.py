@@ -18,7 +18,36 @@ Among them, only integer 3 disobeys the rule (two consecutive ones) and the othe
 Note: 1 <= n <= 10**9
 """
 
+"""
+no consecutive 1s starting with 0 and 1 as a[i], b[i]
+a[i] = a[i-1] + b[i-1]
+b[i] = a[i-1]
+
+then minus all results with nth digit but larger than num
+"""
+
 class Solution(object):
+  def solution2(self, num):
+    sb = self.binarize(num)
+    sb = sb[::-1]
+    n = len(sb)
+
+    a, b = [0] * n, [0] * n
+    a[0], b[0] = 1, 1
+    for i in range(1, n):
+      a[i] = a[i-1] + b[i-1]
+      b[i] = a[i-1]
+
+    result = a[-1] + b[-1]
+    i = n - 2
+    while i >= 0:
+      if sb[i] == 1 and sb[i+1] == 1:
+        break
+      if sb[i] == 0 and sb[i+1] == 0:
+        result -= b[i]
+      i -= 1
+    return result
+
   def findIntegers(self, num):
     """
     :type num: int
@@ -36,18 +65,18 @@ class Solution(object):
       rec.append(tmp)
     result = sum(rec)
 
-    print rec
+    print(rec)
     # binary represent of current n
     n_bin = self.binarize(num)
     n = len(n_bin)
-    print n_bin
+    print(n_bin)
     i = 1
     while(i<n):
       # 2 consecutive ones: break
       if n_bin[i] == 1 and n_bin[i-1] == 1:
         break
       elif n_bin[i] == 0 and n_bin[i-1] == 0:
-        print rec[n-i-1]
+        print(rec[n-i-1])
         result -= rec[n-i-1]
       i += 1
     # finally, if it ends with 00, plus one
@@ -59,7 +88,7 @@ class Solution(object):
     result = []
     while(num!=0):
       result.append(num%2)
-      num /= 2
+      num //= 2
     result = result[::-1]
     return result
 
@@ -75,4 +104,5 @@ class Solution(object):
 
 if __name__ == '__main__':
   a = Solution()
-  print a.findIntegers(64)
+  # print a.findIntegers(64)
+  print(a.solution2(2))
