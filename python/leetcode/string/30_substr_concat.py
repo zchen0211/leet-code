@@ -11,6 +11,14 @@ You should return the indices: [0,9].
 (order does not matter).
 '''
 
+"""
+key-point:
+after check
+j: j + wl * n
+next time just minus j:j+wl, and add the latest
+save computation!!!
+"""
+
 class Solution(object):
   def findSubstring(self, s, words):
     """

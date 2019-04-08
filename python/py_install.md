@@ -2,33 +2,34 @@
 
 ## conda
 - conda self
-```
+```bash
 conda --version
 conda update conda
 ```
 - Environment
-    - List all envs
-```
+    - List all envs:
+```bash
 conda info --envs
+conda env list
 ```
     - Create an environment
-```
+```bash
 conda create --name snowflake biopython
 source activate snowflakes
 
 source deactivate
 ```
     - Clone an environment
-```
+```bash
 conda create -n flowers --clone snowflakes
 ```
     - Remove an environment
-```
+```bash
 conda remove -n flowers 
 ```
 - Packages
     - List packages
-```
+```bash
 conda list
 ```
     - Install a package
@@ -48,7 +49,7 @@ pip install xxx
 python setup.py install
 ```
 - To remove:
-```
+```bash
 # To remove a package
 conda remove -n bunnies iopro
 
@@ -67,7 +68,7 @@ rm -rf ~/miniconda
 pip install -U pip
 ```
 - Install a package
-```
+```bash
 pip install PackageName                # latest version
 pip install PackageName==1.0.4         # specific version
 ```

@@ -23,6 +23,18 @@ Notes:
 The knight's health has no upper bound.
 Any room can contain threats or power-ups, even the first room the knight enters and the bottom-right room where the princess is imprisoned.
 """
+
+"""
+Keypoint:
+1. only able to go right/down (not bfs!!)
+2. have to go opposite from right bottom up, becase:
+In case:
+0   0  0
+0  -4  0
+-4 10  0
+hard to tell if we need spend 4 to get the 10 (depending on future)
+"""
+
 class Solution(object):
   def calculateMinimumHP(self, dungeon):
     """
