@@ -15,6 +15,45 @@ The array is only modifiable by the update function.
 You may assume the number of calls to update and sumRange function is distributed evenly.
 '''
 
+"""
+Method 1: Segment Tree
+# op1: Update: log(n)
+# SegmentTreeNode
+#   stard, end
+#   left, right
+#   val
+# op2: Build_Tree()
+# op3: Query_Sum()
+  corner case: span the range (leaf node included)
+  range all in left
+  range all in right
+  range in both left and right
+"""
+
+"""
+Method 2: Binary Index Tree
+for n numbers, create an array of size n+1
+0 dummy node
+1 [0,0] 2[0,1] 4[0,3] 8[0,7]
+        3[2,2] 5[4,4]
+**prefix tree**
+a node 1010: 2**3 + 2**1
+so start from 2**3, containing sum of next 2**1 numbers
+then [0, n], start with node n+1, sum all numbers back to root
+[m, n], sum(n+1) - sum(m)
+
+Operation:
+#1 update array[n], n+1 all the way to the end
+  while i <= n:
+    i += i & (-i)
+  move the least significant 1 up, will always include array[i]
+#2 Build tree:
+#3 Get sum, all the way back to root
+  while i >= 0:
+    i -= i & (-i)
+  remove the least significant 1
+"""
+
 class NumArray(object):
     # AC due to weak test cases, takes 1000ms
     def __init__(self, nums):
@@ -48,6 +87,7 @@ class Seg_Tree_Node(object):
     self.left = None
     self.right = None
     self.val = val
+
 
 class NumArray2(object):
     # AC: faster with segment Tree

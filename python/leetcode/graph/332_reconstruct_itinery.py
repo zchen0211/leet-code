@@ -17,15 +17,37 @@ Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","SFO"]. But it
 '''
 
 """
+Euler Path:
+1 whole way, plus out circles
+1-2-3-4-5
+with 2-....-2 back
+so recursive and iterative dfs works
+
 Solution 1: DFS
 go until stuck, retreat
 the order to try first can be alphabetical
+
+Iterative version: Easier to understand
+1. reverse sort, because we will pop right
+  'A': ['D', 'C', 'B']
+2. 
 """
 
 import collections
 
 class Solution(object):
-  def findItinery2(self, tickets):
+  def findItinerary(self, tickets):
+    targets = collections.defaultdict(list)
+    for a, b in sorted(tickets)[::-1]:
+        targets[a] += b,
+    route, stack = [], ['JFK']
+    while stack:
+        while targets[stack[-1]]:
+            stack += targets[stack[-1]].pop(),
+        route += stack.pop(),
+    return route[::-1]
+
+  def findItinerary2(self, tickets):
     """
     :type tickets: List[List[str]]
     :rtype: List[str]
@@ -34,13 +56,13 @@ class Solution(object):
     targets = collections.defaultdict(list)
     for a, b in sorted(tickets)[::-1]:
       targets[a] += b,
-    print targets
+    print(targets)
     route = []
     def visit(airport):
       while targets[airport]:
         visit(targets[airport].pop())
       route.append(airport)
-      print route
+      print(route)
     visit('JFK')
     return route[::-1]
 
@@ -72,8 +94,10 @@ class Solution(object):
         edge_list[curr].append(tmp)
         result.append(tmp2)
         curr = tmp2
-      print result
+      print(result)
     return result
+
+
 if __name__ == '__main__':
   a = Solution()
   # print a.findItinery2([["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]])
@@ -85,5 +109,7 @@ if __name__ == '__main__':
   # print a.solve2([["JFK","KUL"],["JFK","NRT"],["NRT","JFK"]])
   # print a.findItinery2([["JFK","1"],["1","JFK"],["2","JFK"],['JFK','2']])
   # print a.solve2([["JFK","1"],["1","JFK"],["2","JFK"],['JFK','2']])
-  print a.findItinery2([['JFK', 'A'],['A','C'], ['C','D'], ['D', 'A'], ['D','B'],['B','C'], ['C','JFK'], ['JFK','D'] ])
-  print a.solve2([['JFK', 'A'],['A','C'], ['C','D'], ['D', 'A'], ['D','B'],['B','C'], ['C','JFK'], ['JFK','D'] ])
+  # print(a.findItinerary([['JFK', 'A'],['A','C'], ['C','D'], ['D', 'A'], ['D','B'],['B','C'], ['C','JFK'], ['JFK','D'] ]))
+  array = [['JFK', 'A'], ['A', 'Z'], ['Z', 'A'], ['A', 'B'], ['B', 'Y'], ['Y', 'B'], ['B', 'C']]
+  print(a.findItinerary(array))
+  # print(a.solve2([['JFK', 'A'],['A','C'], ['C','D'], ['D', 'A'], ['D','B'],['B','C'], ['C','JFK'], ['JFK','D'] ]))
